@@ -46,9 +46,14 @@
         <ul class="flex items-center gap-2">
           {%- for block in section.blocks -%}
             {%- if block.type == 'social_icon' -%}
+              {%- comment -%} Değişkeni hazırlıyoruz {%- endcomment -%}
+              {%- assign icon_name = block.settings.icon_choice -%}
+
               <li class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-white" {{ block.shopify_attributes }}>
-                <a href="{{ block.settings.link | default: '#' }}" target="_blank">
-                  {% render block.settings.icon_choice %}
+                <a href="{{ block.settings.link | default: '#' }}" target="_blank" class="block w-6 h-6">
+                  {%- if icon_name != blank -%}
+                    {% render icon_name %}
+                  {%- endif -%}
                 </a>
               </li>
             {%- endif -%}
