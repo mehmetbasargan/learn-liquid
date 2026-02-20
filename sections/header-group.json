@@ -57,21 +57,13 @@
             "icon_choice": "icon-x",
             "link": "#"
           }
-        },
-        "social_icon_KGr4MJ": {
-          "type": "social_icon",
-          "settings": {
-            "icon_choice": "icon-tiktok",
-            "link": "#"
-          }
         }
       },
       "block_order": [
         "social_icon_RmXyw9",
         "social_icon_ctzzDe",
         "social_icon_QUH6kx",
-        "social_icon_qC4bjG",
-        "social_icon_KGr4MJ"
+        "social_icon_qC4bjG"
       ],
       "settings": {
         "menu": "main-menu",
