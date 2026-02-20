@@ -22,26 +22,21 @@
 
       <div class="hidden md:flex">
         <ul class="flex items-center gap-2">
-          {% for block in section.blocks %}
-            <li class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-white">
-              <a href="{{ block.settings.link }}">{{ block.settings.icon_choice }}</a>
-            </li>
-          {% endfor %}
-
-          {% comment %}
-            <li class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-white">
-              <a href="#">{% render 'icon-instagram' %}</a>
-            </li>
-            <li class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-white">
-              <a href="#">{% render 'icon-youtube' %}</a>
-            </li>
-            <li class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-white">
-              <a href="#">{% render 'icon-x' %}</a>
-            </li>
-            <li class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-white">
-              <a href="#">{% render 'icon-tiktok' %}</a>
-            </li>
-          {% endcomment %}
+          <li class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-white">
+            <a href="#">{% render 'icon-facebook' %}</a>
+          </li>
+          <li class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-white">
+            <a href="#">{% render 'icon-instagram' %}</a>
+          </li>
+          <li class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-white">
+            <a href="#">{% render 'icon-youtube' %}</a>
+          </li>
+          <li class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-white">
+            <a href="#">{% render 'icon-x' %}</a>
+          </li>
+          <li class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-white">
+            <a href="#">{% render 'icon-tiktok' %}</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -117,62 +112,6 @@
       "type": "image_picker",
       "id": "logo",
       "label": "Logo"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "social_icon",
-      "name": "Sosyal Medya İkonu",
-      "settings": [
-        {
-          "type": "select",
-          "id": "icon_choice",
-          "label": "İkon Seçin",
-          "options": [
-            {
-              "value": "{% render 'icon-facebook' %}",
-              "label": "Facebook"
-            },
-            {
-              "value": "{% render 'icon-instagram' %}",
-              "label": "Instagram"
-            },
-            {
-              "value": "{% render 'icon-youtube' %}",
-              "label": "YouTube"
-            },
-            {
-              "value": "{% render 'icon-x' %}",
-              "label": "X"
-            },
-            {
-              "value": "{% render 'icon-tiktok' %}",
-              "label": "TikTok"
-            }
-          ],
-          "default": "{% render 'icon-instagram' %}"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "İkon Linki"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Header Two",
-      "category": "Header",
-      "settings": {
-        "menu": "",
-        "logo": ""
-      },
-      "blocks": [
-        {
-          "type": "social_icon"
-        }
-      ]
     }
   ]
 }
