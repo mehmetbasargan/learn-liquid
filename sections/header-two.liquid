@@ -1,11 +1,11 @@
 <header class="">
   {% comment %} logo {% endcomment %}
   <div class="container">
-    <div class="w-full h-[80px] py-5 items-center justify-between flex">
-      <div class="">
+    <div class="w-full h-[80px] py-5 items-center justify-center md:justify-between flex">
+      <div class="hidden md:flex">
         <ul class="flex items-center gap-2">
           <li>{% render 'icon-phone' %}</li>
-          <li class="font-bold">
+          <li class="font-medium">
             <a href="#">0532 463 24 47</a>
           </li>
         </ul>
@@ -19,12 +19,23 @@
           {% endif %}
         </a>
       </div>
-      <div class="">
+      <div class="hidden md:flex">
         <ul class="flex items-center gap-2">
-          <li>F</li>
-          <li>I</li>
-          <li>Y</li>
-          <li>T</li>
+          <li class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-white">
+            <a href="#">{% render 'icon-facebook' %}</a>
+          </li>
+          <li class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-white">
+            <a href="#">{% render 'icon-instagram' %}</a>
+          </li>
+          <li class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-white">
+            <a href="#">{% render 'icon-youtube' %}</a>
+          </li>
+          <li class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-white">
+            <a href="#">{% render 'icon-x' %}</a>
+          </li>
+          <li class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-white">
+            <a href="#">{% render 'icon-tiktok' %}</a>
+          </li>
         </ul>
       </div>
     </div>
