@@ -13,17 +13,17 @@
   </div>
   {% comment %} navigation {% endcomment %}
   <div class=" bg-custom-bg h-[70px] flex items-center relative">
-    <div class="container flex lg:justify-between justify-end items-center">
-      <div class="hidden lg:flex flex-row items-center gap-6 ">
+    <div class="container flex lg:justify-between justify-end items-center w-full">
+      <div class="hidden lg:flex flex-row items-center justify-between gap-6 ">
         {% for link in section.settings.menu.links %}
           <a href="{{ link.url }}" class="nav-link hover:text-brand {% if link.current %} is-active {% endif %}">
             {{ link.title }}
           </a>
         {% endfor %}
       </div>
-      <div class="flex items-center lg:gap-2 gap-8">
+      <div class="flex items-center lg:gap-2 gap-8 justify-start w-full lg:w-auto">
         <div class="flex lg:hidden">
-          <button id="menu-toggle" class="group relative">
+          <button id="menu-toggle" class="group relative order-last">
             <div id="icon-open" class="block">
               {% render 'icon-menu' %}
             </div>
@@ -34,12 +34,12 @@
           </button>
 
           {% comment %} mobile menu {% endcomment %}
-          <nav id="main-menu" class="hidden absolute top-[70px] left-0 w-full bg-custom-bg z-40 ">
+          <nav id="main-menu" class="hidden absolute top-[70px] left-0 bg-custom-bg z-40 w-full lg:w-0">
             <div class="flex flex-col p-4 w-full">
               {% for link in section.settings.menu.links %}
                 <a
                   href="{{ link.url }}"
-                  class="nav-link py-5 border-b border-[#000000]/10 last:border-b-0 {% if link.current %} is-active {% endif %}"
+                  class="nav-link py-5 border-b border-[#000000]/10 last:border-b-0 w-full {% if link.current %} is-active {% endif %}"
                 >
                   {{ link.title }}
                 </a>
@@ -48,20 +48,22 @@
           </nav>
         </div>
 
-        <a href="{{ routes.search_url }}" class="lg:w-[30px] w-[20px] text-black hover:text-brand">
-          {% render 'icon-search' %}
-        </a>
-        <a href="{{ routes.account_url }}" class="lg:w-[30px] w-[20px] text-black hover:text-brand">
-          {% if shop.customer_accounts_enabled %}
-            {% render 'icon-account' | inline_asset_content | link_to: routes.account_url %}
-          {% endif %}
-        </a>
-        <a href="{{ routes.cart_url }}" class="lg:w-[30px] w-[20px] text-black hover:text-brand">
-          {% if cart.item_count > 0 %}
-            <sup>{{ cart.item_count }}</sup>
-          {% endif %}
-          {% render 'icon-cart' %}
-        </a>
+        <div class="order-first flex flex-row justify-start gap-7 w-full lg:w-auto">
+          <a href="{{ routes.search_url }}" class="lg:w-[30px] w-[20px] text-black hover:text-brand">
+            {% render 'icon-search' %}
+          </a>
+          <a href="{{ routes.account_url }}" class="lg:w-[30px] w-[20px] text-black hover:text-brand">
+            {% if shop.customer_accounts_enabled %}
+              {% render 'icon-account' | inline_asset_content | link_to: routes.account_url %}
+            {% endif %}
+          </a>
+          <a href="{{ routes.cart_url }}" class="lg:w-[30px] w-[20px] text-black hover:text-brand">
+            {% if cart.item_count > 0 %}
+              <sup>{{ cart.item_count }}</sup>
+            {% endif %}
+            {% render 'icon-cart' %}
+          </a>
+        </div>
       </div>
     </div>
   </div>
