@@ -1,5 +1,5 @@
 <header class="flex flex-row items-center justify-between">
-  <div class="flex flex-row gap-3">
+  <div class="">
     <a href="{{ routes.root_url }}" class="header__logo-link w-[150px]">
       {% if section.settings.logo %}
         {{ section.settings.logo | image_url: width: 150 | image_tag: alt: shop.name }}
@@ -7,15 +7,25 @@
         <span class="h2">{{ shop.name }}</span>
       {% endif %}
     </a>
+  </div>
+
+  <div class="flex flex-row items-center gap-5">
     <div class="header__menu">
       {% for link in section.settings.menu.links %}
         {{ link.title | link_to: link.url }}
       {% endfor %}
     </div>
-  </div>
-
-  <div class="">
     <div class="header__icons">
+      <form action="{{ routes.search_url }}" method="get" role="search">
+        <input
+          type="search"
+          name="q"
+          placeholder="Ürün ara..."
+          aria-label="Arama"
+        >
+        <button type="submit">Ara</button>
+      </form>
+
       {% if shop.customer_accounts_enabled %}
         {{ 'icon-account.svg' | inline_asset_content | link_to: routes.account_url }}
       {% endif %}
