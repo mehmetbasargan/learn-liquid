@@ -1,14 +1,32 @@
 <header class="">
   {% comment %} logo {% endcomment %}
   <div class="container">
-    <div class="w-full h-[80px] py-5 items-center justify-center flex">
-      <a href="{{ routes.root_url }}" class=" w-[140px] lg:w-[180px] shrink-0">
-        {% if section.settings.logo %}
-          {{ section.settings.logo | image_url: width: 180 | image_tag: alt: shop.name }}
-        {% else %}
-          <span class="h2">{{ shop.name }}</span>
-        {% endif %}
-      </a>
+    <div class="w-full h-[80px] py-5 items-center justify-between flex">
+      <div class="">
+        <ul class="flex items-center gap-2">
+          <li>{% render 'icon-phone' %}</li>
+          <li class="font-bold">
+            <a href="#">0532 463 24 47</a>
+          </li>
+        </ul>
+      </div>
+      <div class="">
+        <a href="{{ routes.root_url }}" class=" w-[140px] lg:w-[180px] shrink-0">
+          {% if section.settings.logo %}
+            {{ section.settings.logo | image_url: width: 180 | image_tag: alt: shop.name }}
+          {% else %}
+            <span class="h2">{{ shop.name }}</span>
+          {% endif %}
+        </a>
+      </div>
+      <div class="">
+        <ul class="flex items-center gap-2">
+          <li>F</li>
+          <li>I</li>
+          <li>Y</li>
+          <li>T</li>
+        </ul>
+      </div>
     </div>
   </div>
   {% comment %} navigation {% endcomment %}
