@@ -23,6 +23,18 @@ font-family: "Inter", sans-serif; */
 	/* Arka plan veya metin için özel gri tonları */
 	--color-surface: #f9fafb;
 	--color-on-surface: #111827;
+
+	/* Marquee animation */
+	--animate-marquee: marquee 15s linear infinite;
+
+	@keyframes marquee {
+		from {
+			transform: translateX(100%);
+		}
+		to {
+			transform: translateX(-100%);
+		}
+	}
 }
 
 /* #ededee */
