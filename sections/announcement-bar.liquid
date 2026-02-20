@@ -1,1 +1,23 @@
-<div class="">announcement bar</div>
+<div class="h-13 bg-brand-light text-surface text-center flex items-center justify-center">
+  {{ section.settings.announcement_text }}
+</div>
+
+{% schema %}
+{
+  "name": "Duyuru Barı",
+  "settings": [
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Duyuru Metni",
+      "default": "Büyük İndirimi Kaçırmayın!"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Arka Plan Rengi",
+      "default": "#1d4ed8"
+    }
+  ]
+}
+{% endschema %}

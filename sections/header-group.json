@@ -11,6 +11,10 @@
 	"type": "header",
 	"name": "Header Group",
 	"sections": {
+		"announcement-bar": {
+			"type": "announcement-bar",
+			"settings": {}
+		},
 		"header": {
 			"type": "header",
 			"settings": {
@@ -18,10 +22,7 @@
 				"logo": "shopify://shop_images/logo.svg"
 			}
 		},
-		"announcement-bar": {
-			"type": "announcement-bar",
-			"settings": {}
-		},
+
 		"header-two": {
 			"type": "header-two",
 			"disabled": true,
@@ -36,5 +37,5 @@
 			"settings": {}
 		}
 	},
-	"order": ["header", "announcement-bar", "header-two", "header-three"]
+	"order": ["announcement-bar", "header", "header-two", "header-three"]
 }
