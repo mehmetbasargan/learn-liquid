@@ -1,4 +1,4 @@
-<header class="sticky top-0 z-50 bg-white shadow-md transition-all duration-300">
+<header class="">
   {% comment %} logo {% endcomment %}
   <div class="container">
     <div class="w-full h-[80px] py-5 items-center justify-center md:justify-between flex">
@@ -112,6 +112,16 @@
     </div>
   </div>
 </header>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: white;
+  }
+</style>
 
 {% schema %}
 {
