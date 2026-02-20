@@ -1,5 +1,5 @@
 <header>
-  <a href="{{ routes.root_url }}" class="header__logo-link">
+  <a href="{{ routes.root_url }}" class="header__logo-link w-[100px]">
     {% if section.settings.logo %}
       {{ section.settings.logo | image_url: width: 100 | image_tag: alt: shop.name }}
     {% else %}
