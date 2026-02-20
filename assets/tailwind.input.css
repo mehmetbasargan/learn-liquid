@@ -6,6 +6,9 @@
 
 font-family: "Inter", sans-serif; */
 
+.is-active {
+	@apply text-brand;
+}
 @theme {
 	/* Özel font tanımı */
 	--font-inter: 'Inter', ui-sans-serif, system-ui;
