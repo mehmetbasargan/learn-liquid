@@ -260,9 +260,6 @@
     width: calc(var(--spacing) * 8);
     height: calc(var(--spacing) * 8);
   }
-  .h-13 {
-    height: calc(var(--spacing) * 13);
-  }
   .h-\[100px\] {
     height: 100px;
   }
@@ -338,9 +335,6 @@
   .border-\[\#d1d1d1\] {
     border-color: #d1d1d1;
   }
-  .bg-black {
-    background-color: var(--color-black);
-  }
   .bg-black\/10 {
     background-color: color-mix(in srgb, #000 10%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -388,9 +382,6 @@
   }
   .text-surface {
     color: var(--color-surface);
-  }
-  .text-white {
-    color: var(--color-white);
   }
   .italic {
     font-style: italic;
