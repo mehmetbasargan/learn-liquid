@@ -1,3 +1,4 @@
+/* mobile menu */
 document.addEventListener('DOMContentLoaded', () => {
 	const menuToggle = document.getElementById('menu-toggle');
 	const mainMenu = document.getElementById('main-menu');
@@ -21,4 +22,26 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		});
 	}
+});
+
+/* back to top */
+const backToTop = document.getElementById('back-to-top');
+
+window.addEventListener('scroll', () => {
+	if (window.scrollY > 300) {
+		// Butonu göster
+		backToTop.classList.remove('translate-y-20', 'opacity-0');
+		backToTop.classList.add('translate-y-0', 'opacity-100');
+	} else {
+		// Butonu gizle
+		backToTop.classList.add('translate-y-20', 'opacity-0');
+		backToTop.classList.remove('translate-y-0', 'opacity-100');
+	}
+});
+
+backToTop.addEventListener('click', () => {
+	window.scrollTo({
+		top: 0,
+		behavior: 'smooth', // Yumuşak kaydırma
+	});
 });
