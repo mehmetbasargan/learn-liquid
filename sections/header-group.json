@@ -63,14 +63,14 @@
           "type": "social_icon",
           "settings": {
             "icon_choice": "icon-x",
-            "link": ""
+            "link": "#"
           }
         },
         "social_icon_KGr4MJ": {
           "type": "social_icon",
           "settings": {
             "icon_choice": "icon-tiktok",
-            "link": ""
+            "link": "#"
           }
         }
       },
