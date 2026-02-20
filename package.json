@@ -1,0 +1,21 @@
+{
+	"name": "learn-liquid",
+	"version": "1.0.0",
+	"description": "<h1 align=\"center\" style=\"position: relative;\">\r   <br>\r     <img src=\"./assets/shoppy-x-ray.svg\" alt=\"logo\" width=\"200\">\r   <br>\r   Shopify Skeleton Theme\r </h1>",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev:shopify": "shopify theme dev --store 0z966e-0q",
+		"dev:tailwind": "npx tailwindcss -i ./assets/tailwind.input.css -o ./assets/tailwind.output.css --watch",
+		"dev": "concurrently \"npm run dev:shopify\" \"npm run dev:tailwind\""
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"autoprefixer": "^10.4.24",
+		"concurrently": "^9.2.1",
+		"postcss": "^8.5.6",
+		"tailwindcss": "^4.2.0"
+	}
+}
