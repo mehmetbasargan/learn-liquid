@@ -13,7 +13,6 @@
   "sections": {
     "header": {
       "type": "header",
-      "disabled": true,
       "settings": {
         "menu": ""
       }
@@ -26,7 +25,6 @@
     },
     "header-three": {
       "type": "header-three",
-      "disabled": true,
       "settings": {}
     }
   },
