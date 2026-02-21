@@ -2,17 +2,31 @@
   class="relative w-full overflow-hidden flex items-center justify-center"
   style="height: {{ section.settings.hero_height }}vh; min-height: 300px;"
 >
-  <div class="absolute inset-0 z-0">
-    {% if collection.image %}
-      {{ collection.image | image_url: width: 2000 | image_tag: class: 'w-full h-full object-cover' }}
-    {% else %}
-      <div class="w-full h-full bg-[#3B443C]"></div>
-    {% endif %}
-    <div
-      class="absolute inset-0"
-      style="background-color: rgba(0,0,0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});"
-    ></div>
-  </div>
+  <section
+    class="relative w-full overflow-hidden flex items-center justify-center"
+    style="height: {{ section.settings.hero_height }}vh; min-height: 300px;"
+  >
+    <div class="absolute inset-0 z-0">
+      {% if collection.image %}
+        {{ collection.image | image_url: width: 2000 | image_tag: class: 'w-full h-full object-cover' }}
+      {% elsif section.settings.fallback_image != blank %}
+        {{ section.settings.fallback_image | image_url: width: 2000 | image_tag: class: 'w-full h-full object-cover' }}
+      {% else %}
+        <div class="w-full h-full bg-[#3B443C]"></div>
+      {% endif %}
+
+      <div
+        class="absolute inset-0"
+        style="background-color: rgba(0,0,0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});"
+      ></div>
+    </div>
+
+    <div class="relative z-10 text-center px-4">
+      <h1 class="text-white text-4xl md:text-5xl font-light tracking-[0.3em] uppercase italic">
+        {{ collection.title }}
+      </h1>
+    </div>
+  </section>
 
   <div class="relative z-10 text-center px-4">
     <nav class="mb-4 text-[10px] uppercase tracking-[0.2em] text-white/80">
@@ -48,6 +62,11 @@
       "step": 10,
       "label": "Karartma",
       "default": 30
+    },
+    {
+      "type": "image_picker",
+      "id": "fallback_image",
+      "label": "Yedek Görsel (Koleksiyon görseli yoksa görünür)"
     }
   ],
   "presets": [
