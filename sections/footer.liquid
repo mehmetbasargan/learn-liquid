@@ -1,7 +1,57 @@
-<footer class="bg-custom-bg py-10 text-center">
-  <div class="container">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum sit voluptates quo eius nobis. Maiores, labore, ab
-    consequuntur neque tempore autem, omnis architecto consectetur at deserunt quidem. Autem, sunt omnis!
+<footer class="bg-custom-bg] text-[#F9F9F9] pt-16 pb-8 px-6">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+    <div class="flex flex-col space-y-6">
+      <div>
+        <a href="{{ routes.root_url }}" class=" w-[140px] lg:w-[180px] shrink-0">
+          {% if section.settings.logo %}
+            {{ section.settings.logo | image_url: width: 180 | image_tag: alt: shop.name }}
+          {% else %}
+            <span class="h2">{{ shop.name }}</span>
+          {% endif %}
+        </a>
+        <p class="mt-4 text-sm text-primary leading-relaxed font-light">
+          Defining your essence through timeless designs and sustainable elegance. Join the era of conscious fashion.
+        </p>
+      </div>
+
+      <div class="space-y-2 text-sm text-gray-400">
+        <p class="flex items-center gap-2"><span class="text-[#B2AC88]">Address:</span> Nişantaşı, İstanbul / TR</p>
+        <p class="flex items-center gap-2"><span class="text-[#B2AC88]">Email:</span> hello@luviaera.com</p>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="text-sm font-semibold uppercase tracking-widest mb-6 text-[#B2AC88]">Collections</h4>
+      <ul class="space-y-4 text-sm font-light text-gray-300">
+        <li><a href="/collections/new-in" class="hover:text-white transition">New In</a></li>
+        <li><a href="/collections/dresses" class="hover:text-white transition">Dresses</a></li>
+        <li><a href="/collections/knitwear" class="hover:text-white transition">Knitwear</a></li>
+        <li><a href="/collections/accessories" class="hover:text-white transition">Accessories</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="text-sm font-semibold uppercase tracking-widest mb-6 text-[#B2AC88]">Customer Care</h4>
+      <ul class="space-y-4 text-sm font-light text-gray-300">
+        <li><a href="/pages/our-story" class="hover:text-white transition">Our Story</a></li>
+        <li><a href="/pages/shipping-returns" class="hover:text-white transition">Shipping & Returns</a></li>
+        <li><a href="/pages/size-guide" class="hover:text-white transition">Size Guide</a></li>
+        <li><a href="/pages/contact" class="hover:text-white transition">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="text-sm font-semibold uppercase tracking-widest mb-6 text-[#B2AC88]">Newsletter</h4>
+      <p class="text-xs text-gray-400 mb-4 font-light italic">Be the first to know about new eras.</p>
+      <form class="flex border-b border-gray-600 pb-2">
+        <input
+          type="email"
+          placeholder="Email address"
+          class="bg-transparent border-none text-sm w-full focus:outline-none placeholder:text-gray-600 text-white"
+        >
+        <button type="submit" class="text-[#B2AC88] uppercase text-xs tracking-widest font-semibold ml-2">Join</button>
+      </form>
+    </div>
   </div>
 </footer>
 
@@ -37,37 +87,33 @@
   {% render 'icon-arrow' %}
 </button>
 
-{% stylesheet %}
-  footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
-  }
-  footer a {
-    text-decoration: none;
-    color: var(--color-foreground);
-  }
-  footer .footer__links,
-  footer .footer__payment {
-    display: flex;
-    gap: 1rem;
-  }
-{% endstylesheet %}
-
 {% schema %}
 {
-  "name": "t:general.footer",
+  "name": "Footer",
   "settings": [
     {
-      "type": "link_list",
-      "id": "menu",
-      "label": "t:labels.menu"
+      "type": "text",
+      "id": "footer_logo_text",
+      "label": "Logo Yazısı",
+      "default": "Luvia Era"
     },
     {
-      "type": "checkbox",
-      "id": "show_payment_icons",
-      "label": "t:labels.show_payment_icons",
-      "default": true
+      "type": "textarea",
+      "id": "footer_description",
+      "label": "Kısa Açıklama",
+      "default": "Defining your essence through timeless designs."
+    },
+    {
+      "type": "text",
+      "id": "footer_address",
+      "label": "Adres",
+      "default": "Nişantaşı, İstanbul / TR"
+    },
+    {
+      "type": "text",
+      "id": "footer_email",
+      "label": "E-posta",
+      "default": "hello@luviaera.com"
     }
   ]
 }
