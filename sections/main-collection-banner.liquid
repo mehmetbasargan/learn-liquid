@@ -1,40 +1,37 @@
 <section
   class="relative w-full overflow-hidden flex items-center justify-center"
-  style="height: {{ section.settings.hero_height }}vh; min-height: 300px;"
+  style="height: {{ section.settings.hero_height }}vh; min-height: 350px;"
 >
-  <section
-    class="relative w-full overflow-hidden flex items-center justify-center"
-    style="height: {{ section.settings.hero_height }}vh; min-height: 300px;"
-  >
-    <div class="absolute inset-0 z-0">
-      {% if collection.image %}
-        {{ collection.image | image_url: width: 2000 | image_tag: class: 'w-full h-full object-cover' }}
-      {% elsif section.settings.fallback_image != blank %}
-        {{ section.settings.fallback_image | image_url: width: 2000 | image_tag: class: 'w-full h-full object-cover' }}
-      {% else %}
-        <div class="w-full h-full bg-[#3B443C]"></div>
-      {% endif %}
+  <div class="absolute inset-0 z-0">
+    {% if collection.image %}
+      {{
+        collection.image
+        | image_url: width: 2000
+        | image_tag: class: 'w-full h-full object-cover object-center', loading: 'eager'
+      }}
+    {% elsif section.settings.fallback_image != blank %}
+      {{
+        section.settings.fallback_image
+        | image_url: width: 2000
+        | image_tag: class: 'w-full h-full object-cover object-center', loading: 'eager'
+      }}
+    {% else %}
+      <div class="w-full h-full bg-[#3B443C]"></div>
+    {% endif %}
 
-      <div
-        class="absolute inset-0"
-        style="background-color: rgba(0,0,0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});"
-      ></div>
-    </div>
+    <div
+      class="absolute inset-0"
+      style="background-color: rgba(0,0,0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});"
+    ></div>
+  </div>
 
-    <div class="relative z-10 text-center px-4">
-      <h1 class="text-white text-4xl md:text-5xl font-light tracking-[0.3em] uppercase italic">
-        {{ collection.title }}
-      </h1>
-    </div>
-  </section>
-
-  <div class="relative z-10 text-center px-4">
-    <nav class="mb-4 text-[10px] uppercase tracking-[0.2em] text-white/80">
-      <a href="/" class="hover:text-[#B2AC88]">Home</a>
+  <div class="relative z-10 text-center px-4 max-w-4xl">
+    <nav class="mb-4 text-[10px] uppercase tracking-[0.3em] text-white/90">
+      <a href="/" class="hover:text-[#B2AC88] transition-colors">Home</a>
       <span class="mx-2">/</span>
-      <span class="text-white">{{ collection.title }}</span>
+      <span class="">{{ collection.title }}</span>
     </nav>
-    <h1 class="text-white text-4xl md:text-5xl font-light tracking-[0.3em] uppercase italic">
+    <h1 class="text-white text-4xl md:text-6xl font-light tracking-[0.2em] uppercase italic drop-shadow-sm">
       {{ collection.title }}
     </h1>
   </div>
@@ -45,14 +42,20 @@
   "name": "Koleksiyon Banner",
   "settings": [
     {
+      "type": "image_picker",
+      "id": "fallback_image",
+      "label": "Yedek Görsel",
+      "info": "Koleksiyona özel görsel yoksa (örneğin Tüm Ürünler sayfası) bu görsel görünür."
+    },
+    {
       "type": "range",
       "id": "hero_height",
       "min": 20,
-      "max": 80,
+      "max": 100,
       "step": 5,
       "unit": "vh",
-      "label": "Yükseklik",
-      "default": 40
+      "label": "Banner Yüksekliği",
+      "default": 50
     },
     {
       "type": "range",
@@ -60,13 +63,8 @@
       "min": 0,
       "max": 90,
       "step": 10,
-      "label": "Karartma",
+      "label": "Görsel Karartma",
       "default": 30
-    },
-    {
-      "type": "image_picker",
-      "id": "fallback_image",
-      "label": "Yedek Görsel (Koleksiyon görseli yoksa görünür)"
     }
   ],
   "presets": [
