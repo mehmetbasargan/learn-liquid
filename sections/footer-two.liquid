@@ -1,7 +1,7 @@
 <footer class="bg-custom-bg text-primary pt-16 pb-8 px-6 border-t border-[#d1d1d1]">
   <div class="">
     <div class="">
-      <div>
+      <div class="w-full flex items-center justify-center">
         <a href="{{ routes.root_url }}" class="block">
           {% if section.settings.footer_logo != blank %}
             {%- assign logo_alt = section.settings.footer_logo.alt | default: shop.name -%}
@@ -16,33 +16,31 @@
             </span>
           {% endif %}
         </a>
-
-        <p class="mt-4 text-sm text-primary leading-relaxed font-light">
-          {{ section.settings.footer_description }}
-        </p>
       </div>
 
-      <div class="space-y-2 text-sm text-primary">
-        <p class="flex items-center gap-2 text-[14px]">
-          <span class="text-primary">
-            {% render 'icon-map' %}
-          </span>
-          <span class="text-[14px]"> {{ section.settings.footer_address }}</span>
-        </p>
-        <p class="flex items-center gap-2 text-[14px]">
-          <span class="text-primary">
-            {% render 'icon-envelop' %}
-          </span>
-          <a href="mailto:{{ section.settings.footer_email }}">{{ section.settings.footer_email }}</a>
-        </p>
-      </div>
+      {% comment %}
+        <div class="space-y-2 text-sm text-primary">
+          <p class="flex items-center gap-2 text-[14px]">
+            <span class="text-primary">
+              {% render 'icon-map' %}
+            </span>
+            <span class="text-[14px]"> {{ section.settings.footer_address }}</span>
+          </p>
+          <p class="flex items-center gap-2 text-[14px]">
+            <span class="text-primary">
+              {% render 'icon-envelop' %}
+            </span>
+            <a href="mailto:{{ section.settings.footer_email }}">{{ section.settings.footer_email }}</a>
+          </p>
+        </div>
+      {% endcomment %}
     </div>
 
     <div>
-      <h4 class="text-sm font-bold uppercase tracking-widest mb-6 text-secondary">
+      <h4 class="text-sm font-bold uppercase tracking-widest mb-3 text-secondary">
         {{ section.settings.menu_1_title }}
       </h4>
-      <ul class="space-y-4 text-sm font-light text-primary">
+      <ul class="space-y-4 text-sm font-light text-primary flex flex-row gap-3">
         {% for link in linklists[section.settings.footer_menu_1].links %}
           <li>
             <a href="{{ link.url }}" class="hover:text-secondary transition-colors duration-300">
