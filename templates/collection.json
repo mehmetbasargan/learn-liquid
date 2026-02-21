@@ -14,7 +14,7 @@
       "name": "Koleksiyon Banner",
       "settings": {
         "fallback_image": "shopify://shop_images/img4.jpg",
-        "hero_height": 70,
+        "hero_height": 60,
         "overlay_opacity": 30
       }
     },
