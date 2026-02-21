@@ -55,15 +55,20 @@
       </div>
     </div>
   </div>
-  {% comment %} navigation {% endcomment %}
+
+  {% comment %} menu {% endcomment %}
   <div class=" bg-custom-bg h-[70px] flex items-center relative">
     <div class="container flex lg:justify-between justify-end items-center w-full">
-      <div class="hidden lg:flex flex-row items-center justify-between gap-6 ">
-        {% for link in section.settings.menu.links %}
-          <a href="{{ link.url }}" class="nav-link hover:text-brand {% if link.current %} is-active {% endif %}">
-            {{ link.title }}
-          </a>
-        {% endfor %}
+      <div class="">
+        <ul class="hidden lg:flex flex-row items-center justify-between gap-6 ">
+          {% for link in section.settings.menu.links %}
+            <li>
+              <a href="{{ link.url }}" class="nav-link hover:text-brand {% if link.current %} is-active {% endif %}">
+                {{ link.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
       </div>
       <div class="flex items-center lg:gap-2 gap-8 justify-start w-full lg:w-auto">
         <div class="flex lg:hidden">
