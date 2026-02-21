@@ -1,0 +1,73 @@
+<section class="bg-[#F9F9F9] py-20 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-[#3B443C] text-2xl md:text-3xl font-light tracking-[0.4em] uppercase">Kategorileri Keşfet</h2>
+      <div class="h-[1px] w-20 bg-[#B2AC88] mx-auto mt-4"></div>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+      {% for block in section.blocks %}
+        {%- assign collection = collections[block.settings.collection] -%}
+
+        <div class="group relative flex flex-col items-center">
+          <a href="{{ collection.url | default: '#' }}" class="w-full aspect-[3/4] overflow-hidden bg-white relative">
+            {% if collection.featured_image != blank %}
+              <img
+                src="{{ collection.featured_image | image_url: width: 600 }}"
+                alt="{{ collection.title }}"
+                width="600"
+                height="400"
+                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+              >
+            {% else %}
+              {{ 'collection-1' | placeholder_svg_tag: 'w-full h-full bg-[#E5E5E5]' }}
+            {% endif %}
+
+            <div
+              class="absolute inset-0 bg-[#3B443C]/0 group-hover:bg-[#3B443C]/10 transition-colors duration-500"
+            ></div>
+          </a>
+
+          <div class="mt-6 text-center">
+            <h3 class="text-[#3B443C] text-sm md:text-base font-medium tracking-widest uppercase mb-2">
+              {{ collection.title | default: 'Koleksiyon Seçin' }}
+            </h3>
+            <a
+              href="{{ collection.url }}"
+              class="text-[10px] md:text-xs text-[#B2AC88] border-b border-[#B2AC88] pb-1 uppercase tracking-widest hover:text-[#3B443C] hover:border-[#3B443C] transition-all"
+            >
+              İncele
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kategori Kartları",
+  "max_blocks": 4,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Koleksiyon",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Koleksiyon Seç"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kategori Kartları",
+      "blocks": [{ "type": "collection" }, { "type": "collection" }, { "type": "collection" }, { "type": "collection" }]
+    }
+  ]
+}
+{% endschema %}
