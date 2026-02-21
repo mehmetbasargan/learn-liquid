@@ -106,28 +106,28 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/img3.jpg",
-            "link": ""
+            "link": "shopify://collections/accessories"
           }
         },
         "image_cWgADr": {
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/img1.jpg",
-            "link": ""
+            "link": "shopify://collections/dresses"
           }
         },
         "image_9YfwDJ": {
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/img4.jpg",
-            "link": ""
+            "link": "shopify://collections/new-in"
           }
         },
         "image_QKP94A": {
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/img2.jpg",
-            "link": ""
+            "link": "shopify://collections/accessories"
           }
         }
       },
