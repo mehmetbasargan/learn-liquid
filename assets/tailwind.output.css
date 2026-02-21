@@ -669,6 +669,9 @@
   .text-center {
     text-align: center;
   }
+  .font-josefin {
+    font-family: var(--font-josefin);
+  }
   .text-2xl {
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
