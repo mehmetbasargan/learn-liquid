@@ -2,8 +2,10 @@
   <div class="max-w-7xl mx-auto">
     <div class="flex justify-between items-end mb-12">
       <div>
-        <h2 class="text-[#3B443C] text-2xl font-light tracking-widest uppercase italic">Editörün Seçtikleri</h2>
-        <p class="text-gray-400 text-xs mt-2 uppercase tracking-widest">Luvia Era Kapsül Koleksiyon</p>
+        <h2 class="text-[#3B443C] text-2xl font-light tracking-widest uppercase italic">
+          {{ section.settings._title }}
+        </h2>
+        <p class="text-gray-400 text-xs mt-2 uppercase tracking-widest">{{ section.settings.section_subtitle }}</p>
       </div>
       <a
         href="/collections/all"
@@ -68,6 +70,16 @@
       "type": "collection",
       "id": "collection",
       "label": "Sergilenecek Koleksiyonu Seç"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Bölüm Başlığı"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Bölüm Alt Başlığı"
     }
   ],
   "presets": [
