@@ -87,10 +87,18 @@
       ],
       "name": "Kategori Kartları",
       "settings": {}
+    },
+    "featured_products_GFTLFG": {
+      "type": "featured-products",
+      "name": "Luvia Featured Collection",
+      "settings": {
+        "collection": "knitwear"
+      }
     }
   },
   "order": [
     "hero_slider_RRiVYD",
-    "collection_list_thQPNq"
+    "collection_list_thQPNq",
+    "featured_products_GFTLFG"
   ]
 }
