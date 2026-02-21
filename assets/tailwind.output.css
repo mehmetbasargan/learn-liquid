@@ -504,8 +504,14 @@
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));
   }
+  .text-\[12px\] {
+    font-size: 12px;
+  }
   .text-\[13px\] {
     font-size: 13px;
+  }
+  .text-\[132px\] {
+    font-size: 132px;
   }
   .font-bold {
     --tw-font-weight: var(--font-weight-bold);

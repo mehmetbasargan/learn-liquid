@@ -1,8 +1,8 @@
 <footer>
-  <div class="footer__copyright">
-    Footer Two - &copy;
+  <div class="footer__copyright text-[12px]">
+    &copy;
     {{ 'now' | date: '%Y' }}
-    {{ shop.name | link_to: routes.root_url }}, {{ powered_by_link }}
+    {{ shop.name | link_to: routes.root_url }} - All rights reserved
   </div>
 
   <div class="footer__links">

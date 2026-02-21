@@ -7,10 +7,10 @@
 
 <div class="bg-custom-bg py-4 text-center border-t border-[#d1d1d1]">
   <div class="container">
-    <div class="text-[13px]">
-      Footer - &copy;
+    <div class="footer__copyright text-[12px]">
+      &copy;
       {{ 'now' | date: '%Y' }}
-      {{ shop.name | link_to: routes.root_url }}
+      {{ shop.name | link_to: routes.root_url }} - All rights reserved
     </div>
 
     <div class="footer__links">
