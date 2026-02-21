@@ -5,13 +5,11 @@
   https://shopify.dev/docs/storefronts/themes/architecture/templates/product
 {% endcomment %}
 
-{% comment %}
-  <div class="product-images">
-    {% for image in product.images %}
-      {% render 'image', class: 'product-image', image: image %}
-    {% endfor %}
-  </div>
-{% endcomment %}
+<div class="product-images">
+  {% for image in product.images %}
+    {% render 'image', class: 'product-image', image: image %}
+  {% endfor %}
+</div>
 
 <div class="product-info">
   <h1>{{ product.title }}</h1>
