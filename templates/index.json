@@ -9,10 +9,6 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "index",
-      "settings": {}
-    },
     "hero_slider_RRiVYD": {
       "type": "hero-slider",
       "blocks": {
@@ -57,7 +53,6 @@
     }
   },
   "order": [
-    "main",
     "hero_slider_RRiVYD"
   ]
 }
