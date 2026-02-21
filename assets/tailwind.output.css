@@ -534,6 +534,9 @@
   .bg-primary {
     background-color: var(--color-primary);
   }
+  .bg-secondary {
+    background-color: var(--color-secondary);
+  }
   .bg-transparent {
     background-color: transparent;
   }
@@ -666,6 +669,9 @@
   .text-black {
     color: var(--color-black);
   }
+  .text-custom-bg {
+    color: var(--color-custom-bg);
+  }
   .text-gray-400 {
     color: var(--color-gray-400);
   }
@@ -755,10 +761,24 @@
       }
     }
   }
+  .hover\:bg-primary {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-primary);
+      }
+    }
+  }
   .hover\:bg-secondary {
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-secondary);
+      }
+    }
+  }
+  .hover\:text-custom-bg {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-custom-bg);
       }
     }
   }
