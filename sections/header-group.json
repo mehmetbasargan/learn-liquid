@@ -15,8 +15,8 @@
       "type": "announcement-bar",
       "settings": {
         "announcement_text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit vero blanditiis ab!",
-        "text_color": "#ffffff",
-        "bg_color": "#005bd3"
+        "text_color": "#f9f9f9",
+        "bg_color": "#b2ac88"
       }
     },
     "header": {
