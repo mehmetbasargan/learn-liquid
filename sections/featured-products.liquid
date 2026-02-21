@@ -7,11 +7,14 @@
         </h2>
         <p class="text-gray-400 text-xs mt-2 uppercase tracking-widest">{{ section.settings.section_subtitle }}</p>
       </div>
-      <a
-        href="/collections/all"
-        class="text-[#3B443C] text-xs border-b border-[#3B443C] pb-1 hover:text-[#B2AC88] hover:border-[#B2AC88] transition-all"
-        >TÜMÜNÜ GÖR</a
-      >
+      {% if section.settings.button_url %}
+        <a
+          href="{{ section.settings.button_url }}"
+          class="text-[#3B443C] text-xs border-b border-[#3B443C] pb-1 hover:text-[#B2AC88] hover:border-[#B2AC88] transition-all"
+        >
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
     </div>
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12">
@@ -80,6 +83,16 @@
       "type": "text",
       "id": "section_subtitle",
       "label": "Bölüm Alt Başlığı"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Buton Metni"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Buton URL"
     }
   ],
   "presets": [
