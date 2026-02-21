@@ -31,29 +31,27 @@
         </ul>
       </div>
 
-      <div class="w-1/2">
-        <div class="md:col-span-1">
-          <h4 class="text-sm font-semibold uppercase tracking-widest mb-6 text-secondary">
-            {{ section.settings.gallery_title }}
-          </h4>
-          <div class="grid grid-cols-2 gap-2">
-            {% for block in section.blocks %}
-              {% if block.type == 'gallery_image' %}
-                <div class="aspect-square overflow-hidden bg-gray-100 group">
-                  {% if block.settings.image != blank %}
-                    {{
-                      block.settings.image
-                      | image_url: width: 400
-                      | image_tag:
-                        class: 'w-full h-full object-cover transition-transform duration-500 group-hover:scale-110'
-                    }}
-                  {% else %}
-                    {{ 'image' | placeholder_svg_tag: 'w-full h-full bg-gray-200' }}
-                  {% endif %}
-                </div>
-              {% endif %}
-            {% endfor %}
-          </div>
+      <div class="w-full lg:w-3/5">
+        <h4 class="text-sm font-semibold uppercase tracking-widest mb-6 text-secondary">
+          {{ section.settings.gallery_title }}
+        </h4>
+        <div class="grid grid-cols-4 md:grid-cols-4 lg:grid-cols-2 gap-2">
+          {% for block in section.blocks %}
+            {% if block.type == 'gallery_image' %}
+              <div class="aspect-square overflow-hidden bg-gray-100 group">
+                {% if block.settings.image != blank %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 400
+                    | image_tag:
+                      class: 'w-full h-full object-cover transition-transform duration-500 group-hover:scale-110'
+                  }}
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'w-full h-full bg-gray-200' }}
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
         </div>
       </div>
     </div>
