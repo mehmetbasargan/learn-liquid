@@ -63,7 +63,10 @@
         <ul class="hidden lg:flex flex-row items-center justify-between gap-6 ">
           {% for link in section.settings.menu.links %}
             <li>
-              <a href="{{ link.url }}" class="nav-link hover:text-brand {% if link.current %} is-active {% endif %}">
+              <a
+                href="{{ link.url }}"
+                class="nav-link hover:text-secondary {% if link.current %} is-active {% endif %}"
+              >
                 {{ link.title }}
               </a>
             </li>
@@ -89,7 +92,7 @@
               {% for link in section.settings.menu.links %}
                 <a
                   href="{{ link.url }}"
-                  class="nav-link py-5 border-b border-[#000000]/10 last:border-b-0 w-full {% if link.current %} is-active {% endif %}"
+                  class="nav-link py-5 border-b border-[#000000]/10 last:border-b-0 w-full hover:text-secondary {% if link.current %} is-active {% endif %}"
                 >
                   {{ link.title }}
                 </a>
@@ -99,15 +102,15 @@
         </div>
 
         <div class="order-first flex flex-row justify-start gap-7 w-full lg:w-auto">
-          <a href="{{ routes.search_url }}" class="lg:w-[30px] w-[20px] text-black hover:text-brand">
+          <a href="{{ routes.search_url }}" class="lg:w-[30px] w-[20px] text-black hover:text-secondary">
             {% render 'icon-search' %}
           </a>
-          <a href="{{ routes.account_url }}" class="lg:w-[30px] w-[20px] text-black hover:text-brand">
+          <a href="{{ routes.account_url }}" class="lg:w-[30px] w-[20px] text-black hover:text-secondary">
             {% if shop.customer_accounts_enabled %}
               {% render 'icon-account' | inline_asset_content | link_to: routes.account_url %}
             {% endif %}
           </a>
-          <a href="{{ routes.cart_url }}" class="lg:w-[30px] w-[20px] text-black hover:text-brand">
+          <a href="{{ routes.cart_url }}" class="lg:w-[30px] w-[20px] text-black hover:text-secondary">
             {% if cart.item_count > 0 %}
               <sup>{{ cart.item_count }}</sup>
             {% endif %}
