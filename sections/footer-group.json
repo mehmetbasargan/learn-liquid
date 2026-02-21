@@ -27,7 +27,16 @@
     },
     "footer-two": {
       "type": "footer-two",
-      "settings": {}
+      "settings": {
+        "footer_logo": "shopify://shop_images/logo2.svg",
+        "footer_description": "Defining your essence through timeless designs.",
+        "footer_address": "Nişantaşı, İstanbul / TR",
+        "footer_email": "info@luviaera.com",
+        "menu_1_title": "Collections",
+        "footer_menu_1": "footer",
+        "menu_2_title": "Customer Care",
+        "footer_menu_2": ""
+      }
     },
     "footer-three": {
       "type": "footer-three",
