@@ -11,8 +11,8 @@
 	--font-josefin: 'Josefin Sans', sans-serif;
 
 	/* Özel renk veya başka değişkenler */
-	--color-primary: #1a1a1a;
-	--color-secondary: #d4af37;
+	--color-primary: #3b443c;
+	--color-secondary: #b2ac88;
 	--color-custom-bg: #f9f9f9;
 
 	/* Marquee animation */
@@ -80,4 +80,17 @@
 		font-size: 15px;
 		@apply text-primary leading-relaxed;
 	}
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+	@apply !w-[40px] !h-[40px];
+}
+
+.swiper-pagination-bullet-active {
+	@apply !bg-secondary;
+}
+
+.swiper-pagination-bullet {
+	@apply !bg-secondary !opacity-100 !h-[13px] !w-[13px];
 }
