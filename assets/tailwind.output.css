@@ -647,6 +647,12 @@
     font-size: var(--text-xs);
     line-height: var(--tw-leading, var(--text-xs--line-height));
   }
+  .\!text-\[14px\] {
+    font-size: 14px !important;
+  }
+  .text-\[4px\] {
+    font-size: 4px;
+  }
   .text-\[10px\] {
     font-size: 10px;
   }
@@ -655,6 +661,12 @@
   }
   .text-\[13px\] {
     font-size: 13px;
+  }
+  .text-\[14px\] {
+    font-size: 14px;
+  }
+  .text-\[15px\] {
+    font-size: 15px;
   }
   .text-\[132px\] {
     font-size: 132px;
@@ -713,6 +725,9 @@
   }
   .text-primary {
     color: var(--color-primary);
+  }
+  .text-secondary {
+    color: var(--color-secondary);
   }
   .text-white {
     color: var(--color-white);
