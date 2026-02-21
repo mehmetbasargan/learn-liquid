@@ -15,7 +15,7 @@
       "settings": {
         "fallback_image": "shopify://shop_images/img4.jpg",
         "hero_height": 60,
-        "overlay_opacity": 30
+        "overlay_opacity": 50
       }
     },
     "main": {
