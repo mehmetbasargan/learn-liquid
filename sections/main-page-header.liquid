@@ -4,7 +4,7 @@
 >
   <div class="absolute inset-0 z-0">
     {% if section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: 2000 | image_tag: class: 'w-full h-full object-cover' }}
+      {{ section.settings.image | image_url: width: 2000 | image_tag: class: 'w-full h-full object-cover object-top' }}
     {% else %}
       <div class="w-full h-full bg-[#3B443C]"></div>
     {% endif %}

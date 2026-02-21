@@ -1,33 +1,29 @@
-<div class="container">
-  <section class="w-full bg-white overflow-hidden">
-    <div class="flex flex-wrap">
-      {% for block in section.blocks %}
-        <div class="w-1/2 md:w-1/4 aspect-square relative group overflow-hidden">
-          {% if block.settings.image != blank %}
-            {{
-              block.settings.image
-              | image_url: width: 1000
-              | image_tag:
-                class: 'w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110'
-            }}
-          {% else %}
-            {{ 'image' | placeholder_svg_tag: 'w-full h-full bg-gray-200' }}
-          {% endif %}
+<section class="w-full bg-white overflow-hidden">
+  <div class="flex flex-wrap">
+    {% for block in section.blocks %}
+      <div class="w-1/2 md:w-1/4 aspect-square relative group overflow-hidden">
+        {% if block.settings.image != blank %}
+          {{
+            block.settings.image
+            | image_url: width: 1000
+            | image_tag:
+              class: 'w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110'
+          }}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'w-full h-full bg-gray-200' }}
+        {% endif %}
 
-          <div class="absolute inset-0 bg-[#3B443C]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-            <span class="text-white text-[10px] tracking-[0.3em] uppercase border border-white px-4 py-2"
-              >Discover</span
-            >
-          </div>
-
-          {% if block.settings.link != blank %}
-            <a href="{{ block.settings.link }}" class="absolute inset-0 z-10"></a>
-          {% endif %}
+        <div class="absolute inset-0 bg-[#3B443C]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+          <span class="text-white text-[10px] tracking-[0.3em] uppercase border border-white px-4 py-2">Discover</span>
         </div>
-      {% endfor %}
-    </div>
-  </section>
-</div>
+
+        {% if block.settings.link != blank %}
+          <a href="{{ block.settings.link }}" class="absolute inset-0 z-10"></a>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
 
 {% schema %}
 {

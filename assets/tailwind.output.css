@@ -688,6 +688,12 @@
   .object-cover {
     object-fit: cover;
   }
+  .object-bottom {
+    object-position: bottom;
+  }
+  .object-center {
+    object-position: center;
+  }
   .object-top {
     object-position: top;
   }
