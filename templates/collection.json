@@ -21,10 +21,54 @@
     "main": {
       "type": "collection",
       "settings": {}
+    },
+    "full_width_gallery_7dxMQK": {
+      "type": "full-width-gallery",
+      "blocks": {
+        "image_h4tRdW": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1.jpg",
+            "link": ""
+          }
+        },
+        "image_fRcTBf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/img3.jpg",
+            "link": ""
+          }
+        },
+        "image_BxJUwe": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/cat3.jpg",
+            "link": ""
+          }
+        },
+        "image_qR8XRW": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/img2.jpg",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_h4tRdW",
+        "image_fRcTBf",
+        "image_BxJUwe",
+        "image_qR8XRW"
+      ],
+      "name": "Luvia Full Gallery",
+      "settings": {
+        "title": "Follow the Era"
+      }
     }
   },
   "order": [
     "main_collection_banner_3igPik",
-    "main"
+    "main",
+    "full_width_gallery_7dxMQK"
   ]
 }
