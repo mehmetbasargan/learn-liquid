@@ -1,7 +1,7 @@
 <footer class="bg-custom-bg text-primary py-20 border-t border-[#d1d1d1]">
   <div class="container">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="md:w-[400px] w-full">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+      <div class="w-1/2">
         <h4 class="text-sm font-bold uppercase tracking-widest mb-3 text-secondary">
           {{ section.settings.menu_1_title }}
         </h4>
@@ -16,11 +16,11 @@
         </ul>
       </div>
 
-      <div class="md:w-[400px] w-full">
+      <div class="w-1/2">
         <h4 class="text-sm font-bold uppercase tracking-widest mb-3 text-secondary">
           {{ section.settings.menu_2_title }}
         </h4>
-        <ul class="space-y-4 text-sm font-light text-primary flex flex-row gap-3">
+        <ul class="space-y-4 text-sm font-light text-primary flex flex-col">
           {% for link in linklists[section.settings.footer_menu_2].links %}
             <li>
               <a href="{{ link.url }}" class="hover:text-secondary transition-colors duration-300">
@@ -30,8 +30,45 @@
           {% endfor %}
         </ul>
       </div>
-      <div class="text-center bg-blue-200">03</div>
-      <div class="text-center bg-yellow-200">04</div>
+
+      <div class="w-1/2">
+        <div class="md:col-span-1">
+          <h4 class="text-sm font-semibold uppercase tracking-widest mb-6 text-secondary">
+            {{ section.settings.gallery_title }}
+          </h4>
+          <div class="grid grid-cols-2 gap-2">
+            {% for block in section.blocks %}
+              {% if block.type == 'gallery_image' %}
+                <div class="aspect-square overflow-hidden bg-gray-100 group">
+                  {% if block.settings.image != blank %}
+                    {{
+                      block.settings.image
+                      | image_url: width: 400
+                      | image_tag:
+                        class: 'w-full h-full object-cover transition-transform duration-500 group-hover:scale-110'
+                    }}
+                  {% else %}
+                    {{ 'image' | placeholder_svg_tag: 'w-full h-full bg-gray-200' }}
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-100% mt-10  mx-auto text-center border-t border-[#d1d1d1]">
+      <h4 class="text-sm font-bold uppercase tracking-widest mb-1 text-secondary pt-10">Newsletter</h4>
+      <p class="text-xs text-primary mb-4 font-medium ">Be the first to know about new eras.</p>
+      <form class="flex border-b border-secondary pb-2">
+        <input
+          type="email"
+          placeholder="Email address"
+          class="bg-transparent border-none text-sm w-full focus:outline-none placeholder:text-primary text-primary"
+        >
+        <button type="submit" class="text-secondary uppercase text-xs tracking-widest font-semibold ml-2">Join</button>
+      </form>
     </div>
   </div>
 </footer>
@@ -87,6 +124,26 @@
       "type": "link_list",
       "id": "footer_menu_2",
       "label": "2. Menü Seçimi"
+    },
+    {
+      "type": "text",
+      "id": "gallery_title",
+      "label": "Galeri Başlığı",
+      "default": "Follow Us @LuviaEra"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gallery_image",
+      "name": "Galeri Görseli",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Görsel Seç"
+        }
+      ]
     }
   ]
 }
