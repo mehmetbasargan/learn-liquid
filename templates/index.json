@@ -22,8 +22,8 @@
             "image": "shopify://shop_images/img1.jpg",
             "title": "Yeni Sezon",
             "sub_title": "En yeni koleksiyonu hemen keşfedin.",
-            "button_label": "Alışverişe Başla",
-            "button_link": ""
+            "button_label": "Deneme",
+            "button_link": "shopify://pages/blog"
           }
         },
         "slide_khVKm6": {
