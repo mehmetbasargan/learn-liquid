@@ -42,8 +42,10 @@
     "footer-three": {
       "type": "footer-three",
       "settings": {
-        "menu": "",
-        "show_payment_icons": true
+        "menu_1_title": "Collections",
+        "footer_menu_1": "footer",
+        "menu_2_title": "Customer Care",
+        "footer_menu_2": "customer-care"
       }
     }
   },
