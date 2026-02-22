@@ -1,18 +1,32 @@
-<div class="bg-white py-10 lg:py-20">
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-1">
-    {% for i in (1..4) %}
-      <div class="aspect-[3/4] bg-[#F5F5F5] overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
-        <div class="w-full h-full flex items-center justify-center italic text-[10px] uppercase tracking-widest text-gray-400">
-          Studio Perspective {{ i }}
-        </div>
+<div class="about-gallery-section py-20 bg-white">
+  <div class="max-w-[1440px] mx-auto px-4">
+    <h2 class="text-[10px] uppercase tracking-[0.5em] text-center mb-12 text-gray-400">Curated Moments</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+      <div class="aspect-[3/4] bg-gray-100 flex items-center justify-center italic text-[10px] text-gray-400 uppercase tracking-widest">
+        Aesthetic 01
       </div>
-    {% endfor %}
+      <div class="aspect-[3/4] bg-gray-100 flex items-center justify-center italic text-[10px] text-gray-400 uppercase tracking-widest">
+        Aesthetic 02
+      </div>
+      <div class="aspect-[3/4] bg-gray-100 flex items-center justify-center italic text-[10px] text-gray-400 uppercase tracking-widest">
+        Aesthetic 03
+      </div>
+      <div class="aspect-[3/4] bg-gray-100 flex items-center justify-center italic text-[10px] text-gray-400 uppercase tracking-widest">
+        Aesthetic 04
+      </div>
+    </div>
   </div>
 </div>
 
 {% schema %}
 {
   "name": "About Gallery",
-  "settings": []
+  "settings": [],
+  "presets": [
+    {
+      "name": "About Gallery"
+    }
+  ]
 }
 {% endschema %}
