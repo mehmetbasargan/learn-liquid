@@ -36,7 +36,7 @@
     </div>
 
     {% comment %} Product Info Section {% endcomment %}
-    <div class="w-full md:w-[100%] lg:w-100">
+    <div class="w-full md:w-[100%] lg:w-[100%]">
       <div class="sticky top-10 space-y-8">
         <div class="space-y-2">
           <p class="text-secondary text-[14px] tracking-[0.3em] uppercase">Luvia Era Edition</p>
@@ -55,19 +55,19 @@
 
           {% comment %} Varyant Seçenekleri (Renk vb.) {% endcomment %}
           {% unless product.has_only_default_variant %}
-            <div class="product-options space-y-4">
+            <div class="product-options space-y-6 py-6 border-y border-gray-100">
               {% for option in product.options_with_values %}
                 <div class="option-wrapper">
-                  <label class="text-[12px] uppercase tracking-widest text-secondary mb-3 block">
-                    {{- option.name -}}
+                  <label class="text-[11px] uppercase tracking-[0.2em] text-secondary mb-3 block">
+                    {{ option.name }}
                   </label>
-                  <div class="flex flex-wrap gap-2">
+                  <div class="flex flex-wrap gap-3">
                     {% for value in option.values %}
                       <button
                         type="button"
-                        class="variant-selector border border-gray-200 px-4 py-2 text-[11px] uppercase tracking-widest transition-all hover:border-[#3B443C] {% if option.selected_value == value %} border-[#3B443C] bg-[#3B443C] text-white {% endif %}"
-                        data-value="{{ value }}"
-                        data-option-index="{{ forloop.parentloop.index0 }}"
+                        class="variant-btn border border-gray-200 px-6 py-2 text-[11px] uppercase tracking-widest transition-all hover:border-black {% if option.selected_value == value %} border-black bg-black text-white {% endif %}"
+                        data-option-index="{{ option.position }}"
+                        data-value="{{ value | escape }}"
                       >
                         {{ value }}
                       </button>
@@ -77,6 +77,11 @@
               {% endfor %}
             </div>
           {% endunless %}
+
+          {% comment %} Tüm varyantların ID'lerini ve eşleşmelerini tutan gizli bir JSON (JS kullanacak) {% endcomment %}
+          <script id="product-variants-json" type="application/json">
+            {{ product.variants | json }}
+          </script>
 
           <div class="pt-4">
             <button
@@ -270,6 +275,46 @@
       })
       .catch((err) => console.error('Silme hatası:', err));
   }
+
+  /* --- VARYANT SEÇİMİ --- */
+  document.addEventListener('DOMContentLoaded', function () {
+    const variantButtons = document.querySelectorAll('.variant-btn');
+    const variantIdInput = document.getElementById('variant-id');
+    const variants = JSON.parse(document.getElementById('product-variants-json').innerHTML);
+
+    variantButtons.forEach((btn) => {
+      btn.addEventListener('click', function () {
+        // Aktif buton stilini değiştir
+        const parent = this.closest('.flex');
+        parent.querySelectorAll('.variant-btn').forEach((b) => {
+          b.classList.remove('bg-black', 'text-white', 'border-black');
+        });
+        this.classList.add('bg-black', 'text-white', 'border-black');
+
+        // Seçili değerleri topla
+        let selectedOptions = [];
+        document.querySelectorAll('.variant-btn.bg-black').forEach((activeBtn) => {
+          selectedOptions.push(activeBtn.getAttribute('data-value'));
+        });
+
+        // Eşleşen varyantı bul
+        const matchedVariant = variants.find((v) => {
+          return v.options.every((opt, index) => selectedOptions.includes(opt));
+        });
+
+        if (matchedVariant) {
+          variantIdInput.value = matchedVariant.id;
+          console.log('Yeni Varyant Seçildi ID:', matchedVariant.id);
+
+          // Fiyatı da güncelleyelim (Eleganlık detayda gizlidir)
+          const priceElement = document.querySelector('.product-price'); // Fiyat class'ın neyse
+          if (priceElement) {
+            priceElement.innerText = (matchedVariant.price / 100).toFixed(2) + ' TL';
+          }
+        }
+      });
+    });
+  });
 
   // --- SEPETE EKLEME (ANA FONKSİYON) ---
   function handleAddToCart(event) {
