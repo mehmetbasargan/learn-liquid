@@ -174,12 +174,23 @@
 </header>
 
 <style>
-  #shopify-section-{{ section.id }} {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background-color: white;
+    #shopify-section-{{ section.id }} {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: white;
+    }
+
+    .cart-count-bubble {
+      background: red;
+      border-radius: 50%;
+      height: 25px;
+      width: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
   }
 </style>
 
