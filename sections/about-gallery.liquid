@@ -1,0 +1,18 @@
+<div class="bg-white py-10 lg:py-20">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-1">
+    {% for i in (1..4) %}
+      <div class="aspect-[3/4] bg-[#F5F5F5] overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
+        <div class="w-full h-full flex items-center justify-center italic text-[10px] uppercase tracking-widest text-gray-400">
+          Studio Perspective {{ i }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "About Gallery",
+  "settings": []
+}
+{% endschema %}
