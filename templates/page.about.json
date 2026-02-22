@@ -31,11 +31,51 @@
         "text": "<p><strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit. Aliquam in eros sodales ante efficitur dignissim. Aliquam elementum, nulla ut tempus ullamcorper, magna eros ornare ante, vitae tempor est lorem vitae odio. Maecenas a urna at nunc ultricies finibus. Nullam quis mi sem. Nunc tincidunt mollis risus non varius. Proin eleifend lectus lacus, eu rutrum dui ultricies quis. Aenean sodales euismod iaculis. Sed elementum nisi elit, sed accumsan nulla venenatis sed.</p>",
         "image": "shopify://shop_images/cat4.jpg"
       }
+    },
+    "about_gallery_UMDFnP": {
+      "type": "about-gallery",
+      "blocks": {
+        "image_block_FEkQgR": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/5.jpg"
+          }
+        },
+        "image_block_iiQ89z": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/cat4.jpg"
+          }
+        },
+        "image_block_BWbRfc": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/cat2.jpg"
+          }
+        },
+        "image_block_YRFJfP": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/cat6.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_block_FEkQgR",
+        "image_block_iiQ89z",
+        "image_block_BWbRfc",
+        "image_block_YRFJfP"
+      ],
+      "name": "About Gallery",
+      "settings": {
+        "title": "Curated Moments"
+      }
     }
   },
   "order": [
     "main",
     "main_page_header_p7L6ej",
-    "story"
+    "story",
+    "about_gallery_UMDFnP"
   ]
 }
