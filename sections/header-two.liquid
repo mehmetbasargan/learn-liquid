@@ -163,9 +163,9 @@
           </a>
           <a
             href="{{ routes.cart_url }}"
-            class="lg:w-[30px] w-[20px] text-black hover:text-secondary flex flex-col items-end justify-end"
+            class="lg:w-[30px] w-[20px] text-black hover:text-secondary relative"
           >
-            <div class="">
+            <div class="absolute top-[-10px] left-[9px]">
               {% if cart.item_count > 0 %}
                 <span class="cart-count-bubble bg-secondary w-[23px] h-[23px] flex items-center justify-center text-white text-xs rounded-full">
                   {{- cart.item_count -}}
@@ -181,6 +181,14 @@
     </div>
   </div>
 </header>
+
+{% comment %}
+  element.style {
+      position: absolute;
+      top: -10px;
+      left: 9px;
+  }
+{% endcomment %}
 
 <style>
   #shopify-section-{{ section.id }} {
