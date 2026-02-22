@@ -207,6 +207,11 @@
           if (cart.item_count > 0) {
             bubble.classList.remove('hidden'); // Görünür yap
             bubble.style.display = 'flex'; // Tailwind kullanmıyorsan garantiye al
+
+            bubble.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.3)' }, { transform: 'scale(1)' }], {
+              duration: 300,
+              easing: 'ease-in-out',
+            });
           } else {
             bubble.classList.add('hidden'); // Gizle
             bubble.style.display = 'none';
