@@ -198,14 +198,23 @@
     fetch(window.Shopify.routes.root + 'cart.js')
       .then((res) => res.json())
       .then((cart) => {
+        // 1. ÖNCE HEADER'DAKİ SAYACI GÜNCELLE
+        // Temandaki tüm sepet sayaçlarını bulur (mobil ve masaüstü ayrı olabilir)
+        const cartBubbles = document.querySelectorAll('.cart-count-bubble');
+        cartBubbles.forEach((bubble) => {
+          bubble.innerText = cart.item_count;
+
+          // Eğer sepet boşsa sayacı gizlemek istersen (opsiyonel):
+          if (cart.item_count > 0) {
+            bubble.style.display = 'inline-block';
+          } else {
+            bubble.style.display = 'none';
+          }
+        });
+
+        // 2. SEPET ÇEKMECESİNİ GÜNCELLE
         const container = document.getElementById('cart-drawer-items');
         const totalPrice = document.getElementById('cart-total-price');
-        const cartCountElements = document.querySelectorAll('.cart-count'); // Header'daki sayı sınıfları
-
-        // 1. Header Sayacını Güncelle
-        cartCountElements.forEach((el) => {
-          el.innerText = cart.item_count;
-        });
 
         if (totalPrice) totalPrice.innerText = (cart.total_price / 100).toFixed(2) + ' TL';
 
@@ -214,7 +223,6 @@
           return;
         }
 
-        // 2. Ürünleri Listele (index + 1 kullanarak line numarasını belirliyoruz)
         container.innerHTML = cart.items
           .map(
             (item, index) => `
@@ -223,15 +231,13 @@
           <div class="flex flex-col justify-center grow">
             <h4 class="text-[11px] uppercase tracking-wider font-medium">${item.product_title}</h4>
             <p class="text-[10px] text-gray-400 mt-1 italic">${item.variant_title || ''}</p>
-            
             <div class="flex justify-between items-end mt-4">
               <p class="text-[11px]">${item.quantity} Adet</p>
               <p class="text-[11px] font-medium tracking-tighter">${(item.price / 100).toFixed(2)} TL</p>
             </div>
-
             <button type="button" 
               onclick="removeCartItem(${index + 1})" 
-              class="text-[9px] uppercase tracking-[0.2em] text-red-900 mt-2 text-left hover:text-black transition-all">
+              class="text-[9px] uppercase tracking-[0.2em] text-red-900 mt-2 text-left hover:text-black transition-all cursor-pointer">
               [ Kaldır ]
             </button>
           </div>

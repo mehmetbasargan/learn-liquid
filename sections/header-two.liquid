@@ -163,7 +163,7 @@
           </a>
           <a href="{{ routes.cart_url }}" class="lg:w-[30px] w-[20px] text-black hover:text-secondary">
             {% if cart.item_count > 0 %}
-              <sup>{{ cart.item_count }}</sup>
+              <span class="cart-count-bubble">{{ cart.item_count }}</span>
             {% endif %}
             {% render 'icon-cart' %}
           </a>
