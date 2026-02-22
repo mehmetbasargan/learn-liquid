@@ -115,30 +115,26 @@
 
                 <div class="flex justify-between items-center pt-6">
                   <div class="flex items-center border border-gray-200">
-                    <button
-                      type="submit"
-                      name="updates[]"
-                      value="{{ item.quantity | minus: 1 }}"
-                      class="px-3 py-1 text-xs hover:bg-gray-50"
+                    <a
+                      href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | minus: 1 }}"
+                      class="px-3 py-1 text-xs hover:bg-gray-50 transition-colors"
+                      >-</a
                     >
-                      -
-                    </button>
+
                     <input
                       type="number"
                       name="updates[]"
                       value="{{ item.quantity }}"
-                      min="0"
-                      class="w-8 text-center text-[11px] border-none focus:ring-0"
+                      readOnly
+                      class="w-8 text-center text-[11px] border-none focus:ring-0 cursor-default"
                       aria-label="Quantity"
                     >
-                    <button
-                      type="submit"
-                      name="updates[]"
-                      value="{{ item.quantity | plus: 1 }}"
-                      class="px-3 py-1 text-xs hover:bg-gray-50"
+
+                    <a
+                      href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | plus: 1 }}"
+                      class="px-3 py-1 text-xs hover:bg-gray-50 transition-colors"
+                      >+</a
                     >
-                      +
-                    </button>
                   </div>
 
                   <a
@@ -155,7 +151,7 @@
 
         <div class="mt-8">
           <a
-            href="/collections/all"
+            href="{{ routes.all_products_collection_url }}"
             class="text-[10px] uppercase tracking-[0.3em] border-b border-black pb-1 hover:opacity-50 transition-all"
           >
             ← Continue Shopping
@@ -201,7 +197,7 @@
         Your shopping bag is currently empty.
       </p>
       <a
-        href="/collections/all"
+        href="{{ routes.all_products_collection_url }}"
         class="inline-block bg-black text-white px-12 py-5 uppercase tracking-[0.3em] text-[10px] hover:bg-gray-800 transition-all duration-500"
       >
         Discover Our Collection

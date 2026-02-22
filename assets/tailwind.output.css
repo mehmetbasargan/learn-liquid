@@ -586,6 +586,9 @@
   .animate-marquee {
     animation: var(--animate-marquee);
   }
+  .cursor-default {
+    cursor: default;
+  }
   .cursor-pointer {
     cursor: pointer;
   }
