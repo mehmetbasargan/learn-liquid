@@ -6,7 +6,7 @@
     {% if section.settings.image != blank %}
       {{ section.settings.image | image_url: width: 2000 | image_tag: class: 'w-full h-full object-cover object-top' }}
     {% else %}
-      <div class="w-full h-full bg-[#3B443C]"></div>
+      <div class="w-full h-full bg-primary"></div>
     {% endif %}
     <div
       class="absolute inset-0"
@@ -15,7 +15,7 @@
   </div>
 
   <div class="relative z-10 text-center px-4">
-    <nav class="mb-4 text-[10px] uppercase tracking-[0.2em] text-white/80">
+    <nav class="mb-4 text-[12px] uppercase tracking-[0.2em] text-white">
       <a href="/" class="hover:text-[#B2AC88]">Home</a>
       <span class="mx-2">/</span>
       <span class="text-white">
@@ -27,7 +27,7 @@
       </span>
     </nav>
 
-    <h1 class="text-white font-light tracking-[0.2em] uppercase">
+    <h1 class="text-white font-light tracking-widest uppercase max-w-2xl">
       {% if section.settings.custom_title != blank %}
         {{ section.settings.custom_title }}
       {% else %}
