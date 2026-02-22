@@ -113,7 +113,7 @@
                   <p class="text-[13px] font-light italic">{{ item.final_line_price | money }}</p>
                 </div>
 
-                <div class="flex justify-between items-center pt-6">
+                <div class="flex justify-between items-center pt-6 w-full">
                   <div class="flex items-center border border-gray-200">
                     <a
                       href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | minus: 1 }}"
