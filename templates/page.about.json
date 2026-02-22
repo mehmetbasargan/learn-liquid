@@ -1,17 +1,18 @@
 {
+	"name": "About Us",
 	"sections": {
 		"main": {
 			"type": "main-page",
 			"settings": {}
 		},
-		"brand_story": {
+		"story": {
 			"type": "about-brand-story",
 			"settings": {}
 		},
-		"image_gallery": {
+		"gallery": {
 			"type": "about-gallery",
 			"settings": {}
 		}
 	},
-	"order": ["main", "brand_story", "image_gallery"]
+	"order": ["main", "story", "gallery"]
 }
