@@ -136,6 +136,11 @@
     border-radius: 50%;
     padding: 15px;
   }
+
+  #toast-container div {
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.85);
+  }
 </style>
 
 {% schema %}
@@ -184,7 +189,6 @@
     }, 10);
 
     updateCartDrawer(); // İçeriği tazele
-    showToast('Item added to bag');
   }
 
   function closeCartDrawer() {
@@ -276,6 +280,7 @@
         updateCartDrawer(); // Hem çekmeceyi hem de sayacı tazeler
       })
       .catch((err) => console.error('Silme hatası:', err));
+    showToast('Item removed from bag');
   }
 
   /* --- VARYANT SEÇİMİ --- */
@@ -357,6 +362,7 @@
       });
 
     return false;
+    showToast('Item added to bag');
   }
 
   function showToast(message, type = 'success') {
