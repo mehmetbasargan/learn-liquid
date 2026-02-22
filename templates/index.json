@@ -16,7 +16,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/img1.jpg",
-            "title": "Yeni Sezon",
+            "title": "New Season",
             "sub_title": "En yeni koleksiyonu hemen keşfedin.",
             "button_label": "Deneme",
             "button_link": "shopify://pages/blog"
