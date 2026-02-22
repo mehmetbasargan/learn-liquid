@@ -11,15 +11,31 @@
   "sections": {
     "main": {
       "type": "page",
+      "disabled": true,
       "settings": {}
+    },
+    "main_page_header_p7L6ej": {
+      "type": "main-page-header",
+      "name": "Sayfa Başlığı (Hero)",
+      "settings": {
+        "image": "shopify://shop_images/img2.jpg",
+        "custom_title": "",
+        "hero_height": 60,
+        "overlay_opacity": 40
+      }
     },
     "story": {
       "type": "about-brand-story",
-      "settings": {}
+      "settings": {
+        "heading": "Our Philosophy",
+        "text": "<p>Focusing on the essence of style.</p>",
+        "image": "shopify://shop_images/cat4.jpg"
+      }
     }
   },
   "order": [
     "main",
+    "main_page_header_p7L6ej",
     "story"
   ]
 }
