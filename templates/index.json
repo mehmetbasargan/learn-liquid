@@ -17,9 +17,9 @@
           "settings": {
             "image": "shopify://shop_images/img1.jpg",
             "title": "New Season",
-            "sub_title": "En yeni koleksiyonu hemen keşfedin.",
-            "button_label": "Deneme",
-            "button_link": "shopify://pages/blog"
+            "sub_title": "Discover the latest collection now.",
+            "button_label": "Accessories",
+            "button_link": "shopify://collections/accessories"
           }
         },
         "slide_khVKm6": {
