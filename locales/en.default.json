@@ -36,7 +36,10 @@
 		}
 	},
 	"collections": {
-		"title": "Collections"
+		"title": "Collections",
+		"explore_categories": "Explore Categories",
+		"select_collection": "Select Collection",
+		"review": "Review"
 	},
 	"gift_card": {
 		"add_to_apple_wallet": "Add to Apple Wallet",

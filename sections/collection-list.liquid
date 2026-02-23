@@ -1,7 +1,9 @@
 <section class="bg-[#F9F9F9] py-20 px-6">
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-16">
-      <h3 class="font-josefin uppercase text-secondary  font-light tracking-[0.2em]">Explore Categories</h3>
+      <h3 class="font-josefin uppercase text-secondary  font-light tracking-[0.2em]">
+        {{ 'collections.explore_categories' | t }}
+      </h3>
       <div class="h-[1px] w-20 bg-secondary mx-auto mt-4"></div>
     </div>
 
@@ -10,7 +12,7 @@
         {%- assign collection = collections[block.settings.collection] -%}
 
         <div class="group relative flex flex-col items-center">
-          <a href="{{ collection.url | default: '#' }}" class="w-full aspect-[3/4] overflow-hidden bg-white relative">
+          <a href="{{ collection.url | default: '#' }}" class="w-full aspect-3/4 overflow-hidden bg-white relative">
             {% if collection.featured_image != blank %}
               <img
                 src="{{ collection.featured_image | image_url: width: 600 }}"
@@ -30,13 +32,14 @@
 
           <div class="mt-6 text-center">
             <h3 class="text-[#3B443C] text-sm md:text-base font-josefin tracking-widest uppercase mb-2">
-              {{ collection.title | default: 'Koleksiyon Seçin' }}
+              {%- assign collection_label = collection.title | default: t: 'collection.select_collection' -%}
+              {{ collection_label }}
             </h3>
             <a
               href="{{ collection.url }}"
               class="text-[10px] md:text-xs text-secondary border-b border-secondary pb-1 uppercase tracking-widest hover:text-[#3B443C] hover:border-[#3B443C] transition-all"
             >
-              İncele
+              {{ 'collections.review' | t }}
             </a>
           </div>
         </div>
