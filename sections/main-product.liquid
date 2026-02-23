@@ -244,6 +244,27 @@
               <p class="text-xs mt-2">${(item.price / 100).toFixed(2)} TL</p>
             </div>
           </div>
+
+          temsHtml = cart.items.map((item, index) => `
+            <div class="flex gap-4 border-b border-gray-50 pb-4 relative group">
+                <img src="${item.image}" class="w-20 h-24 object-cover">
+                <div class="flex-1">
+                <div class="flex justify-between items-start">
+                    <h4 class="text-[10px] uppercase tracking-widest text-[#3B443C]">${item.product_title}</h4>
+                    <button 
+                    onclick="removeCartItem(${index + 1})" 
+                    class="text-[9px] uppercase tracking-tighter text-gray-400 hover:text-red-800 transition-colors"
+                    >
+                    Kaldır
+                    </button>
+                </div>
+                <p class="text-[10px] text-gray-400 mt-1">${item.variant_title || ''}</p>
+                <div class="flex justify-between items-center mt-4">
+                    <p class="text-xs font-light">${item.quantity} x ${(item.price / 100).toFixed(2)} TL</p>
+                </div>
+                </div>
+            </div>
+            `).join('');
         `
             )
             .join('');
