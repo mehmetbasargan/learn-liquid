@@ -8,43 +8,39 @@
 <div class="container py-20">
   {% comment %}  <h1>{{ 'search.title' | t }}</h1> {% endcomment %}
 
-  <form action="{{ routes.search_url }}" method="get" role="search">
+  <form action="{{ routes.search_url }}" method="get" role="search" class="flex items-center gap-2">
     <input
       type="search"
       size="50"
       name="q"
       value="{{ search.terms | escape }}"
       placeholder="{{ 'search.placeholder' | t }}"
+      class="border border-gray-300 rounded px-4 py-2 h-16 w-full focus:outline-none focus:ring-1 focus:ring-secondary"
     >
-    <button type="submit">{{ 'search.submit' | t }}</button>
+    <button
+      type="submit"
+      class="h-[64px] w-[64px] border border-gray-300 rounded flex items-center justify-center hover:bg-secondary text-primary hover:text-white cursor-pointer"
+    >
+      {% render 'icon-search' %}
+    </button>
   </form>
 
   {% if search.performed %}
     {% if search.results_count == 0 %}
       <p>{{ 'search.no_results_html' | t: terms: search.terms }}</p>
     {% else %}
-      <p>{{ 'search.results_for_html' | t: terms: search.terms, count: search.results_count }}</p>
+      <div class="pt-10 w-full text-center">
+        <p class="text-xl">{{ 'search.results_for_html' | t: terms: search.terms, count: search.results_count }}</p>
+      </div>
 
-      <div class="search-results">
+      <div class="search-results py-10">
         {% paginate search.results by 20 %}
           {% # Search result items may be an article, a page, or a product. %}
-          {% for result in search.results %}
-            <div class="search-result">
-              {% assign featured_image = result.featured_image | default: result.image %}
-              {% if featured_image %}
-                {% render 'image', class: 'search-result__image', image: featured_image, url: result.url, width: 400 %}
-              {% endif %}
-              <div class="search-result__content">
-                <p>
-                  {{ result.title | link_to: result.url }}
-                  {% if result.price %}
-                    {{ result.price | money_with_currency }}
-                  {% endif %}
-                </p>
-              </div>
-            </div>
-          {% endfor %}
-
+          <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+            {% for result in search.results %}
+              {% render 'product-card', product: result %}
+            {% endfor %}
+          </div>
           {{ paginate | default_pagination }}
         {% endpaginate %}
       </div>
@@ -53,15 +49,6 @@
 </div>
 
 {% stylesheet %}
-  .search-results {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  }
-  .search-results .prev,
-  .search-results .page,
-  .search-results .next {
-    grid-column: 1 / -1;
-  }
 {% endstylesheet %}
 
 {% schema %}
@@ -70,3 +57,20 @@
   "settings": []
 }
 {% endschema %}
+
+{% comment %}
+  <div class="search-result">
+    {% assign featured_image = result.featured_image | default: result.image %}
+    {% if featured_image %}
+      {% render 'image', class: 'search-result__image', image: featured_image, url: result.url, width: 400 %}
+    {% endif %}
+    <div class="search-result__content">
+      <p>
+        {{ result.title | link_to: result.url }}
+        {% if result.price %}
+          {{ result.price | money_with_currency }}
+        {% endif %}
+      </p>
+    </div>
+  </div>
+{% endcomment %}
