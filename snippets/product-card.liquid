@@ -7,7 +7,7 @@
   <div class="relative aspect-[3/4] overflow-hidden bg-[#F9F9F9]">
     {% if product.compare_at_price > product.price %}
       <span class="absolute top-3 left-3 z-10 bg-[#B2AC88] text-white text-[9px] px-2 py-1 tracking-widest uppercase">
-        İndirim
+        {{ 'featured_products.discount' | t }}
       </span>
     {% endif %}
 
@@ -38,7 +38,7 @@
         href="{{ product.url }}"
         class="w-full bg-[#3B443C] text-white py-3 text-[10px] uppercase tracking-[0.2em] block text-center hover:bg-[#B2AC88] transition-colors"
       >
-        Detayları Gör
+        {{ 'featured_products.view_details' | t }}
       </a>
     </div>
   </div>

@@ -85,7 +85,8 @@
 		}
 	},
 	"featured_products": {
-		"discount": "Discount"
+		"discount": "Discount",
+		"view_details": "View Details"
 	},
 	"footer": {
 		"newsletter": "Newsletter",

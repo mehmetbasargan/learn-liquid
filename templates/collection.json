@@ -12,7 +12,7 @@
 	"sections": {
 		"main_collection_banner_3igPik": {
 			"type": "main-collection-banner",
-			"name": "Koleksiyon Banner",
+			"name": "Collection Banner",
 			"settings": {
 				"fallback_image": "shopify://shop_images/img4.jpg",
 				"hero_height": 60,
