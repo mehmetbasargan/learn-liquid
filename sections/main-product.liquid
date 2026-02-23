@@ -179,26 +179,65 @@
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // Swiper Başlatma
-    if (document.querySelector('.product-thumbs')) {
-      const thumbsSwiper = new Swiper('.product-thumbs', {
-        direction: 'vertical',
-        slidesPerView: 'auto',
-        spaceBetween: 10,
-        freeMode: true,
-        watchSlidesProgress: true,
-        loop: true,
-      });
+    document.addEventListener('DOMContentLoaded', function () {
+      // Swiper Başlatma
+      if (document.querySelector('.product-thumbs')) {
+        const thumbsSwiper = new Swiper('.product-thumbs', {
+          direction: 'vertical',
+          slidesPerView: 'auto',
+          spaceBetween: 10,
+          freeMode: true,
+          watchSlidesProgress: true,
+          loop: true,
+        });
 
-      const mainSwiper = new Swiper('.product-main', {
-        spaceBetween: 0,
-        loop: true,
-        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-        thumbs: { swiper: thumbsSwiper },
+        const mainSwiper = new Swiper('.product-main', {
+          spaceBetween: 0,
+          loop: true,
+          navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+          thumbs: { swiper: thumbsSwiper },
+        });
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+    // 1. Formu yakala
+    const productForm = document.querySelector('form[action="/cart/add"]');
+    const cartDrawer = document.querySelector('#CartDrawer');
+
+    if (productForm) {
+      productForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        let formData = new FormData(productForm);
+
+        fetch('/cart/add.js', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => {
+          if (!response.ok) throw new Error('Sepete eklenemedi');
+          return response.json();
+        })
+        .then(item => {
+          // 2. Çekmeceyi güncelle ve aç
+          if (typeof updateCartDrawer === "function") {
+            updateCartDrawer(); // Eğer bu fonksiyonun varsa çalıştır
+          } else {
+            // Eğer fonksiyon yoksa bile çekmeceyi zorla aç
+            cartDrawer.classList.add('is-open');
+            // Sayfayı yenilemeden sepet verisini çekmek için basit tetikleyici
+            location.reload(); // Şimdilik en garanti yol, çekmece açılsın diye
+          }
+        })
+        .catch((error) => console.error('Hata:', error));
       });
     }
   });
+
+  // Çekmeceyi kapatma fonksiyonu (Dışarıdan tıklama için)
+  function closeCartDrawer() {
+    document.queryS
 </script>
 
 {% schema %}
