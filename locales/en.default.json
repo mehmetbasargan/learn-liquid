@@ -44,8 +44,18 @@
 			"on_sale": "On Sale",
 			"details_title": "Product Details",
 			"shipping_title": "Shipping & Returns",
-			"empty_bag": "Your bag is empty."
+			"empty_bag": "Your bag is empty.",
+			"empty_cart": "Your shopping bag is empty."
 		}
+	},
+	"blog": {
+		"article_metadata_html": "Written by {{ author }} on {{ date }}",
+		"article_comments": "Comments",
+		"comment_form_body": "Comment",
+		"comment_form_email": "Email",
+		"comment_form_name": "Name",
+		"comment_form_submit": "Post Comment",
+		"comment_form_title": "Join the Conversation"
 	},
 	"search": {
 		"title": "Search",
@@ -59,6 +69,7 @@
 	},
 	"footer": {
 		"newsletter": "Newsletter",
+		"join": "Join the Era",
 		"be_first_to_know": "Be the first to know about new eras.",
 		"email_address": "Email address",
 		"subscribe": "Subscribe",
