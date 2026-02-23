@@ -89,7 +89,7 @@
               name="add"
               class="w-full bg-[#3B443C] text-white py-4 uppercase tracking-[0.3em] hover:bg-[#2A312B] transition-colors"
             >
-              {{ 'cart.add_to_cart' | t }}
+              {{ 'products.product.add_to_cart' | t }}
             </button>
           </div>
         {% endform %}
@@ -296,7 +296,7 @@
               <button type="button" 
                 onclick="removeCartItem(${index + 1})" 
                 class="text-[9px] uppercase tracking-[0.2em] text-red-900 mt-2 text-left hover:text-black transition-all cursor-pointer">
-                [ ${ "{{ 'products.product.remove' | t }}" }]
+                [ ${ "{{ 'cart.remove' | t }}" }]
               </button>
             </div>
           </div>

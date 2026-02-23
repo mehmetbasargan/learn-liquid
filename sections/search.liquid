@@ -65,7 +65,7 @@
           if (products.length > 0) {
             renderResults(products);
           } else {
-            resultsContainer.innerHTML = `<p>{{ 'search.no_results_html' | t }}</p>`;
+            resultsContainer.innerHTML = `<p>{{ 'search.no_results' | t }}</p>`;
           }
         })
         .catch((err) => console.error('Search Error:', err));
