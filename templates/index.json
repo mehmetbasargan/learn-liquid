@@ -35,10 +35,11 @@
         "slide_MwbAmj": {
           "type": "slide",
           "settings": {
-            "title": "Yeni Sezon",
-            "sub_title": "En yeni koleksiyonu hemen keşfedin.",
-            "button_label": "Alışverişe Başla",
-            "button_link": ""
+            "image": "shopify://shop_images/img3.jpg",
+            "title": "New Season 3",
+            "sub_title": "Discover the latest collection now.",
+            "button_label": "Start Shopping",
+            "button_link": "shopify://collections"
           }
         }
       },
