@@ -1,37 +1,36 @@
 <section class="max-w-[1440px] mx-auto px-4 md:px-10 py-12">
   <div class="flex flex-col lg:flex-row gap-16">
     <div class="lg:w-3/5">
-      <div class="lg:w-3/5 w-full overflow-hidden">
-        <div class="swiper product-main-swiper relative group">
-          <div class="swiper-wrapper">
-            {% for image in product.images %}
-              <div class="swiper-slide">
-                <div class="aspect-[3/4] bg-[#F9F9F9]">
-                  <img
-                    src="{{ image | image_url: width: 1000 }}"
-                    height=""
-                    width=""
-                    class="w-full h-full object-cover"
-                    alt="{{ product.title }}"
-                  >
+      <div class="w-full md:w-full lg:w-2/3 flex flex-row gap-6 h-[600px] lg:h-[800px]">
+        {% comment %} thumbnails {% endcomment %}
+        <div class="hidden md:block w-20 shrink-0">
+          <div class="swiper product-thumbs h-full">
+            <div class="swiper-wrapper ">
+              {% for media in product.media %}
+                <div class="swiper-slide cursor-pointer opacity-50 transition-opacity duration-300 [&.swiper-slide-thumb-active]:opacity-100">
+                  {{ media | image_url: width: 200 | image_tag: class: ' object-cover' }}
                 </div>
-              </div>
-            {% endfor %}
+              {% endfor %}
+            </div>
           </div>
-
-          <div class="swiper-button-next !text-[#3B443C] opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <div class="swiper-button-prev !text-[#3B443C] opacity-0 group-hover:opacity-100 transition-opacity"></div>
         </div>
 
-        <div class="swiper product-thumb-swiper mt-4">
-          <div class="swiper-wrapper">
-            {% for image in product.images %}
-              <div class="swiper-slide cursor-pointer opacity-50 transition-opacity hover:opacity-100 peer-checked:opacity-100">
-                <div class="aspect-square border border-gray-100 overflow-hidden">
-                  <img src="{{ image | image_url: width: 200 }}" height="" width="" class="w-full h-full object-cover">
+        {% comment %} main images {% endcomment %}
+        <div class="grow h-full overflow-hidden bg-[#F9F9F9]">
+          <div class="swiper product-main h-full">
+            <div class="swiper-wrapper h-full">
+              {% for media in product.media %}
+                <div class="swiper-slide h-full">
+                  {{
+                    media
+                    | image_url: width: 1500
+                    | image_tag: class: 'w-full h-full object-cover object-top', loading: 'eager'
+                  }}
                 </div>
-              </div>
-            {% endfor %}
+              {% endfor %}
+            </div>
+            <div class="swiper-button-next text-[#3B443C] !after:text-lg"></div>
+            <div class="swiper-button-prev text-[#3B443C] !after:text-lg"></div>
           </div>
         </div>
       </div>
@@ -143,22 +142,25 @@
 </section>
 
 <script>
-  var thumbSwiper = new Swiper('.product-thumb-swiper', {
-    spaceBetween: 10,
-    slidesPerView: 5,
-    freeMode: true,
-    watchSlidesProgress: true,
-  });
+  document.addEventListener('DOMContentLoaded', function () {
+    // Swiper Başlatma
+    if (document.querySelector('.product-thumbs')) {
+      const thumbsSwiper = new Swiper('.product-thumbs', {
+        direction: 'vertical',
+        slidesPerView: 'auto',
+        spaceBetween: 10,
+        freeMode: true,
+        watchSlidesProgress: true,
+        loop: true,
+      });
 
-  var mainSwiper = new Swiper('.product-main-swiper', {
-    spaceBetween: 10,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    thumbs: {
-      swiper: thumbSwiper,
-    },
+      const mainSwiper = new Swiper('.product-main', {
+        spaceBetween: 0,
+        loop: true,
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        thumbs: { swiper: thumbsSwiper },
+      });
+    }
   });
 </script>
 
