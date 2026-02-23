@@ -2,7 +2,7 @@
   <div class="flex flex-col md:flex-row gap-12">
     <aside class="w-full md:w-64 shrink-0">
       <div class="filter-wrapper sticky top-24">
-        <h2 class="text-[14px] uppercase tracking-[0.3em] font-medium mb-8">Filters</h2>
+        <h2 class="text-[14px] uppercase tracking-[0.3em] font-medium mb-8">{{ 'collections.filters' | t }}</h2>
 
         <form id="CollectionFiltersForm" class="space-y-8">
           {%- for filter in collection.filters -%}
@@ -116,8 +116,9 @@
             <a
               href="{{ collection.url }}?sort_by={{ collection.sort_by }}"
               class="text-[9px] uppercase underline tracking-widest"
-              >Clear All</a
             >
+              {{- 'general.clear_all' | t -}}
+            </a>
           </div>
         </form>
       </div>
@@ -128,7 +129,7 @@
         {% for product in collection.products %}
           {% render 'product-card', product: product %}
         {% else %}
-          <p class="text-center py-20 text-[12px] uppercase tracking-widest">No products found.</p>
+          <p class="text-center py-20 text-[12px] uppercase tracking-widest">{{ 'general.no_products_found' | t }}</p>
         {% endfor %}
       </div>
 

@@ -16,7 +16,7 @@
 
   <div class="relative z-10 text-center px-4">
     <nav class="mb-4 text-[12px] uppercase tracking-[0.2em] text-white">
-      <a href="/" class="hover:text-[#B2AC88]">Home</a>
+      <a href="{{ routes.root_url }}" class="hover:text-[#B2AC88]">{{ 'general.home' | t }}</a>
       <span class="mx-2">/</span>
       <span class="text-white">
         {%- if section.settings.custom_title != blank -%}

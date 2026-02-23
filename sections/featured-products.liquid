@@ -21,11 +21,11 @@
       <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12">
         {% for product in collections[section.settings.collection].products limit: 4 %}
           <div class="group relative">
-            <div class="relative aspect-[3/4] overflow-hidden bg-[#F9F9F9]">
+            <div class="relative aspect-3/4 overflow-hidden bg-[#F9F9F9]">
               {% if product.compare_at_price > product.price %}
-                <span class="absolute top-4 left-4 z-20 bg-[#B2AC88] text-white text-[10px] px-3 py-1 tracking-widest uppercase"
-                  >İndirim</span
-                >
+                <span class="absolute top-4 left-4 z-20 bg-[#B2AC88] text-white text-[10px] px-3 py-1 tracking-widest uppercase">
+                  {{ 'featured_products.discount' | t }}
+                </span>
               {% endif %}
 
               <a href="{{ product.url }}" class="block w-full h-full">
@@ -68,9 +68,9 @@
                     {% endunless %}
                   >
                     {% if product.available %}
-                      Add to Cart
+                      {{ 'products.product.add_to_cart' | t }}
                     {% else %}
-                      Sold Out
+                      {{ 'products.product.sold_out' | t }}
                     {% endif %}
                   </button>
                 {% endform %}

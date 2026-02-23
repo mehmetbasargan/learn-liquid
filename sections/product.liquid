@@ -39,7 +39,7 @@
     <div class="w-full md:w-[100%] lg:w-[100%]">
       <div class="sticky top-10 space-y-8">
         <div class="space-y-2">
-          <p class="text-secondary text-[14px] tracking-[0.3em] uppercase">Luvia Era Edition</p>
+          <p class="text-secondary text-[14px] tracking-[0.3em] uppercase">{{ 'general.luvia_era_edition' | t }}</p>
           <h1 class="text-primary text-3xl font-light tracking-widest uppercase">{{ product.title }}</h1>
           <p class="text-lg text-primary font-light italic">{{ product.price | money }}</p>
         </div>
@@ -89,7 +89,7 @@
               name="add"
               class="w-full bg-[#3B443C] text-white py-4 uppercase tracking-[0.3em] hover:bg-[#2A312B] transition-colors"
             >
-              Sepete Ekle
+              {{ 'cart.add_to_cart' | t }}
             </button>
           </div>
         {% endform %}

@@ -12,7 +12,7 @@
             }}
           {% else %}
             <span class="text-2xl font-light tracking-[0.2em] uppercase text-primary">
-              Luvia <span class="font-semibold text-[#B2AC88]">Era</span>
+              {{ 'footer.luvia_era' | t }}
             </span>
           {% endif %}
         </a>
@@ -69,15 +69,21 @@
     </div>
 
     <div>
-      <h4 class="text-sm font-bold uppercase tracking-widest mb-6 text-secondary">Newsletter</h4>
-      <p class="text-xs text-gray-400 mb-4 font-light italic">Be the first to know about new eras.</p>
+      <h4 class="text-sm font-bold uppercase tracking-widest mb-6 text-secondary">
+        {{ 'footer.newsletter' | t }}
+      </h4>
+      <p class="text-xs text-gray-400 mb-4 font-light italic">
+        {{ 'footer.be_first_to_know' | t }}
+      </p>
       <form class="flex border-b border-gray-600 pb-2">
         <input
           type="email"
           placeholder="Email address"
           class="bg-transparent border-none text-sm w-full focus:outline-none placeholder:text-gray-600 text-white"
         >
-        <button type="submit" class="text-secondary uppercase text-xs tracking-widest font-semibold ml-2">Join</button>
+        <button type="submit" class="text-secondary uppercase text-xs tracking-widest font-semibold ml-2">
+          {{ 'footer.join' | t }}
+        </button>
       </form>
     </div>
   </div>
@@ -88,7 +94,8 @@
     <div class="footer__copyright text-[12px]">
       &copy;
       {{ 'now' | date: '%Y' }}
-      {{ shop.name | link_to: routes.root_url }} - All rights reserved
+      {{ shop.name | link_to: routes.root_url }} -
+      {{ 'footer.all_rights_reserved' | t }}
     </div>
     <div class="footer__payment">
       {% if section.settings.show_payment_icons %}
@@ -103,7 +110,7 @@
 <button
   id="back-to-top"
   class="fixed bottom-8 right-8 z-100 bg-primary hover:bg-secondary text-white p-3 rounded-full shadow-2xl transition-all duration-500 transform translate-y-20 opacity-0 hover:scale-110 active:scale-95 cursor-pointer"
-  aria-label="Yukarı Çık"
+  aria-label="Go Up"
 >
   {% render 'icon-arrow' %}
 </button>
