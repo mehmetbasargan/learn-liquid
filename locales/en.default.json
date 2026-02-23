@@ -14,87 +14,55 @@
 		"not_found": "Page not found.",
 		"back_to_shopping": "Back to shopping"
 	},
-	"blog": {
-		"article_comments": "Comments",
-		"article_metadata_html": "{{ date }} by {{ author }}",
-		"comment_form_body": "Comment",
-		"comment_form_email": "Email",
-		"comment_form_name": "Name",
-		"comment_form_submit": "Post",
-		"comment_form_title": "Add a comment"
-	},
 	"cart": {
-		"checkout": "Checkout",
 		"title": "Cart",
+		"shopping_bag": "Your Shopping Bag",
+		"my_cart": "My Cart",
+		"checkout": "Checkout",
+		"proceed_to_checkout": "Proceed to Checkout",
 		"update": "Update",
 		"remove": "Remove",
-		"shopping_bag": "Your Shopping Bag",
-		"continue_shopping": "Continue Shopping",
 		"subtotal": "Subtotal",
-		"shipping_taxes_discounts": "Shipping, taxes, and discounts will be calculated at checkout.",
-		"proceed_to_checkout": "Proceed to Checkout",
-		"secure_payment_guaranteed": "Secure Payment Guaranteed",
 		"shopping_bg_is_empty": "Your shopping bag is currently empty.",
+		"continue_shopping": "Continue Shopping",
 		"discover_our_collection": "Discover Our Collection",
-		"add_to_cart": "Add to Cart",
-		"sold_out": "Sold Out",
-		"my_cart": "My Cart"
-	},
-	"customers": {
-		"login": {
-			"email": "Email",
-			"password": "Password",
-			"submit": "Sign in",
-			"title": "Login"
-		}
+		"shipping_taxes_discounts": "Shipping, taxes, and discounts will be calculated at checkout.",
+		"secure_payment_guaranteed": "Secure Payment Guaranteed"
 	},
 	"collections": {
 		"title": "Collections",
-		"explore_categories": "Explore Categories",
+		"explore_categories": "Explore Collections",
 		"select_collection": "Select Collection",
-		"review": "Review",
+		"review": "View Collection",
 		"no_products_yet": "There are no products in this collection yet.",
 		"filters": "Filters"
 	},
-	"gift_card": {
-		"add_to_apple_wallet": "Add to Apple Wallet",
-		"card": "Gift card",
-		"expired": "This gift card has expired",
-		"expires_on": "Expires on {{ expires_on }}",
-		"use_at_checkout": "Use this gift card at checkout"
-	},
-	"password": {
-		"title": "This shop is private",
-		"password": "Password",
-		"enter": "Enter"
+	"products": {
+		"product": {
+			"add_to_cart": "Add to Cart",
+			"sold_out": "Sold Out",
+			"on_sale": "On Sale",
+			"details_title": "Product Details",
+			"shipping_title": "Shipping & Returns",
+			"empty_bag": "Your bag is empty."
+		}
 	},
 	"search": {
 		"title": "Search",
-		"placeholder": "Search articles, pages, or products",
+		"placeholder": "Search our era...",
 		"submit": "Search",
-		"no_results_html": "No results found for {{ terms }}",
-		"results_for_html": "{{ count }} results found for {{ terms }}"
-	},
-	"products": {
-		"product": {
-			"details_title": "Product Details",
-			"shipping_title": "Shipping & Returns",
-			"empty_cart": "Your cart is empty.",
-			"empty_bag": "Your bag is empty.",
-			"remove": "Remove"
+		"no_results": "No results found for \"{{ terms }}\"",
+		"results_with_count": {
+			"one": "{{ count }} result found for \"{{ terms }}\"",
+			"other": "{{ count }} results found for \"{{ terms }}\""
 		}
-	},
-	"featured_products": {
-		"discount": "Discount",
-		"view_details": "View Details"
 	},
 	"footer": {
 		"newsletter": "Newsletter",
-		"join": "Join",
 		"be_first_to_know": "Be the first to know about new eras.",
-		"all_rights_reserved": "All rights reserved",
-		"luvia_era": "Luvia Era",
 		"email_address": "Email address",
-		"subscribe": "Subscribe"
+		"subscribe": "Subscribe",
+		"all_rights_reserved": "All rights reserved",
+		"luvia_era": "Luvia Era"
 	}
 }
