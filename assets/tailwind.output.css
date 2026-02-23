@@ -1267,6 +1267,9 @@
   .whitespace-nowrap {
     white-space: nowrap;
   }
+  .\!text-\[\#3B443C\] {
+    color: #3B443C !important;
+  }
   .\!text-secondary {
     color: var(--color-secondary) !important;
   }
@@ -1489,6 +1492,11 @@
       color: var(--color-white);
     }
   }
+  .peer-checked\:opacity-100 {
+    &:is(:where(.peer):checked ~ *) {
+      opacity: 100%;
+    }
+  }
   .peer-checked\:ring-1 {
     &:is(:where(.peer):checked ~ *) {
       --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
@@ -1666,6 +1674,13 @@
     &:hover {
       @media (hover: hover) {
         opacity: 95%;
+      }
+    }
+  }
+  .hover\:opacity-100 {
+    &:hover {
+      @media (hover: hover) {
+        opacity: 100%;
       }
     }
   }
