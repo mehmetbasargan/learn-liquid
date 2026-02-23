@@ -6,7 +6,7 @@
 {% endcomment %}
 
 <div class="container py-20">
-  <h1>{{ 'search.title' | t }}</h1>
+  {% comment %}  <h1>{{ 'search.title' | t }}</h1> {% endcomment %}
 
   <form action="{{ routes.search_url }}" method="get" role="search">
     <input
