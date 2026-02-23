@@ -19,9 +19,9 @@
         "footer_address": "Nişantaşı, İstanbul / TR",
         "footer_email": "info@luviaera.com",
         "menu_1_title": "Collections",
-        "footer_menu_1": "footer",
+        "footer_menu_1": "collections",
         "menu_2_title": "Customer Care",
-        "footer_menu_2": "customer-care"
+        "footer_menu_2": "footer"
       }
     },
     "footer-two": {
@@ -35,7 +35,7 @@
         "menu_1_title": "Collections",
         "footer_menu_1": "footer",
         "menu_2_title": "Customer Care",
-        "footer_menu_2": "customer-care"
+        "footer_menu_2": ""
       }
     },
     "footer-three": {
@@ -49,9 +49,7 @@
         },
         "gallery_image_bkacNU": {
           "type": "gallery_image",
-          "settings": {
-            "image": "shopify://shop_images/img4.jpg"
-          }
+          "settings": {}
         },
         "gallery_image_zA7xgB": {
           "type": "gallery_image",
@@ -77,7 +75,7 @@
         "menu_1_title": "Collections",
         "footer_menu_1": "footer",
         "menu_2_title": "Customer Care",
-        "footer_menu_2": "customer-care",
+        "footer_menu_2": "",
         "gallery_title": "Follow Us @LuviaEra"
       }
     }
