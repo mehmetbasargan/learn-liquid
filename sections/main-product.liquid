@@ -236,16 +236,25 @@
           itemsContainer.innerHTML = cart.items
             .map(
               (item) => `
-          <div class="flex gap-4 border-b border-gray-50 pb-4">
-            <img src="${item.image}" class="w-20 h-24 object-cover">
-            <div class="flex-1">
-              <h4 class="text-[10px] uppercase tracking-widest text-[#3B443C]">${item.product_title}</h4>
-              <p class="text-[10px] text-gray-400 mt-1">${item.variant_title || ''}</p>
-              <p class="text-xs mt-2">${(item.price / 100).toFixed(2)} TL</p>
-            </div>
-          </div>
+                <div class="flex gap-4 border-b border-gray-50 pb-4">
+                    <img src="${item.image}" class="w-20 h-24 object-cover">
+                    <div class="flex-1">
+                    <h4 class="text-[10px] uppercase tracking-widest text-[#3B443C]">${item.product_title}</h4>
+                    <p class="text-[10px] text-gray-400 mt-1">${item.variant_title || ''}</p>
+                    <p class="text-xs mt-2">${(item.price / 100).toFixed(2)} TL</p>
+                    </div>
+                </div>
+                `
+            )
+            .join('');
+        } else {
+          itemsContainer.innerHTML =
+            '<p class="text-[10px] uppercase tracking-widest text-center mt-10">Sepetiniz Boş</p>';
+        }
 
-          temsHtml = cart.items.map((item, index) => `
+        itemsHtml = cart.items
+          .map(
+            (item, index) => `
             <div class="flex gap-4 border-b border-gray-50 pb-4 relative group">
                 <img src="${item.image}" class="w-20 h-24 object-cover">
                 <div class="flex-1">
@@ -264,16 +273,31 @@
                 </div>
                 </div>
             </div>
-            `).join('');
-        `
-            )
-            .join('');
-        } else {
-          itemsContainer.innerHTML =
-            '<p class="text-[10px] uppercase tracking-widest text-center mt-10">Sepetiniz Boş</p>';
-        }
+            `
+          )
+          .join('');
 
         totalPriceContainer.innerText = (cart.total_price / 100).toFixed(2) + ' TL';
+
+        function removeCartItem(line) {
+          // Shopify'a "şu sıradaki ürünün miktarını 0 yap" diyoruz
+          fetch('/cart/change.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              line: line,
+              quantity: 0,
+            }),
+          })
+            .then((res) => res.json())
+            .then((cart) => {
+              // Sepet güncellendi, çekmece içeriğini tazele
+              openAndRefreshCart();
+            })
+            .catch((err) => console.error('Silme hatası:', err));
+        }
 
         // 2. Çekmeceyi Görünür Yap (Senin ID'lerine Göre)
         const drawer = document.getElementById('cart-drawer');
