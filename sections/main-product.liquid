@@ -107,9 +107,9 @@
                 {% endunless %}
               >
                 {% if product.available %}
-                  Add to Cart
+                  {{ 'products.product.add_to_cart' | t }}
                 {% else %}
-                  Sold Out
+                  {{ 'products.product.sold_out' | t }}
                 {% endif %}
               </button>
             </div>
@@ -119,7 +119,7 @@
         <div class="pt-8 border-t border-gray-100 space-y-4">
           <details class="group">
             <summary class="flex justify-between items-center cursor-pointer list-none text-[10px] uppercase tracking-widest text-[#3B443C]">
-              Ürün Detayları
+              {{ 'products.product.details_title' | t }}
               <span class="group-open:rotate-180 transition-transform">↓</span>
             </summary>
             <div class="pt-4 text-xs text-gray-500 leading-6">
@@ -128,11 +128,11 @@
           </details>
           <details class="group">
             <summary class="flex justify-between items-center cursor-pointer list-none text-[10px] uppercase tracking-widest text-[#3B443C]">
-              Kargo ve İade
+              {{ 'products.product.shipping_title' | t }}
               <span class="group-open:rotate-180 transition-transform">↓</span>
             </summary>
             <div class="pt-4 text-xs text-gray-500 leading-6">
-              Türkiye geneline 2-4 iş günü içinde ücretsiz kargo. 14 gün içinde koşulsuz iade hakkı.
+              {{ product.metafields.custom.shipping_and_returns | newline_to_br }}
             </div>
           </details>
         </div>

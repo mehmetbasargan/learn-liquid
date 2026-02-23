@@ -51,8 +51,10 @@
 	},
 	"products": {
 		"product": {
-			"details": "Product Details",
-			"shipping": "Shipping & Returns"
+			"details_title": "Product Details",
+			"shipping_title": "Shipping & Returns",
+			"add_to_cart": "Add to Cart",
+			"sold_out": "Sold Out"
 		}
 	}
 }
