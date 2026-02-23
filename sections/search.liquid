@@ -28,9 +28,11 @@
   <div id="search-results-container" class="py-10">
     {% if search.performed %}
       <div id="search-results" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
-        {% for result in search.results %}
-          {% render 'product-card', product: result %}
-        {% endfor %}
+        {% if search.performed %}
+          {% for result in search.results %}
+            {% render 'product-card', product: result %}
+          {% endfor %}
+        {% endif %}
       </div>
     {% else %}
       {% # Sayfa ilk açıldığında görünecek boş alan %}
