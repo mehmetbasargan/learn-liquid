@@ -17,7 +17,15 @@
 		"checkout": "Checkout",
 		"title": "Cart",
 		"update": "Update",
-		"remove": "Remove"
+		"remove": "Remove",
+		"shopping_bag": "Your Shopping Bag",
+		"continue_shopping": "Continue Shopping",
+		"subtotal": "Subtotal",
+		"shipping_taxes_discounts": "Shipping, taxes, and discounts will be calculated at checkout.",
+		"proceed_to_checkout": "Proceed to Checkout",
+		"secure_payment_guaranteed": "Secure Payment Guaranteed",
+		"shopping_bg_is_empty": "Your shopping bag is currently empty.",
+		"discover_our_collection": "Discover Our Collection"
 	},
 	"customers": {
 		"login": {

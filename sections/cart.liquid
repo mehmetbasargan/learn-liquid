@@ -76,7 +76,9 @@
 
 <div class="max-w-[1440px] mx-auto px-4 md:px-10 py-16 lg:py-24">
   <header class="text-center mb-16">
-    <h1 class="text-[22px] md:text-[28px] font-light tracking-[0.4em] uppercase text-primary">Your Shopping Bag</h1>
+    <h1 class="text-[22px] md:text-[28px] font-light tracking-[0.4em] uppercase text-primary">
+      {{ 'cart.shopping_bag' | t }}
+    </h1>
   </header>
 
   {% if cart.item_count > 0 %}
@@ -141,7 +143,7 @@
                     href="{{ item.url_to_remove }}"
                     class="text-[9px] uppercase tracking-[0.3em] text-red-900 border-b border-red-900 pb-0.5 hover:text-black hover:border-black transition-colors"
                   >
-                    Remove
+                    {{ 'cart.remove' | t }}
                   </a>
                 </div>
               </div>
@@ -154,7 +156,7 @@
             href="{{ routes.all_products_collection_url }}"
             class="text-[10px] uppercase tracking-[0.3em] border-b border-black pb-1 hover:opacity-50 transition-all"
           >
-            ← Continue Shopping
+            ← {{ 'cart.continue_shopping' | t }}
           </a>
         </div>
       </div>
@@ -167,11 +169,13 @@
 
           <div class="space-y-4">
             <div class="flex justify-between items-center">
-              <span class="text-[11px] uppercase tracking-widest text-gray-500 font-light">Subtotal</span>
+              <span class="text-[11px] uppercase tracking-widest text-gray-500 font-light">
+                {{ 'cart.subtotal' | t }}
+              </span>
               <span class="text-sm tracking-tight font-medium">{{ cart.total_price | money }}</span>
             </div>
             <p class="text-[10px] text-gray-400 italic leading-relaxed">
-              Shipping, taxes, and discounts will be calculated at checkout.
+              {{ 'cart.shipping_taxes_discounts' | t }}
             </p>
           </div>
 
@@ -181,12 +185,14 @@
               name="checkout"
               class="w-full cursor-pointer bg-primary text-white py-5 text-[11px] uppercase tracking-[0.4em] hover:bg-secondary transition-all duration-500 shadow-sm"
             >
-              Proceed to Checkout
+              {{ 'cart.proceed_to_checkout' | t }}
             </button>
           </div>
 
           <div class="flex justify-center gap-4 opacity-30 grayscale pt-4">
-            <small class="text-[11px] uppercase tracking-widest">Secure Payment Guaranteed</small>
+            <small class="text-[11px] uppercase tracking-widest">
+              {{ 'cart.secure_payment_guaranteed' | t }}
+            </small>
           </div>
         </div>
       </div>
@@ -194,13 +200,13 @@
   {% else %}
     <div class="text-center py-32 animate-fadeIn">
       <p class="text-[13px] italic text-secondary mb-10 tracking-widest font-light">
-        Your shopping bag is currently empty.
+        {{ 'cart.shopping_bg_is_empty' | t }}
       </p>
       <a
         href="{{ routes.all_products_collection_url }}"
         class="inline-block bg-primary text-white px-12 py-5 uppercase tracking-[0.3em] text-[12px] hover:bg-secondary transition-all duration-500"
       >
-        Discover Our Collection
+        {{ 'cart.discover_our_collection' | t }}
       </a>
     </div>
   {% endif %}
