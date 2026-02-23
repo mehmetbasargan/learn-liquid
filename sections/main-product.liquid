@@ -179,65 +179,107 @@
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Swiper Başlatma
-      if (document.querySelector('.product-thumbs')) {
-        const thumbsSwiper = new Swiper('.product-thumbs', {
-          direction: 'vertical',
-          slidesPerView: 'auto',
-          spaceBetween: 10,
-          freeMode: true,
-          watchSlidesProgress: true,
-          loop: true,
-        });
+  document.addEventListener('DOMContentLoaded', function () {
+    // Swiper Başlatma
+    if (document.querySelector('.product-thumbs')) {
+      const thumbsSwiper = new Swiper('.product-thumbs', {
+        direction: 'vertical',
+        slidesPerView: 'auto',
+        spaceBetween: 10,
+        freeMode: true,
+        watchSlidesProgress: true,
+        loop: true,
+      });
 
-        const mainSwiper = new Swiper('.product-main', {
-          spaceBetween: 0,
-          loop: true,
-          navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-          thumbs: { swiper: thumbsSwiper },
-        });
-      }
-    });
+      const mainSwiper = new Swiper('.product-main', {
+        spaceBetween: 0,
+        loop: true,
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        thumbs: { swiper: thumbsSwiper },
+      });
+    }
+  });
 
-    document.addEventListener('DOMContentLoaded', function() {
-    // 1. Formu yakala
+  /*  */
+  document.addEventListener('DOMContentLoaded', function () {
     const productForm = document.querySelector('form[action="/cart/add"]');
-    const cartDrawer = document.querySelector('#CartDrawer');
 
     if (productForm) {
-      productForm.addEventListener('submit', function(e) {
+      productForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
         let formData = new FormData(productForm);
 
         fetch('/cart/add.js', {
           method: 'POST',
-          body: formData
+          body: formData,
         })
-        .then(response => {
-          if (!response.ok) throw new Error('Sepete eklenemedi');
-          return response.json();
-        })
-        .then(item => {
-          // 2. Çekmeceyi güncelle ve aç
-          if (typeof updateCartDrawer === "function") {
-            updateCartDrawer(); // Eğer bu fonksiyonun varsa çalıştır
-          } else {
-            // Eğer fonksiyon yoksa bile çekmeceyi zorla aç
-            cartDrawer.classList.add('is-open');
-            // Sayfayı yenilemeden sepet verisini çekmek için basit tetikleyici
-            location.reload(); // Şimdilik en garanti yol, çekmece açılsın diye
-          }
-        })
-        .catch((error) => console.error('Hata:', error));
+          .then((response) => response.json())
+          .then((item) => {
+            // Ürün eklendi, şimdi çekmeceyi güncelle ve aç
+            openAndRefreshCart();
+          })
+          .catch((error) => console.error('Sepet Hatası:', error));
       });
     }
   });
 
-  // Çekmeceyi kapatma fonksiyonu (Dışarıdan tıklama için)
+  function openAndRefreshCart() {
+    fetch('/cart.js')
+      .then((res) => res.json())
+      .then((cart) => {
+        // 1. Ürünleri Listele
+        const itemsContainer = document.getElementById('cart-drawer-items');
+        const totalPriceContainer = document.getElementById('cart-total-price');
+
+        if (cart.items.length > 0) {
+          itemsContainer.innerHTML = cart.items
+            .map(
+              (item) => `
+          <div class="flex gap-4 border-b border-gray-50 pb-4">
+            <img src="${item.image}" class="w-20 h-24 object-cover">
+            <div class="flex-1">
+              <h4 class="text-[10px] uppercase tracking-widest text-[#3B443C]">${item.product_title}</h4>
+              <p class="text-[10px] text-gray-400 mt-1">${item.variant_title || ''}</p>
+              <p class="text-xs mt-2">${(item.price / 100).toFixed(2)} TL</p>
+            </div>
+          </div>
+        `
+            )
+            .join('');
+        } else {
+          itemsContainer.innerHTML =
+            '<p class="text-[10px] uppercase tracking-widest text-center mt-10">Sepetiniz Boş</p>';
+        }
+
+        totalPriceContainer.innerText = (cart.total_price / 100).toFixed(2) + ' TL';
+
+        // 2. Çekmeceyi Görünür Yap (Senin ID'lerine Göre)
+        const drawer = document.getElementById('cart-drawer');
+        const overlay = document.getElementById('cart-drawer-overlay');
+        const content = document.getElementById('cart-drawer-content');
+
+        drawer.classList.remove('invisible');
+        // Biraz gecikme veriyoruz ki transition (animasyon) çalışsın
+        setTimeout(() => {
+          overlay.classList.replace('opacity-0', 'opacity-100');
+          content.classList.replace('translate-x-full', 'translate-x-0');
+        }, 10);
+      });
+  }
+
   function closeCartDrawer() {
-    document.queryS
+    const drawer = document.getElementById('cart-drawer');
+    const overlay = document.getElementById('cart-drawer-overlay');
+    const content = document.getElementById('cart-drawer-content');
+
+    overlay.classList.replace('opacity-100', 'opacity-0');
+    content.classList.replace('translate-x-0', 'translate-x-full');
+
+    setTimeout(() => {
+      drawer.classList.add('invisible');
+    }, 500); // Animasyon süresi kadar bekle
+  }
 </script>
 
 {% schema %}
