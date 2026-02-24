@@ -23,6 +23,13 @@
     "header": {
       "type": "header",
       "blocks": {
+        "social_icon_pYUtiM": {
+          "type": "social_icon",
+          "settings": {
+            "icon_choice": "icon-youtube",
+            "link": "#"
+          }
+        },
         "social_icon_W9gNB4": {
           "type": "social_icon",
           "settings": {
@@ -39,6 +46,7 @@
         }
       },
       "block_order": [
+        "social_icon_pYUtiM",
         "social_icon_W9gNB4",
         "social_icon_MXHCyn"
       ],
