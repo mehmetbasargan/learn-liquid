@@ -9,7 +9,8 @@
  */
 {
   "current": {
-    "color_secondary": "#175ae4",
+    "color_primary": "#0fed28",
+    "color_secondary": "#8b0cec",
     "content_for_index": []
   }
 }
