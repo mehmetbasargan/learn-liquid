@@ -20,64 +20,14 @@
         "bg_color": "#b2ac88"
       }
     },
-    "top_bar_w8ANTn": {
-      "type": "top-bar",
-      "blocks": {
-        "social_icon_zGzL9R": {
-          "type": "social_icon",
-          "settings": {
-            "icon_choice": "icon-tiktok",
-            "link": ""
-          }
-        },
-        "social_icon_d44a9Y": {
-          "type": "social_icon",
-          "settings": {
-            "icon_choice": "icon-x",
-            "link": ""
-          }
-        },
-        "social_icon_AMd3gx": {
-          "type": "social_icon",
-          "settings": {
-            "icon_choice": "icon-facebook",
-            "link": ""
-          }
-        },
-        "social_icon_DgTc9H": {
-          "type": "social_icon",
-          "settings": {
-            "icon_choice": "icon-youtube",
-            "link": ""
-          }
-        },
-        "social_icon_KzwKJh": {
-          "type": "social_icon",
-          "settings": {
-            "icon_choice": "icon-instagram",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "social_icon_zGzL9R",
-        "social_icon_d44a9Y",
-        "social_icon_AMd3gx",
-        "social_icon_DgTc9H",
-        "social_icon_KzwKJh"
-      ],
-      "disabled": true,
-      "name": "Top Bar",
-      "settings": {
-        "header_phone": "0532 000 00 00",
-        "show_phone": true
-      }
-    },
     "header": {
       "type": "header",
+      "disabled": true,
       "settings": {
         "menu": "main-menu",
-        "logo": "shopify://shop_images/logo2.svg"
+        "logo": "shopify://shop_images/logo2.svg",
+        "header_phone": "",
+        "show_phone": true
       }
     },
     "header-two": {
@@ -118,7 +68,6 @@
         "social_icon_QUH6kx",
         "social_icon_qC4bjG"
       ],
-      "disabled": true,
       "settings": {
         "menu": "main-menu",
         "logo": "shopify://shop_images/logo2.svg",
@@ -134,7 +83,6 @@
   },
   "order": [
     "announcement-bar",
-    "top_bar_w8ANTn",
     "header",
     "header-two",
     "header-three"
