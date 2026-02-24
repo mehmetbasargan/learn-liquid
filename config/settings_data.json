@@ -7,10 +7,25 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
+
 {
-  "current": {
-    "color_primary": "#0fed28",
-    "color_secondary": "#8b0cec",
-    "content_for_index": []
-  }
+	"current": {
+		"color_primary": "#3B443C",
+		"color_secondary": "#B2AC88",
+		"color_bg": "#FFFFFF",
+		"heading_font": "josefin_sans_n4",
+		"body_font": "inter_n4",
+		"content_for_index": []
+	},
+	"presets": {
+		"Default": {
+			"Luvia Standard": {
+				"color_primary": "#3B443C",
+				"color_secondary": "#B2AC88",
+				"color_bg": "#FFFFFF",
+				"heading_font": "josefin_sans_n4",
+				"body_font": "inter_n4"
+			}
+		}
+	}
 }
