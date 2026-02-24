@@ -33,12 +33,6 @@
 				"default": "#f9f9f9"
 			},
 			{
-				"type": "color",
-				"id": "custom_white",
-				"label": "White Color",
-				"default": "#ffffff"
-			},
-			{
 				"type": "header",
 				"content": "Typography"
 			},
