@@ -1603,6 +1603,10 @@ p{
   background-color: rgb(255 255 255 / 0.5);
 }
 
+.bg-black\/50{
+  background-color: rgb(0 0 0 / 0.5);
+}
+
 .object-contain{
   -o-object-fit: contain;
      object-fit: contain;
