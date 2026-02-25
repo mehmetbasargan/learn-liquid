@@ -12,7 +12,7 @@ module.exports = {
 			colors: {
 				primary: '#3b443c',
 				secondary: '#b2ac88',
-				'brand-bg': '#f9f9f9',
+				'custom-bg': '#f9f9f9',
 			},
 			fontFamily: {
 				inter: ['Inter', 'sans-serif'],

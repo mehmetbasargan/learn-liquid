@@ -1,32 +1,114 @@
 <header
   id="main-header"
-  class="fixed top-0 left-0 z-50 w-full py-8 transition-all duration-500 ease-in-out bg-white/50"
+  class="fixed top-0 left-0 z-50 w-full py-8 transition-all duration-500 ease-in-out bg-white/80"
 >
-  <div id="header-logo" class="container ">
-    <a href="{{ routes.root_url }}" class=" w-[170px] lg:w-[180px] shrink-0">
-      {% if section.settings.logo %}
-        {{ section.settings.logo | image_url: width: 180 | image_tag: alt: shop.name }}
-      {% else %}
-        <span class="h2">{{ shop.name }}</span>
-      {% endif %}
-    </a>
-  </div>
+  <div class="container flex items-center justify-between">
+    {% comment %} logo {% endcomment %}
+    <div id="header-logo" class="container w-[20%] justify-start flex shrink-0">
+      <a href="{{ routes.root_url }}" class="w-[170px] lg:w-[180px] shrink-0">
+        {% if section.settings.logo %}
+          {{ section.settings.logo | image_url: width: 180 | image_tag: alt: shop.name }}
+        {% else %}
+          <span class="h2">{{ shop.name }}</span>
+        {% endif %}
+      </a>
+    </div>
 
-  <div class="">
-    <nav class="">
-      <ul class="hidden lg:flex flex-row items-center justify-between gap-6 ">
-        {% for link in section.settings.menu.links %}
-          <li>
+    {% comment %} menu {% endcomment %}
+    <div class="w-[80%]">
+      <nav class="">
+        <ul class="hidden lg:flex justify-end gap-6">
+          {% for link in section.settings.menu.links %}
+            <li>
+              <a
+                href="{{ link.url }}"
+                class="nav-link hover:text-secondary text-[16px] font-medium {% if link.current %} is-active {% endif %}"
+              >
+                {{ link.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+
+    {% comment %} mobile menu {% endcomment %}
+    <div class="flex lg:hidden">
+      <button id="menu-toggle" class="group relative order-last">
+        <div id="icon-open" class="block">
+          {% render 'icon-menu' %}
+        </div>
+
+        <div id="icon-close" class="hidden">
+          {% render 'icon-menu-close' %}
+        </div>
+      </button>
+
+      {% comment %} mobile menu {% endcomment %}
+      <nav id="main-menu" class="hidden absolute top-[70px] left-0 w-full bg-white">
+        <div class="flex flex-col p-4 w-full">
+          {% for link in section.settings.menu.links %}
             <a
               href="{{ link.url }}"
-              class="nav-link hover:text-secondary text-[15px] {% if link.current %} is-active {% endif %}"
+              class="nav-link py-5 border-b border-[#000000]/10 last:border-b-0 w-full hover:text-secondary {% if link.current %} is-active {% endif %}"
             >
               {{ link.title }}
             </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </nav>
+          {% endfor %}
+        </div>
+
+        <div class="">
+          <div class="container py-5 ">
+            <h5 class="text-center mb-5 border-b border-[#000000]/10 pb-3">{{ 'general.social_media' | t }}</h5>
+            <div class="flex flex-col lg:flex-row items-center justify-between md:justify-around gap-2">
+              <div class="">
+                {% if section.settings.show_phone and section.settings.header_phone != blank %}
+                  <ul class="flex items-center gap-2">
+                    <li>{% render 'icon-phone' %}</li>
+                    <li class="font-medium">
+                      <a href="{{ section.settings.header_phone | replace: ' ', '' }}">
+                        {{ section.settings.header_phone -}}
+                      </a>
+                    </li>
+                  </ul>
+                {% endif %}
+              </div>
+              <div class="">
+                <ul class="flex items-center gap-2">
+                  {%- for block in section.blocks -%}
+                    {%- if block.type == 'social_icon' -%}
+                      <li
+                        class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-primary transition-colors"
+                        {{ block.shopify_attributes }}
+                      >
+                        <a
+                          href="{{ block.settings.link | default: '#' }}"
+                          target="_blank"
+                          class="block w-5 h-5 flex items-center justify-center"
+                        >
+                          {%- case block.settings.icon_choice -%}
+                            {%- when 'icon-facebook' -%}
+                              {% render 'icon-facebook' %}
+                            {%- when 'icon-instagram' -%}
+                              {% render 'icon-instagram' %}
+                            {%- when 'icon-youtube' -%}
+                              {% render 'icon-youtube' %}
+                            {%- when 'icon-x' -%}
+                              {% render 'icon-x' %}
+                            {%- when 'icon-tiktok' -%}
+                              {% render 'icon-tiktok' %}
+                          {%- endcase -%}
+                        </a>
+                      </li>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
   </div>
 </header>
 
@@ -36,12 +118,12 @@
   window.addEventListener('scroll', () => {
     if (window.scrollY > 30) {
       // Kaydırınca: Tam beyaz ve daha dar header
-      header.classList.remove('bg-white/50', 'py-6');
+      header.classList.remove('bg-white/80', 'py-8');
       header.classList.add('bg-white', 'py-4', 'shadow-md');
     } else {
       // En tepedeyken: Yarı şeffaf ve geniş header
       header.classList.remove('bg-white', 'py-4', 'shadow-md');
-      header.classList.add('bg-white/50', 'py-6');
+      header.classList.add('bg-white/80', 'py-8');
     }
   });
 </script>
