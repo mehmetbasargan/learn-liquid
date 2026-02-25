@@ -11,25 +11,30 @@
 
 {% schema %}
 {
-  "name": "Duyuru Barı",
+  "name": "Announcement Bar",
   "settings": [
     {
       "type": "text",
       "id": "announcement_text",
-      "label": "Duyuru Metni",
-      "default": "Büyük İndirimi Kaçırmayın!"
+      "label": "Announcement Text",
+      "default": "Big discount alert!"
     },
     {
       "type": "color",
       "id": "text_color",
-      "label": "Metin Rengi",
+      "label": "Text Color",
       "default": "#ffffff"
     },
     {
       "type": "color",
       "id": "bg_color",
-      "label": "Arka Plan Rengi",
+      "label": "Background Color",
       "default": "#1d4ed8"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar"
     }
   ]
 }
