@@ -1,97 +1,67 @@
+/* Google Fonts aynı kalıyor */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 
-@import 'tailwindcss';
-
-/* Bu satır, klasör derinliği ne olursa olsun tüm alt klasörleri tarar */
-@source "../../**/*.{liquid,json}";
-
-.is-active {
-	@apply text-secondary;
-}
-@theme {
-	/* Özel font tanımı */
-	--font-inter: 'Inter', ui-sans-serif, system-ui;
-	--font-josefin: 'Josefin Sans', sans-serif;
-
-	/* Özel renk veya başka değişkenler */
-	--color-primary: #3b443c;
-	--color-secondary: #b2ac88;
-	--color-custom-bg: #f9f9f9;
-
-	/* Marquee animation */
-	--animate-marquee: marquee 15s linear infinite;
-
-	@keyframes marquee {
-		from {
-			transform: translateX(100%);
-		}
-		to {
-			transform: translateX(-100%);
-		}
-	}
-}
-
-@utility container {
-	@apply mx-auto max-w-[1280px] px-4;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
 	body {
-		font-family: var(--font-inter);
-		background-color: var(--color-custom-bg);
-		color: var(--color-primary);
-	}
-	h1 {
-		font-size: clamp(2rem, 5vw, 3.5rem);
-		font-family: var(--font-josefin);
-		@apply font-bold text-primary leading-tight;
+		@apply font-inter bg-brand-bg text-primary antialiased m-0;
 	}
 
-	h2 {
-		font-size: clamp(1.75rem, 4vw, 2.75rem);
-		font-family: var(--font-josefin);
-		@apply font-semibold text-primary leading-tight;
-	}
-
-	h3 {
-		font-size: clamp(1.5rem, 3vw, 2.25rem);
-		font-family: var(--font-josefin);
-		@apply font-medium text-primary leading-tight;
-	}
-
-	h4 {
-		font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-		font-family: var(--font-josefin);
-		@apply font-medium text-primary leading-tight;
-	}
-
-	h5 {
-		font-size: clamp(1.1rem, 2vw, 1.25rem);
-		font-family: var(--font-josefin);
-		@apply font-medium text-primary leading-tight;
-	}
-
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
 	h6 {
-		font-size: clamp(1rem, 1.5vw, 1.1rem);
-		font-family: var(--font-josefin);
-		@apply font-medium text-primary leading-tight;
+		@apply font-josefin text-primary leading-[1.2] font-bold;
 	}
+
+	h1 {
+		font-size: clamp(2.5rem, 5vw, 4rem);
+	}
+	h2 {
+		font-size: clamp(2rem, 4vw, 3rem);
+	}
+	h3 {
+		font-size: clamp(1.75rem, 3vw, 2.5rem);
+	}
+	h4 {
+		font-size: clamp(1.5rem, 2.5vw, 2rem);
+	}
+
 	p {
-		font-family: var(--font-inter);
-		font-size: 15px;
-		@apply text-primary leading-relaxed;
+		@apply font-inter text-[16px] leading-[1.6];
 	}
 }
 
-.swiper-button-next,
-.swiper-button-prev {
-	@apply !w-[40px] !h-[40px];
+@layer components {
+	.is-active {
+		color: #b2ac88 !important; /* Secondary rengini direkt buraya yazdım garanti olsun */
+	}
+
+	.swiper-button-next,
+	.swiper-button-prev {
+		@apply !w-[40px] !h-[40px];
+	}
+
+	.swiper-pagination-bullet {
+		@apply !bg-[#b2ac88] !opacity-100 !h-[12px] !w-[12px];
+	}
+
+	/* Marquee V3 formatı */
+	.animate-marquee {
+		animation: marquee 15s linear infinite;
+	}
 }
 
-.swiper-pagination-bullet-active {
-	@apply !bg-secondary;
-}
-
-.swiper-pagination-bullet {
-	@apply !bg-secondary !opacity-100 !h-[13px] !w-[13px];
+@keyframes marquee {
+	from {
+		transform: translateX(100%);
+	}
+	to {
+		transform: translateX(-100%);
+	}
 }

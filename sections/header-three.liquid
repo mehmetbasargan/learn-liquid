@@ -1,10 +1,11 @@
-<header>
-  <h2 class="header__title">
-    {{ shop.name | link_to: routes.root_url }}
-  </h2>
-  <div class="header__menu">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
+<header class="absolute top-0 left-0 z-40 w-full py-8 bg-white/50">
+  <div class="container ">
+    <a href="{{ routes.root_url }}" class=" w-[170px] lg:w-[180px] shrink-0">
+      {% if section.settings.logo %}
+        {{ section.settings.logo | image_url: width: 180 | image_tag: alt: shop.name }}
+      {% else %}
+        <span class="h2">{{ shop.name }}</span>
+      {% endif %}
+    </a>
   </div>
 </header>
