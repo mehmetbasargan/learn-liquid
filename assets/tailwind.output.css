@@ -1534,6 +1534,11 @@ p{
   border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
 }
 
+.border-red-600{
+  --tw-border-opacity: 1;
+  border-color: rgb(220 38 38 / var(--tw-border-opacity, 1));
+}
+
 .\!bg-white\/10{
   background-color: rgb(255 255 255 / 0.1) !important;
 }
