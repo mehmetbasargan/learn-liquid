@@ -20,31 +20,20 @@
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
 
     <style>
-          /* Fontları Yüklüyoruz */
-          {{ settings.heading_font | font_face: font_display: 'swap' }}
-          {{ settings.body_font | font_face: font_display: 'swap' }}
-
-        :root {
-        /* Burayı şimdilik elle (manuel) yönetelim */
-        --color-primary: #3B443C;
-        --color-secondary: #B2AC88;
-        --color-bg: #FFFFFF;
-
-        /* Font ailelerini Tailwind'in anlayacağı şekilde sabitleyelim */
-        --font-heading: "{{ settings.heading_font.family | default: 'Josefin Sans' }}", {{ settings.heading_font.fallback_families | default: 'serif' }};
-        --font-body: "{{ settings.body_font.family | default: 'Inter' }}", {{ settings.body_font.fallback_families | default: 'sans-serif' }};
+      :root {
+        --color-primary: #3b443c;
+        --color-secondary: #b2ac88;
+        --color-bg: #ffffff;
+        --font-heading: 'Josefin Sans', sans-serif;
+        --font-body: 'Inter', sans-serif;
       }
 
-          /* Global Uygulama */
-          body {
-            font-family: var(--font-body);
-            background-color: var(--color-bg);
-            color: var(--color-primary);
-          }
-
-          h1, h2, h3, h4, h5, h6, .font-heading {
-            font-family: var(--font-heading);
-          }
+      body {
+        background-color: var(--color-bg);
+        color: var(--color-primary);
+        font-family: var(--font-body);
+        margin: 0;
+      }
     </style>
   </head>
 
