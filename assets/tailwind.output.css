@@ -1087,6 +1087,18 @@ p{
   height: 151px;
 }
 
+.h-\[152px\]{
+  height: 152px;
+}
+
+.h-\[149px\]{
+  height: 149px;
+}
+
+.h-\[153px\]{
+  height: 153px;
+}
+
 .w-1\/2{
   width: 50%;
 }
@@ -2477,6 +2489,18 @@ p{
 
   .md\:h-\[151px\]{
     height: 151px;
+  }
+
+  .md\:h-\[152px\]{
+    height: 152px;
+  }
+
+  .md\:h-\[149px\]{
+    height: 149px;
+  }
+
+  .md\:h-\[153px\]{
+    height: 153px;
   }
 
   .md\:w-1\/4{
