@@ -52,7 +52,7 @@
     </div>
   </div>
 </div>
-<header class="bg-custom-bg w-full relative py-5 md:py-0!">
+<header class="bg-custom-bg w-full relative py-5 md:py-0">
   <div class="container mx-auto flex md:flex-row flex-col items-center justify-between h-[100px]">
     <a href="{{ routes.root_url }}" class=" w-[170px] lg:w-[180px] shrink-0">
       {% if section.settings.logo %}
@@ -62,10 +62,10 @@
       {% endif %}
     </a>
 
-    <div class="w-full flex justify-between gap-6 md:justify-end! md:w-auto">
+    <div class="flex justify-between w-full lg:w-auto md:gap-6">
       {% comment %} menu {% endcomment %}
-      <nav class="">
-        <ul class="hidden lg:flex justify-end gap-6">
+      <nav class="shrink-0">
+        <ul class="hidden lg:flex gap-6">
           {% for link in linklists['main-menu'].links %}
             {% if link.links != blank %}
               <div class="group relative py-4">
@@ -102,104 +102,153 @@
       </nav>
 
       <div class="flex lg:hidden">
-        <button id="menu-toggle" class="group relative">
-          <div id="icon-open" class="block">
-            {% render 'icon-menu' %}
-          </div>
+        <div class="flex items-center lg:gap-2 gap-8 justify-start w-full lg:w-auto">
+          <div class="flex lg:hidden">
+            {% comment %} mobile menu {% endcomment %}
+            <div class="flex lg:hidden">
+              {% comment %} mobile menu {% endcomment %}
+              <div
+                id="mobile-menu-overlay"
+                class="fixed inset-0 bg-black/80 z-[60] hidden transition-opacity duration-300"
+              ></div>
 
-          <div id="icon-close" class="hidden">
-            {% render 'icon-menu-close' %}
-          </div>
-        </button>
-
-        {% comment %} mobile menu {% endcomment %}
-        <nav id="main-menu" class="hidden absolute left-0 w-full bg-custom-bg z-40 " style="margin-top: 60px;">
-          <div class="flex flex-col p-4 w-full">
-            {% for link in section.settings.menu.links %}
-              <a
-                href="{{ link.url }}"
-                class="nav-link py-5 border-b border-[#000000]/10 last:border-b-0 hover:text-secondary  {% if link.current %} is-active {% endif %}"
+              <div
+                id="mobile-menu-drawer"
+                class="fixed top-0 right-0 h-full w-[80%] max-w-[400px] bg-white z-[70] translate-x-full transition-transform duration-300 ease-in-out shadow-2xl p-6"
               >
-                {{ link.title }}
-              </a>
-            {% endfor %}
-          </div>
-
-          <div class="">
-            <div class="container py-5 ">
-              <h5 class="text-center mb-5 border-b border-[#000000]/10 pb-3">{{ 'general.social_media' | t }}</h5>
-              <div class="flex flex-col lg:flex-row items-center justify-between md:justify-around gap-2">
-                <div class="">
-                  {% if section.settings.show_phone and section.settings.header_phone != blank %}
-                    <ul class="flex items-center gap-2">
-                      <li>{% render 'icon-phone' %}</li>
-                      <li class="font-medium">
-                        <a href="{{ section.settings.header_phone | replace: ' ', '' }}">
-                          {{ section.settings.header_phone -}}
-                        </a>
-                      </li>
-                    </ul>
-                  {% endif %}
+                <div class="flex justify-end mb-8">
+                  <button id="mobile-menu-close" class="p-2 text-primary">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                  </button>
                 </div>
-                <div class="">
-                  <ul class="flex items-center gap-2">
-                    {%- for block in section.blocks -%}
-                      {%- if block.type == 'social_icon' -%}
-                        <li
-                          class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-primary transition-colors"
-                          {{ block.shopify_attributes }}
-                        >
-                          <a
-                            href="{{ block.settings.link | default: '#' }}"
-                            target="_blank"
-                            class="block w-5 h-5 flex items-center justify-center"
+
+                <nav class="flex flex-col space-y-6">
+                  {% for link in linklists['main-menu'].links %}
+                    <div class="mobile-nav-item">
+                      {% if link.links != blank %}
+                        <button class="flex justify-between items-center w-full text-[16px]  tracking-widest font-josefin text-primary py-2 border-b border-gray-100 mobile-dropdown-btn">
+                          {{ link.title }}
+                          <svg
+                            class="w-4 h-4 transition-transform duration-300"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
                           >
-                            {%- case block.settings.icon_choice -%}
-                              {%- when 'icon-facebook' -%}
-                                {% render 'icon-facebook' %}
-                              {%- when 'icon-instagram' -%}
-                                {% render 'icon-instagram' %}
-                              {%- when 'icon-youtube' -%}
-                                {% render 'icon-youtube' %}
-                              {%- when 'icon-x' -%}
-                                {% render 'icon-x' %}
-                              {%- when 'icon-tiktok' -%}
-                                {% render 'icon-tiktok' %}
-                            {%- endcase -%}
-                          </a>
-                        </li>
-                      {%- endif -%}
-                    {%- endfor -%}
-                  </ul>
+                            <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </button>
+
+                        <div class="hidden overflow-hidden pl-4 flex flex-col space-y-4 mt-4 mb-2 border-l border-secondary/30">
+                          {% for childlink in link.links %}
+                            <a href="{{ childlink.url }}" class="text-[16px]  tracking-wider text-secondary">
+                              {{- childlink.title -}}
+                            </a>
+                          {% endfor %}
+                        </div>
+                      {% else %}
+                        <a
+                          href="{{ link.url }}"
+                          class="block text-[16px]  tracking-widest  text-primary py-2 border-b border-gray-100"
+                        >
+                          {{- link.title -}}
+                        </a>
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                </nav>
+
+                <div class="container py-5 mt-10">
+                  <h5 class="text-center mb-5 border-b border-[#000000]/10 pb-3">{{ 'general.social_media' | t }}</h5>
+                  <div class="flex flex-col lg:flex-row items-center justify-between md:justify-around gap-2">
+                    <div class="">
+                      {% if section.settings.show_phone and section.settings.header_phone != blank %}
+                        <ul class="flex items-center gap-2">
+                          <li>{% render 'icon-phone' %}</li>
+                          <li class="font-medium">
+                            <a href="{{ section.settings.header_phone | replace: ' ', '' }}">
+                              {{ section.settings.header_phone -}}
+                            </a>
+                          </li>
+                        </ul>
+                      {% endif %}
+                    </div>
+                    <div class="mt-5">
+                      <ul class="flex items-center gap-2">
+                        {%- for block in section.blocks -%}
+                          {%- if block.type == 'social_icon' -%}
+                            <li
+                              class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-primary transition-colors"
+                              {{ block.shopify_attributes }}
+                            >
+                              <a
+                                href="{{ block.settings.link | default: '#' }}"
+                                target="_blank"
+                                class="block w-5 h-5 flex items-center justify-center"
+                              >
+                                {%- case block.settings.icon_choice -%}
+                                  {%- when 'icon-facebook' -%}
+                                    {% render 'icon-facebook' %}
+                                  {%- when 'icon-instagram' -%}
+                                    {% render 'icon-instagram' %}
+                                  {%- when 'icon-youtube' -%}
+                                    {% render 'icon-youtube' %}
+                                  {%- when 'icon-x' -%}
+                                    {% render 'icon-x' %}
+                                  {%- when 'icon-tiktok' -%}
+                                    {% render 'icon-tiktok' %}
+                                {%- endcase -%}
+                              </a>
+                            </li>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </nav>
+        </div>
       </div>
 
-      <div class="flex flex-row items-center justify-center gap-2">
-        <div class="bg-black/10 p-2 rounded-full hover:bg-secondary">
-          <a href="{{ routes.account_url }}" class="lg:w-[30px] w-[20px] text-black">
-            {% render 'icon-search' %}
-          </a>
-        </div>
-        <div class="bg-black/10 p-2 rounded-full hover:bg-secondary">
-          <a href="{{ routes.account_url }}" class="lg:w-[30px] w-[20px] text-black ">
-            {% if shop.customer_accounts_enabled %}
-              {% render 'icon-account' | inline_asset_content | link_to: routes.account_url %}
-            {% endif %}
-          </a>
-        </div>
-        <div class="bg-black/10 p-2 rounded-full hover:bg-secondary relative">
-          <a href="{{ routes.cart_url }}" class="lg:w-[30px] w-[20px] text-black">
-            <div class="absolute top-[-10px] right-0">
-              <span class="cart-count-bubble bg-gray-200 w-[20px] h-[20px] flex items-center justify-center text-primary text-xs rounded-full">
-                {{- cart.item_count -}}
-              </span>
+      <div class="flex flex-row items-center justify-between md:justify-end w-full gap-2">
+        <div class="flex lg:hidden items-start justify-start">
+          <button id="mobile-menu-open" class="">
+            <div id="icon-open" class="block">
+              {% render 'icon-menu' %}
             </div>
-            {% render 'icon-cart' %}
-          </a>
+
+            <div id="icon-close" class="hidden">
+              {% render 'icon-menu-close' %}
+            </div>
+          </button>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="bg-black/10 p-2 rounded-full hover:bg-secondary">
+            <a href="{{ routes.account_url }}" class="lg:w-[30px] w-[20px] text-black shrink-0">
+              {% render 'icon-search' %}
+            </a>
+          </div>
+          <div class="bg-black/10 p-2 rounded-full hover:bg-secondary">
+            <a href="{{ routes.account_url }}" class="lg:w-[30px] w-[20px] text-black shrink-0">
+              {% if shop.customer_accounts_enabled %}
+                {% render 'icon-account' | inline_asset_content | link_to: routes.account_url %}
+              {% endif %}
+            </a>
+          </div>
+          <div class="bg-black/10 p-2 rounded-full hover:bg-secondary relative">
+            <a href="{{ routes.cart_url }}" class="lg:w-[30px] w-[20px] text-black shrink-0">
+              <div class="absolute top-[-10px] right-0">
+                <span class="cart-count-bubble bg-gray-200 w-[20px] h-[20px] flex items-center justify-center text-primary text-xs rounded-full">
+                  {{- cart.item_count -}}
+                </span>
+              </div>
+              {% render 'icon-cart' %}
+            </a>
+          </div>
         </div>
       </div>
     </div>
