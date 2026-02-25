@@ -154,6 +154,32 @@
       "label": "Show Phone",
       "default": true
     }
+  ],
+  "blocks": [
+    {
+      "type": "social_icon",
+      "name": "Social Media Icon",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon_choice",
+          "label": "Select Icon",
+          "options": [
+            { "value": "icon-facebook", "label": "Facebook" },
+            { "value": "icon-instagram", "label": "Instagram" },
+            { "value": "icon-youtube", "label": "YouTube" },
+            { "value": "icon-x", "label": "X" },
+            { "value": "icon-tiktok", "label": "TikTok" }
+          ],
+          "default": "icon-instagram"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Social Media Icon Link"
+        }
+      ]
+    }
   ]
 }
 {% endschema %}
