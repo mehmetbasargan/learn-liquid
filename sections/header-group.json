@@ -130,7 +130,12 @@
     },
     "header-three": {
       "type": "header-three",
-      "settings": {}
+      "settings": {
+        "menu": "",
+        "logo": "shopify://shop_images/logo2.svg",
+        "header_phone": "",
+        "show_phone": true
+      }
     }
   },
   "order": [
