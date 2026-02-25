@@ -1,5 +1,8 @@
-<header class="absolute top-0 left-0 z-40 w-full py-8 bg-white/80">
-  <div class="container ">
+<header
+  id="main-header"
+  class="fixed top-0 left-0 z-50 w-full py-8 transition-all duration-500 ease-in-out bg-white/50"
+>
+  <div id="header-logo" class="container ">
     <a href="{{ routes.root_url }}" class=" w-[170px] lg:w-[180px] shrink-0">
       {% if section.settings.logo %}
         {{ section.settings.logo | image_url: width: 180 | image_tag: alt: shop.name }}
@@ -8,7 +11,40 @@
       {% endif %}
     </a>
   </div>
+
+  <div class="">
+    <nav class="">
+      <ul class="hidden lg:flex flex-row items-center justify-between gap-6 ">
+        {% for link in section.settings.menu.links %}
+          <li>
+            <a
+              href="{{ link.url }}"
+              class="nav-link hover:text-secondary text-[15px] {% if link.current %} is-active {% endif %}"
+            >
+              {{ link.title }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
 </header>
+
+<script>
+  const header = document.getElementById('main-header');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 30) {
+      // Kaydırınca: Tam beyaz ve daha dar header
+      header.classList.remove('bg-white/50', 'py-6');
+      header.classList.add('bg-white', 'py-4', 'shadow-md');
+    } else {
+      // En tepedeyken: Yarı şeffaf ve geniş header
+      header.classList.remove('bg-white', 'py-4', 'shadow-md');
+      header.classList.add('bg-white/50', 'py-6');
+    }
+  });
+</script>
 
 {% schema %}
 {
