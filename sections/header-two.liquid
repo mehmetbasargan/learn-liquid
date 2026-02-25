@@ -257,7 +257,39 @@
     transition: all 0.3s ease;
     height: 150px;
   }
+
+  /* Kaydırınca Header biraz küçülebilir veya gölge alabilir */
+  #main-header.is-sticky {
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+  }
 </style>
+
+<script>
+  // Fonksiyonu bir değişkene atayalım ki karışmasın
+  const handleScroll = () => {
+    const headerElement = document.getElementById('main-header');
+
+    if (!headerElement) {
+      console.error("Hata: 'main-header' ID'li element bulunamadı!");
+      return;
+    }
+
+    if (window.scrollY > 50) {
+      headerElement.classList.add('is-sticky');
+      // console.log("Sticky aktif"); // Test etmek için açabilirsin
+    } else {
+      headerElement.classList.remove('is-sticky');
+      // console.log("Sticky pasif"); // Test etmek için açabilirsin
+    }
+  };
+
+  // Sayfa kaydırıldığında çalıştır
+  window.addEventListener('scroll', handleScroll);
+
+  // Sayfa ilk açıldığında da kontrol et (belki sayfa ortasından yenilenmiştir)
+  document.addEventListener('DOMContentLoaded', handleScroll);
+</script>
 
 {% schema %}
 {
