@@ -26,6 +26,16 @@
     "hero_slider_yFYYic": {
       "type": "hero-slider",
       "blocks": {
+        "slide_QGpjDa": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/img1.jpg",
+            "title": "New Season 2",
+            "sub_title": "Discover the latest collection now.",
+            "button_label": "Start Shopping",
+            "button_link": "shopify://products/aura-silk-maxi-dress"
+          }
+        },
         "slide_n3HckD": {
           "type": "slide",
           "settings": {
@@ -38,6 +48,7 @@
         }
       },
       "block_order": [
+        "slide_QGpjDa",
         "slide_n3HckD"
       ],
       "name": "Hero Slider",
