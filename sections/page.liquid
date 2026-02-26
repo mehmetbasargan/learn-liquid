@@ -19,12 +19,23 @@
 
     {% comment %} Page Content from Admin Rich Text Editor {% endcomment %}
     <div class="">
-      <div class="flex flex-col gap-5 text-[16px] list-disc">
+      <div class="flex flex-col gap-5 text-[16px] custom_page_content">
         {{ page.content }}
       </div>
     </div>
   </div>
 </div>
+
+<style>
+  .custom_page_content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+
+  .custom_page_content ol {
+    list-style-type: decimal;
+  }
+</style>
 
 {% schema %}
 {
