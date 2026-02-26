@@ -85,24 +85,6 @@
     "header-two": {
       "type": "header-two",
       "blocks": {
-        "megamenu_AtztHm": {
-          "type": "megamenu",
-          "settings": {
-            "menu_item": "new arrivals",
-            "promo_image": "shopify://shop_images/alpcem-portrait-4917796_1280.jpg",
-            "promo_heading": "New Season",
-            "promo_link": "shopify://collections/midnight-elegance"
-          }
-        },
-        "megamenu_VAg7PF": {
-          "type": "megamenu",
-          "settings": {
-            "menu_item": "collections",
-            "promo_image": "shopify://shop_images/alpcem-portrait-4597858_1280_fed85f03-6953-4841-b2f9-34c38e315f64.jpg",
-            "promo_heading": "New Season",
-            "promo_link": "shopify://collections/golden-hour-muse"
-          }
-        },
         "social_icon_RmXyw9": {
           "type": "social_icon",
           "settings": {
@@ -133,8 +115,6 @@
         }
       },
       "block_order": [
-        "megamenu_AtztHm",
-        "megamenu_VAg7PF",
         "social_icon_RmXyw9",
         "social_icon_ctzzDe",
         "social_icon_QUH6kx",
