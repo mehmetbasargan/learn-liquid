@@ -1,18 +1,26 @@
 {% style %}
-  {% # Loads all font variantions with display: swap %}
-  {{ settings.type_primary_font | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
-
   :root {
-    --font-primary--family: {{ settings.type_primary_font.family }}, {{ settings.type_primary_font.fallback_families }};
-    --font-primary--style: {{ settings.type_primary_font.style }};
-    --font-primary--weight: {{ settings.type_primary_font.weight }};
-    --page-width: {{ settings.max_page_width }};
-    --page-margin: {{ settings.min_page_margin }}px;
-    --color-background: {{ settings.background_color }};
-    --color-foreground: {{ settings.foreground_color }};
-    --style-border-radius-inputs: {{ settings.input_corner_radius }}px;
+    /* Renkleri Şimdilik Sabitliyoruz (Hard-coded) */
+    --color-primary: #3b443c;
+    --color-secondary: #b2ac88;
+    --color-background: #ffffff;
+    --color-foreground: #3b443c;
+
+    /* Fontlar - Eğer Google Fonts eklediysen çalışır */
+    --font-primary--family: 'Inter', sans-serif;
+    --font-heading--family: 'Josefin Sans', sans-serif;
+
+    /* Layout Ayarları - Tailwind ile çakışmaması için sabit değerler */
+    --page-width: 1200px;
+    --page-margin: 20px;
+    --style-border-radius-inputs: 4px;
+  }
+
+  /* Body için temel stil */
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-primary--family);
+    margin: 0;
   }
 {% endstyle %}
