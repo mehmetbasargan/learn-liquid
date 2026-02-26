@@ -70,6 +70,13 @@
               {%- assign is_mega = false -%}
               {%- assign mega_block = null -%}
 
+              {% for link in linklists['main-menu'].links %}
+                {% for block in section.blocks %}
+                {% endfor %}
+
+                {% comment %} ... senin mevcut is_mega kontrol kodun ... {% endcomment %}
+              {% endfor %}
+
               {%- comment -%} Check if this link is defined as a Mega Menu in Blocks {%- endcomment -%}
               {%- assign is_mega = false -%}
               {%- assign mega_block = null -%}
