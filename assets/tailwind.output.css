@@ -638,6 +638,11 @@ p{
   }
 }
 
+.is-active {
+  color: #b2ac88 !important;
+  /* Secondary rengini direkt buraya yazdım garanti olsun */
+}
+
 .swiper-button-next,
 	.swiper-button-prev{
   height: 40px !important;
@@ -980,6 +985,10 @@ p{
 
 .flex{
   display: flex;
+}
+
+.inline-flex{
+  display: inline-flex;
 }
 
 .grid{
@@ -2219,6 +2228,12 @@ p{
 
 .transition-transform{
   transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition{
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }

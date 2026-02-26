@@ -1,33 +1,40 @@
 <div class="swiper myHeroSwiper w-full h-[calc(100dvh-var(--header-height,0px))] lg:h-[calc(100vh-var(--header-height,0px))]">
   <div class="swiper-wrapper">
     {% for block in section.blocks %}
-      <div class="swiper-slide relative w-full h-full">
+      <div class="swiper-slide relative w-full h-full overflow-hidden">
         {% if block.settings.image != blank %}
           {{
             block.settings.image
             | image_url: width: 2000
-            | image_tag: class: 'w-full h-full object-cover object-top', loading: 'lazy'
+            | image_tag: class: 'w-full h-full object-cover object-top hero-image-bg', loading: 'lazy'
           }}
         {% else %}
-          {{ 'lifestyle-1' | placeholder_svg_tag: 'w-full h-full object-cover bg-gray-200' }}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'w-full h-full object-cover bg-gray-200 hero-image-bg' }}
         {% endif %}
 
         <div class="absolute inset-0 bg-black/30 flex items-center justify-center text-center px-4">
           <div class="max-w-3xl">
-            <h2 class="text-white text-4xl lg:text-6xl font-light uppercase transform transition-all duration-700">
+            {% comment %} Başlık Sınıfı Eklendi {% endcomment %}
+            <h2 class="hero-title text-white text-4xl lg:text-6xl font-light uppercase mb-4">
               {{ block.settings.title }}
             </h2>
-            <p class="text-white text-lg lg:text-xl font-light mb-8">
+
+            {% comment %} Alt Başlık Sınıfı Eklendi {% endcomment %}
+            <p class="hero-subtitle text-white text-lg lg:text-xl font-light mb-8">
               {{ block.settings.sub_title }}
             </p>
+
             {% if block.settings.button_link != blank %}
-              <a
-                href="{{ block.settings.button_link }}"
-                class="bg-secondary text-white px-8 py-3 rounded-sm font-light hover:bg-primary transition-all"
-              >
-                {{ block.settings.button_label }}
-                {% render 'icon-arrow2' %}
-              </a>
+              {% comment %} Buton Sınıfı Eklendi {% endcomment %}
+              <div class="hero-button">
+                <a
+                  href="{{ block.settings.button_link }}"
+                  class="inline-flex items-center gap-2 bg-secondary text-white px-8 py-3 rounded-sm font-light hover:bg-primary transition-all"
+                >
+                  {{ block.settings.button_label }}
+                  {% render 'icon-arrow2' %}
+                </a>
+              </div>
             {% endif %}
           </div>
         </div>
@@ -45,13 +52,69 @@
 </div>
 
 <style>
+  /* Pagination Özelleştirme */
   .swiper-pagination-bullet {
     background: #b2ab88;
-    height: 15px !important;
-    width: 15px !important;
+    height: 12px !important;
+    width: 12px !important;
+    opacity: 0.5;
+    transition: all 0.3s ease;
   }
   .swiper-pagination-bullet-active {
     background: #b2ab88;
+    opacity: 1;
+    width: 30px !important; /* Aktif olanı biraz uzatalım, modern durur */
+    border-radius: 6px;
+  }
+
+  /* --- METİN ANİMASYONLARI (Başlangıç Durumu) --- */
+  .hero-title,
+  .hero-subtitle,
+  .hero-button {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Slide Aktif Olduğunda (is-active class'ı JS ile eklenecek) */
+  .is-active .hero-title {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 400ms;
+  }
+  .is-active .hero-subtitle {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 600ms;
+  }
+  .is-active .hero-button {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 800ms;
+  }
+
+  /* --- GÖRSEL ANİMASYONU (Ken Burns) --- */
+  /* Slide aktif olduğunda görseli yavaşça büyütür */
+  .is-active img {
+    animation: kenburns 8s ease-out forwards;
+  }
+
+  @keyframes kenburns {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.1);
+    }
+  }
+
+  /* Slider Üzerine Karartma (Metinlerin Okunması İçin) */
+  .hero-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, transparent 50%);
+    z-index: 1;
   }
 </style>
 
@@ -60,14 +123,32 @@
     new Swiper('.myHeroSwiper', {
       loop: true,
       effect: 'fade',
+      speed: 1200, // Geçiş biraz daha yumuşak olsun
       fadeEffect: {
         crossFade: true,
       },
-      /* speed: 1000,
       autoplay: {
-        delay: 5000,
+        delay: 6000,
         disableOnInteraction: false,
-      }, */
+      },
+      on: {
+        init: function () {
+          // İlk açılışta animasyonu tetikle
+          const activeSlide = this.slides[this.activeIndex];
+          activeSlide.classList.add('is-active');
+        },
+        slideChangeTransitionStart: function () {
+          // Tüm slide'lardan aktiflik sınıfını kaldır
+          this.slides.forEach((slide) => {
+            slide.classList.remove('is-active');
+          });
+        },
+        slideChangeTransitionEnd: function () {
+          // Sadece aktif slide'a sınıfı ekle (Animasyon tetiklenir)
+          const activeSlide = this.slides[this.activeIndex];
+          activeSlide.classList.add('is-active');
+        },
+      },
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
