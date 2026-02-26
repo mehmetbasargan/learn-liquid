@@ -91,50 +91,6 @@
       "name": "Kategori Kartları",
       "settings": {}
     },
-    "marquee_text_iRb7zb": {
-      "type": "marquee-text",
-      "blocks": {
-        "text_block_J8zMQB": {
-          "type": "text_block",
-          "settings": {
-            "text": "Deneme"
-          }
-        },
-        "text_block_dLJDRW": {
-          "type": "text_block",
-          "settings": {
-            "text": "FREE SHIPPING WORLDWIDE"
-          }
-        },
-        "text_block_yzHbaq": {
-          "type": "text_block",
-          "settings": {
-            "text": "NEW SEASON ARRIVALS"
-          }
-        },
-        "text_block_DPQEFC": {
-          "type": "text_block",
-          "settings": {
-            "text": "15% OFF FIRST ORDER"
-          }
-        }
-      },
-      "block_order": [
-        "text_block_J8zMQB",
-        "text_block_dLJDRW",
-        "text_block_yzHbaq",
-        "text_block_DPQEFC"
-      ],
-      "name": "Marquee Text",
-      "settings": {
-        "bg_color": "#000000",
-        "text_color": "#ffffff",
-        "speed": 30,
-        "padding": 20,
-        "show_separator": true,
-        "pause_on_hover": true
-      }
-    },
     "featured_products_GFTLFG": {
       "type": "featured-products",
       "name": "Luvia Featured Collection",
@@ -223,7 +179,6 @@
     "promo_video_banner_yyDpHy",
     "hero_slider_yFYYic",
     "collection_list_thQPNq",
-    "marquee_text_iRb7zb",
     "featured_products_GFTLFG",
     "shoppable_image_mTy7Xm",
     "full_width_gallery_7tAPz6"
