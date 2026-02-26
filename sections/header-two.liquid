@@ -67,9 +67,20 @@
         <nav class="">
           <ul class="hidden lg:flex justify-end gap-6">
             {% for link in linklists['main-menu'].links %}
+              {%- assign is_mega = false -%}
+              {%- assign mega_block = null -%}
+
+              {%- comment -%} Check if this link is defined as a Mega Menu in Blocks {%- endcomment -%}
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'megamenu' and block.settings.menu_item == link.title -%}
+                  {%- assign is_mega = true -%}
+                  {%- assign mega_block = block -%}
+                {%- endif -%}
+              {%- endfor -%}
+
               {% if link.links != blank %}
-                <div class="group relative py-4">
-                  <button class="flex items-center hover:text-secondary transition-colors cursor-pointer">
+                <li class="group {% if is_mega %}static{% else %}relative{% endif %} py-4">
+                  <button class="flex items-center hover:text-secondary transition-colors cursor-pointer uppercase text-sm tracking-widest font-medium">
                     {{ link.title }}
                     <svg
                       class="w-3 h-3 ml-1 transition-transform duration-300 group-hover:rotate-180"
@@ -81,29 +92,87 @@
                     </svg>
                   </button>
 
-                  <div class="absolute left-0 top-full hidden group-hover:block min-w-[200px] bg-white shadow-xl border border-gray-100 py-4 z-[100] transition-all">
-                    {% for childlink in link.links %}
-                      <a
-                        href="{{ childlink.url }}"
-                        class="block px-6 py-2 text-primary hover:bg-custom-bg hover:text-secondary transition-all "
-                      >
-                        {{ childlink.title }}
-                      </a>
-                    {% endfor %}
-                  </div>
-                </div>
+                  {% if is_mega %}
+                    <div class="absolute left-0 top-full w-full bg-white shadow-2xl border-t border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] py-10">
+                      <div class="container mx-auto grid grid-cols-12 gap-8 px-4">
+                        <div class="col-span-8 grid grid-cols-4 gap-6 text-left">
+                          {% for childlink in link.links %}
+                            <div class="flex flex-col space-y-3">
+                              <a
+                                href="{{ childlink.url }}"
+                                class="font-bold text-primary border-b border-gray-100 pb-2 mb-2 uppercase text-xs tracking-widest"
+                              >
+                                {{ childlink.title }}
+                              </a>
+                              {% for grandchildlink in childlink.links %}
+                                <a
+                                  href="{{ grandchildlink.url }}"
+                                  class="text-gray-500 hover:text-secondary text-sm transition-colors"
+                                >
+                                  {{ grandchildlink.title }}
+                                </a>
+                              {% endfor %}
+                            </div>
+                          {% endfor %}
+                        </div>
+
+                        <div class="col-span-4 relative overflow-hidden group/promo h-[300px]">
+                          {% if mega_block.settings.promo_image != blank %}
+                            <img
+                              src="{{ mega_block.settings.promo_image | image_url: width: 600 }}"
+                              width=""
+                              height=""
+                              class="w-full h-full object-cover transition-transform duration-700 group-hover/promo:scale-105"
+                              loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-black/20 flex flex-col justify-end p-6 text-left">
+                              <h4 class="text-white font-josefin text-xl mb-2">
+                                {{ mega_block.settings.promo_heading }}
+                              </h4>
+                              <a
+                                href="{{ mega_block.settings.promo_link }}"
+                                class="text-white text-xs underline tracking-widest uppercase font-medium"
+                                >Şimdi Keşfet</a
+                              >
+                            </div>
+                          {% else %}
+                            <div class="w-full h-full bg-gray-100 flex items-center justify-center italic text-gray-400">
+                              Görsel Seçilmedi
+                            </div>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  {% else %}
+                    <div class="absolute left-0 top-full hidden group-hover:block min-w-[200px] bg-white shadow-xl border border-gray-100 py-4 z-[100] transition-all">
+                      {% for childlink in link.links %}
+                        <a
+                          href="{{ childlink.url }}"
+                          class="block px-6 py-2 text-primary hover:bg-custom-bg hover:text-secondary transition-all"
+                        >
+                          {{ childlink.title }}
+                        </a>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </li>
               {% else %}
-                <a href="{{ link.url }}" class="hover:text-secondary transition-colors py-4">
-                  {{ link.title }}
-                </a>
+                <li>
+                  <a
+                    href="{{ link.url }}"
+                    class="hover:text-secondary transition-colors py-4 uppercase text-sm tracking-widest font-medium"
+                  >
+                    {{ link.title }}
+                  </a>
+                </li>
               {% endif %}
             {% endfor %}
           </ul>
         </nav>
 
+        {% comment %} mobile menu {% endcomment %}
         <div class="flex items-center lg:gap-2 gap-8 justify-start w-full lg:w-auto">
           <div class="flex lg:hidden">
-            {% comment %} mobile menu {% endcomment %}
             <div class="flex lg:hidden">
               <button id="mobile-menu-open" class="group relative order-last">
                 <div id="icon-open" class="block">
@@ -311,6 +380,34 @@
           "type": "url",
           "id": "link",
           "label": "Social Media Icon Link"
+        }
+      ]
+    },
+    {
+      "type": "megamenu",
+      "name": "Mega Menu Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_item",
+          "label": "Menu Item Name",
+          "info": "Enter the name of the main menu that will be transformed into a mega menu (Example: Collections)"
+        },
+        {
+          "type": "image_picker",
+          "id": "promo_image",
+          "label": "Promotion Image"
+        },
+        {
+          "type": "text",
+          "id": "promo_heading",
+          "label": "Promotion Heading",
+          "default": "New Season"
+        },
+        {
+          "type": "url",
+          "id": "promo_link",
+          "label": "Promotion Link"
         }
       ]
     }
