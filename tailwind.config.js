@@ -2,23 +2,25 @@
 module.exports = {
 	content: [
 		'./layout/*.liquid',
-		'./sections/**/*.liquid', // Bu: sections altındaki tüm klasörleri tara demek
-		'./snippets/**/*.liquid', // Bu da aynı şekilde tüm snippet alt klasörleri
+		'./sections/**/*.liquid',
+		'./snippets/**/*.liquid',
 		'./templates/**/*.liquid',
 		'./config/*.json',
 	],
 	theme: {
 		extend: {
 			colors: {
-				primary: '#3b443c',
-				secondary: '#b2ac88',
-				'custom-bg': '#f9f9f9',
+				primary: '#3B443C',
+				secondary: '#B2AC88',
+				custombg: '#F9F9F9',
+				line: '#e5e7eb',
+				white: '#FFFFFF',
+				black: '#000000',
 			},
 			fontFamily: {
 				inter: ['Inter', 'sans-serif'],
 				josefin: ['Josefin Sans', 'sans-serif'],
 			},
-			// Container'ı burada özelleştiriyoruz
 			container: {
 				center: true,
 				padding: '1rem',

@@ -1,6 +1,6 @@
 <header
   id="main-header"
-  class="fixed top-0 left-0 z-50 w-full transition-all duration-500 ease-in-out bg-custom-bg/80"
+  class="fixed top-0 left-0 z-50 w-full transition-all duration-500 ease-in-out bg-custombg/80"
 >
   <div class="py-2 border-b  border-secondary mb-2">
     <div class="container flex lg:justify-between justify-center items-center">
@@ -100,7 +100,7 @@
                   {% for childlink in link.links %}
                     <a
                       href="{{ childlink.url }}"
-                      class="block px-6 py-2 text-primary hover:bg-custom-bg hover:text-secondary transition-all "
+                      class="block px-6 py-2 text-primary hover:bg-custombg hover:text-secondary transition-all "
                     >
                       {{ childlink.title }}
                     </a>
@@ -202,7 +202,7 @@
                 {%- for block in section.blocks -%}
                   {%- if block.type == 'social_icon' -%}
                     <li
-                      class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-primary transition-colors"
+                      class="bg-custombg p-2 rounded-full hover:bg-brand hover:text-primary transition-colors"
                       {{ block.shopify_attributes }}
                     >
                       <a
@@ -242,16 +242,16 @@
   window.addEventListener('scroll', () => {
     if (window.scrollY > 30) {
       // Kaydırınca: Tam beyaz ve daha dar header
-      header.classList.remove('bg-custom-bg/80');
-      header.classList.add('bg-custom-bg', 'shadow-md');
-      menu.classList.remove('bg-custom-bg/80');
-      menu.classList.add('bg-custom-bg');
+      header.classList.remove('bg-custombg/80');
+      header.classList.add('bg-custombg', 'shadow-md');
+      menu.classList.remove('bg-custombg/80');
+      menu.classList.add('bg-custombg');
     } else {
       // En tepedeyken: Yarı şeffaf ve geniş header
-      header.classList.remove('custom-bg', 'shadow-md');
-      header.classList.add('bg-custom-bg/80');
-      menu.classList.remove('bg-custom-bg');
-      menu.classList.add('bg-custom-bg/80');
+      header.classList.remove('custombg', 'shadow-md');
+      header.classList.add('bg-custombg/80');
+      menu.classList.remove('bg-custombg');
+      menu.classList.add('bg-custombg/80');
     }
   });
 </script>

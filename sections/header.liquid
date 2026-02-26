@@ -1,6 +1,6 @@
 <div class="relative w-full h-[153px] md:h-[153px]">
-  <header id="main-header" class="bg-custom-bg w-full py-5 md:py-0 fixed z-50">
-    <div class="hidden lg:flex bg-custom-bg border-b border-[#000000]/10 py-2 ">
+  <header id="main-header" class="bg-custombg w-full py-5 md:py-0 fixed z-50">
+    <div class="hidden lg:flex bg-custombg border-b border-[#000000]/10 py-2 ">
       <div class="container">
         <div class="flex flex-row items-center justify-between">
           <div class="">
@@ -86,7 +86,7 @@
                     {% for childlink in link.links %}
                       <a
                         href="{{ childlink.url }}"
-                        class="block px-6 py-2 text-primary hover:bg-custom-bg hover:text-secondary transition-all "
+                        class="block px-6 py-2 text-primary hover:bg-custombg hover:text-secondary transition-all "
                       >
                         {{ childlink.title }}
                       </a>
@@ -180,7 +180,7 @@
                           {%- for block in section.blocks -%}
                             {%- if block.type == 'social_icon' -%}
                               <li
-                                class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-primary transition-colors"
+                                class="bg-custombg p-2 rounded-full hover:bg-brand hover:text-primary transition-colors"
                                 {{ block.shopify_attributes }}
                               >
                                 <a

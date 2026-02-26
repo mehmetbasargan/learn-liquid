@@ -1,5 +1,5 @@
 <div class="relative w-full h-[151px] md:h-[151px]">
-  <header id="main-header" class="overflow-visible bg-custom-bg fixed top-0 z-50 w-full">
+  <header id="main-header" class="overflow-visible bg-custombg fixed top-0 z-50 w-full">
     {% comment %} logo {% endcomment %}
     <div class="border-gray-200 border-b">
       <div class="container  ">
@@ -31,7 +31,7 @@
               {%- for block in section.blocks -%}
                 {%- if block.type == 'social_icon' -%}
                   <li
-                    class="bg-custom-bg p-2 rounded-full hover:bg-secondary text-primary hover:text-white transition-colors"
+                    class="bg-custombg p-2 rounded-full hover:bg-secondary text-primary hover:text-white transition-colors"
                     {{ block.shopify_attributes }}
                   >
                     <a
@@ -62,7 +62,7 @@
     </div>
 
     {% comment %} menu {% endcomment %}
-    <div class=" bg-custom-bg h-[70px] flex items-center relative">
+    <div class=" bg-custombg h-[70px] flex items-center relative">
       <div class="container flex lg:justify-between justify-end items-center w-full">
         <nav class="">
           <ul class="hidden lg:flex justify-end gap-6">
@@ -110,7 +110,7 @@
 
                 {%- comment -%} 3. ADIM: İÇERİK (MEGA VEYA DROPDOWN) {%- endcomment -%}
                 {% if is_mega %}
-                  <div class="absolute left-0 top-full w-full bg-custom-bg shadow-2xl border-t border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] py-10 text-primary">
+                  <div class="absolute left-0 top-full w-full bg-custombg shadow-2xl border-t border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] py-10 text-primary">
                     <div class="container mx-auto grid grid-cols-12 gap-8 px-4">
                       <div class="col-span-4 relative overflow-hidden group/promo h-[300px]">
                         {% if mega_block.settings.promo_image != blank %}
@@ -181,11 +181,11 @@
                     </div>
                   </div>
                 {% elsif link.links != blank %}
-                  <div class="absolute left-0 top-full hidden group-hover:block min-w-[200px] bg-custom-bg shadow-xl border border-gray-100 py-4 z-[100]">
+                  <div class="absolute left-0 top-full hidden group-hover:block min-w-[200px] bg-custombg shadow-xl border border-gray-100 py-4 z-[100]">
                     {% for childlink in link.links %}
                       <a
                         href="{{ childlink.url }}"
-                        class="block px-6 py-2 text-primary hover:bg-custom-bg hover:text-secondary transition-all"
+                        class="block px-6 py-2 text-primary hover:bg-custombg hover:text-secondary transition-all"
                       >
                         {{- childlink.title -}}
                       </a>
@@ -284,7 +284,7 @@
                         {%- for block in section.blocks -%}
                           {%- if block.type == 'social_icon' -%}
                             <li
-                              class="bg-custom-bg p-2 rounded-full hover:bg-brand hover:text-primary transition-colors"
+                              class="bg-custombg p-2 rounded-full hover:bg-brand hover:text-primary transition-colors"
                               {{ block.shopify_attributes }}
                             >
                               <a
