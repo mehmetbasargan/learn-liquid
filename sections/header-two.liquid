@@ -128,12 +128,13 @@
                             <a
                               href="{{ mega_block.settings.promo_link }}"
                               class="text-white text-xs underline tracking-widest uppercase font-medium"
-                              >Şimdi Keşfet</a
                             >
+                              {{- 'header.mega_menu.discover_now' | t -}}
+                            </a>
                           </div>
                         {% else %}
                           <div class="w-full h-full bg-gray-100 flex items-center justify-center italic text-gray-400">
-                            Görsel Seçilmedi
+                            {{- 'header.mega_menu.promo_placeholder' | t -}}
                           </div>
                         {% endif %}
                       </div>
@@ -164,7 +165,7 @@
                                 {%- else -%}
                                   {%- if shop.preview_host -%}
                                     <li class="text-gray-300 text-[12px] italic">
-                                      {{ 'header.mega_menu.add_submenu' | t }}
+                                      {{- 'header.mega_menu.add_submenu' | t -}}
                                     </li>
                                   {%- endif -%}
                                 {%- endif -%}
@@ -173,7 +174,7 @@
                           {%- endfor -%}
                         {%- else -%}
                           <div class="col-span-4 text-gray-400 italic">
-                            {{ 'header.mega_menu.no_submenu' | t }}
+                            {{- 'header.mega_menu.no_submenu' | t -}}
                           </div>
                         {%- endif -%}
                       </div>
@@ -186,7 +187,7 @@
                         href="{{ childlink.url }}"
                         class="block px-6 py-2 text-primary hover:bg-custom-bg hover:text-secondary transition-all"
                       >
-                        {{ childlink.title }}
+                        {{- childlink.title -}}
                       </a>
                     {% endfor %}
                   </div>
