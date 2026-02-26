@@ -11,7 +11,7 @@
       <link rel="apple-touch-icon" href="{{ settings.favicon | image_url: width: 180, height: 180 }}">
     {%- else -%}
       {% # Panelde ikon yoksa bile tarayıcının 'dünya' ikonu göstermemesi için varsa assetlerdeki faviconu çağırır %}
-      <link rel="icon" type="image/png" href="{{ 'favicon.png' | asset_url }}">
+      <link rel="icon" type="image/png" href="{{ 'favicon.png' | asset_url }}?v={{ "now" | date: "%Y%m%d%H%M" }}">
     {%- endif -%}
 
     {% # Inlined CSS Variables %}
