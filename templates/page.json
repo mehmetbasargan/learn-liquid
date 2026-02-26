@@ -8,27 +8,37 @@
  * ------------------------------------------------------------
  */
 {
-	"sections": {
-		"header_hero": {
-			"type": "main-page-header",
-			"settings": {
-				"image": "shopify://shop_images/img1.jpg",
-				"custom_title": "",
-				"hero_height": 60,
-				"overlay_opacity": 50
-			}
-		},
-		"main_content": {
-			"type": "page",
-			"settings": {
-				"show_title": false
-			}
-		},
-		"featured_product": {
-			"type": "product",
-			"name": "Featured Product",
-			"settings": {}
-		}
-	},
-	"order": ["header_hero", "main_content", "featured_product"]
+  "sections": {
+    "header_hero": {
+      "type": "main-page-header",
+      "settings": {
+        "image": "shopify://shop_images/img1.jpg",
+        "custom_title": "",
+        "hero_height": 60,
+        "overlay_opacity": 50
+      }
+    },
+    "main_content": {
+      "type": "page",
+      "settings": {
+        "show_title": false
+      }
+    },
+    "featured_products_4gA8mN": {
+      "type": "featured-products",
+      "name": "Featured Products",
+      "settings": {
+        "collection": "golden-hour-muse",
+        "section_title": "Deneme",
+        "section_subtitle": "Deneme2",
+        "button_text": "Help",
+        "button_url": "#"
+      }
+    }
+  },
+  "order": [
+    "header_hero",
+    "main_content",
+    "featured_products_4gA8mN"
+  ]
 }
