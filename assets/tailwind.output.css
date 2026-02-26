@@ -683,6 +683,10 @@ p{
   visibility: hidden;
 }
 
+.collapse{
+  visibility: collapse;
+}
+
 .static{
   position: static;
 }
@@ -1008,6 +1012,10 @@ p{
   display: inline-flex;
 }
 
+.table{
+  display: table;
+}
+
 .grid{
   display: grid;
 }
@@ -1292,6 +1300,10 @@ p{
 
 .grow{
   flex-grow: 1;
+}
+
+.border-collapse{
+  border-collapse: collapse;
 }
 
 .-translate-x-1\/2{
