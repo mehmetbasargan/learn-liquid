@@ -1,8 +1,5 @@
 <section class="relative w-full h-[calc(100dvh-var(--header-height,0px))] lg:h-[calc(100vh-var(--header-height,0px))] overflow-hidden flex items-center justify-center group">
-  <div
-    class="absolute inset-0 z-[1] pointer-events-none"
-    style="background-color: rgba(0,0,0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});"
-  >
+  <div class="absolute inset-0 z-0">
     {%- if section.settings.video_url != blank -%}
       {%- if section.settings.video_url.type == 'youtube' -%}
         <iframe
@@ -32,9 +29,16 @@
     {%- endif -%}
   </div>
 
-  <div class="absolute inset-0 bg-black/{{ section.settings.overlay_opacity }} z-[1]"></div>
+  {%- comment -%}
+    Buradaki 'z-[1]' videonun üstüne çıkmasını sağlar.
+    'pointer-events-none' videonun tıklanmasını engellemez (zaten kontroller kapalı).
+  {%- endcomment -%}
+  <div
+    class="absolute inset-0 z-[1] pointer-events-none"
+    style="background-color: rgba(0,0,0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});"
+  ></div>
 
-  <div class="relative z-[2] text-center px-4 max-w-4xl mx-auto">
+  <div class="relative z-[10] text-center px-4 max-w-4xl mx-auto">
     <h2 class="promo-video-title text-white text-4xl md:text-6xl font-light uppercase mb-6 opacity-0 translate-y-8 transition-all duration-1000 ease-out">
       {{ section.settings.title }}
     </h2>
