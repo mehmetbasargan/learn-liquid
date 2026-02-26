@@ -16,7 +16,11 @@
 		"no_products_found": "No products found.",
 		"luvia_era_edition": "Luvia Era Edition",
 		"close": "Close",
-		"total": "Total"
+		"total": "Total",
+		"pagination": {
+			"previous": "Previous",
+			"next": "Next"
+		}
 	},
 	"404": {
 		"title": "404",

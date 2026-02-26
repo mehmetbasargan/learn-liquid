@@ -134,8 +134,8 @@
               <a
                 href="{{ paginate.previous.url }}"
                 class="text-[11px] uppercase tracking-[0.2em] text-gray-400 hover:text-black transition-colors"
-                >← Geri</a
-              >
+                >← {{ 'general.pagination.previous' | t -}}
+              </a>
             {% endif %}
 
             <div class="flex items-center gap-4">
@@ -156,7 +156,8 @@
               <a
                 href="{{ paginate.next.url }}"
                 class="text-[11px] uppercase tracking-[0.2em] text-gray-400 hover:text-black transition-colors"
-                >İleri →</a
+              >
+                {{- 'general.pagination.next' | t }} →</a
               >
             {% endif %}
           </nav>
