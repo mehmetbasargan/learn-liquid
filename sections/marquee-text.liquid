@@ -1,0 +1,116 @@
+<section
+  class="marquee-wrapper overflow-hidden select-none border-y border-white/10"
+  style="background-color: {{ section.settings.bg_color }}; padding: {{ section.settings.padding }}px 0;"
+>
+  <div class="flex whitespace-nowrap animate-marquee-loop">
+    {% comment %} Metni yan yana iki kez yazdırıyoruz ki boşluk kalmasın {% endcomment %}
+    {% for i in (1..2) %}
+      <div class="flex items-center">
+        {% for block in section.blocks %}
+          <span
+            class="marquee-item text-xs md:text-sm font-light uppercase tracking-[0.3em] mx-8"
+            style="color: {{ section.settings.text_color }};"
+          >
+            {{ block.settings.text }}
+          </span>
+          {% if section.settings.show_separator %}
+            <span class="separator text-white/30">•</span>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+  @keyframes marquee-infinite {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee-loop {
+    display: flex;
+    width: max-content;
+    animation: marquee-infinite {{ section.settings.speed }}s linear infinite;
+  }
+  {% if section.settings.pause_on_hover %}
+    .marquee-wrapper:hover .animate-marquee-loop {
+      animation-play-state: paused;
+    }
+  {% endif %}
+</style>
+
+{% schema %}
+{
+  "name": "Marquee Text",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 5,
+      "max": 60,
+      "step": 5,
+      "unit": "s",
+      "label": "Speed (Lower is faster)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Vertical Padding",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "show_separator",
+      "label": "Show Separator (•)",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on Hover",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "Text Slide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Marquee Text",
+          "default": "FREE SHIPPING WORLDWIDE"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Text",
+      "blocks": [
+        { "type": "text_block", "settings": { "text": "FREE SHIPPING WORLDWIDE" } },
+        { "type": "text_block", "settings": { "text": "NEW SEASON ARRIVALS" } },
+        { "type": "text_block", "settings": { "text": "15% OFF FIRST ORDER" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

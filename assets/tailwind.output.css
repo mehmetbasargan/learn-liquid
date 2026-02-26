@@ -903,6 +903,11 @@ p{
   margin-bottom: 2rem;
 }
 
+.mx-8{
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
 .mb-1{
   margin-bottom: 0.25rem;
 }
@@ -1682,6 +1687,10 @@ p{
   border-color: rgb(0 0 0 / 0.1);
 }
 
+.border-white\/10{
+  border-color: rgb(255 255 255 / 0.1);
+}
+
 .border-l-transparent{
   border-left-color: transparent;
 }
@@ -2238,6 +2247,10 @@ p{
 
 .text-white\/90{
   color: rgb(255 255 255 / 0.9);
+}
+
+.text-white\/30{
+  color: rgb(255 255 255 / 0.3);
 }
 
 .underline{
@@ -2856,6 +2869,11 @@ p{
   .md\:text-xl{
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .md\:text-sm{
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 }
 
