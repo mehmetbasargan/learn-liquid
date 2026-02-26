@@ -11,6 +11,7 @@
   "sections": {
     "promo_video_banner_yyDpHy": {
       "type": "promo-video-banner",
+      "disabled": true,
       "name": "Promo Video Banner",
       "settings": {
         "video_file": "shopify://files/videos/video4.mp4",
@@ -21,6 +22,26 @@
         "button_link": "",
         "overlay_opacity": 60
       }
+    },
+    "hero_slider_yFYYic": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_n3HckD": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/alpcem-portrait-4917796_1280.jpg",
+            "title": "new season",
+            "sub_title": "Discover the latest collection now.",
+            "button_label": "DiscoverMore",
+            "button_link": "shopify://collections/golden-hour-muse"
+          }
+        }
+      },
+      "block_order": [
+        "slide_n3HckD"
+      ],
+      "name": "Hero Slider",
+      "settings": {}
     },
     "collection_list_thQPNq": {
       "type": "collection-list",
@@ -116,6 +137,7 @@
   },
   "order": [
     "promo_video_banner_yyDpHy",
+    "hero_slider_yFYYic",
     "collection_list_thQPNq",
     "featured_products_GFTLFG",
     "full_width_gallery_7tAPz6"
