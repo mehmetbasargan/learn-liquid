@@ -9,6 +9,7 @@
  */
 {
   "current": {
+    "favicon": "shopify://shop_images/favicon.png",
     "color_primary": "#3b443c",
     "color_secondary": "#b2ac88",
     "color_bg": "#f9f9f9",
