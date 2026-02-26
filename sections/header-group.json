@@ -88,7 +88,7 @@
         "megamenu_AtztHm": {
           "type": "megamenu",
           "settings": {
-            "menu_item": "collection",
+            "menu_item": "new arrivals",
             "promo_image": "shopify://shop_images/alpcem-portrait-4917796_1280.jpg",
             "promo_heading": "New Season",
             "promo_link": "shopify://collections/midnight-elegance"
