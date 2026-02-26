@@ -71,10 +71,21 @@
               {%- assign mega_block = null -%}
 
               {%- comment -%} Check if this link is defined as a Mega Menu in Blocks {%- endcomment -%}
+              {%- assign is_mega = false -%}
+              {%- assign mega_block = null -%}
+
               {%- for block in section.blocks -%}
-                {%- if block.type == 'megamenu' and block.settings.menu_item == link.title -%}
-                  {%- assign is_mega = true -%}
-                  {%- assign mega_block = block -%}
+                {%- if block.type == 'megamenu' -%}
+                  {%- comment -%} Harf büyüklüğünü ve boşlukları temizleyerek karşılaştır {%- endcomment -%}
+                  {%- assign block_title = block.settings.menu_item | downcase | strip -%}
+                  {%- assign link_title = link.title | downcase | strip -%}
+
+                  {%- if block_title == link_title and block_title != blank -%}
+                    {%- assign is_mega = true -%}
+                    {%- assign mega_block = block -%}
+                    {%- break -%}
+                    {%- comment -%} Eşleşme bulunduysa döngüden çık {%- endcomment -%}
+                  {%- endif -%}
                 {%- endif -%}
               {%- endfor -%}
 
