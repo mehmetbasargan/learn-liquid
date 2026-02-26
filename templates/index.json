@@ -9,47 +9,16 @@
  */
 {
   "sections": {
-    "hero_slider_RRiVYD": {
-      "type": "hero-slider",
-      "blocks": {
-        "slide_9mg6nd": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/img1.jpg",
-            "title": "New Season",
-            "sub_title": "Discover the latest collection now.",
-            "button_label": "Accessories",
-            "button_link": "shopify://collections/accessories"
-          }
-        },
-        "slide_khVKm6": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/img2.jpg",
-            "title": "New Season 2",
-            "sub_title": "Discover the latest collection now.",
-            "button_label": "Start Shopping",
-            "button_link": "shopify://collections"
-          }
-        },
-        "slide_MwbAmj": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/img3.jpg",
-            "title": "New Season 3",
-            "sub_title": "Discover the latest collection now.",
-            "button_label": "Start Shopping",
-            "button_link": "shopify://collections"
-          }
-        }
-      },
-      "block_order": [
-        "slide_9mg6nd",
-        "slide_khVKm6",
-        "slide_MwbAmj"
-      ],
-      "name": "Hero Slider",
-      "settings": {}
+    "promo_video_banner_yyDpHy": {
+      "type": "promo-video-banner",
+      "name": "Promo Video Banner",
+      "settings": {
+        "title": "The Art of Living",
+        "text": "Discover our new spring collection with cinematic pieces.",
+        "button_label": "Discover Now",
+        "button_link": "",
+        "overlay_opacity": 30
+      }
     },
     "collection_list_thQPNq": {
       "type": "collection-list",
@@ -144,7 +113,7 @@
     }
   },
   "order": [
-    "hero_slider_RRiVYD",
+    "promo_video_banner_yyDpHy",
     "collection_list_thQPNq",
     "featured_products_GFTLFG",
     "full_width_gallery_7tAPz6"
