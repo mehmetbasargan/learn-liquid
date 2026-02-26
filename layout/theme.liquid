@@ -1,24 +1,15 @@
 <!doctype html>
 <html lang="{{ request.locale.iso_code }}">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-
-    {%- if settings.favicon != blank -%}
-      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
-      <link rel="shortcut icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
-      <link rel="apple-touch-icon" href="{{ settings.favicon | image_url: width: 180, height: 180 }}">
-    {%- else -%}
-      {% # Panelde ikon yoksa bile tarayıcının 'dünya' ikonu göstermemesi için varsa assetlerdeki faviconu çağırır %}
-      <link rel="icon" type="image/png" href="{{ 'favicon.png' | asset_url }}">
-    {%- endif -%}
-
     {% # Inlined CSS Variables %}
     {% render 'css-variables' %}
 
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
 
     <style>
       :root {

@@ -6,5 +6,15 @@
 		"theme_author": "Luvia Era",
 		"theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
 		"theme_support_url": "https://support.shopify.com/"
+	},
+	{
+		"name": "Logo & Favicon",
+		"settings": [
+			{
+				"type": "image_picker",
+				"id": "favicon",
+				"label": "Favicon Image"
+			}
+		]
 	}
 ]
