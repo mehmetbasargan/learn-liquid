@@ -91,6 +91,26 @@
       "name": "Kategori Kartları",
       "settings": {}
     },
+    "shoppable_image_mTy7Xm": {
+      "type": "shoppable-image",
+      "blocks": {
+        "product_point_JjixBg": {
+          "type": "product_point",
+          "settings": {
+            "product": "",
+            "top_position": 50,
+            "left_position": 50
+          }
+        }
+      },
+      "block_order": [
+        "product_point_JjixBg"
+      ],
+      "name": "Shoppable Image",
+      "settings": {
+        "image": "shopify://shop_images/alpcem-portrait-4778337_1280.jpg"
+      }
+    },
     "featured_products_GFTLFG": {
       "type": "featured-products",
       "name": "Luvia Featured Collection",
@@ -144,24 +164,6 @@
       "settings": {
         "title": "Follow the Era"
       }
-    },
-    "shoppable_image_mTy7Xm": {
-      "type": "shoppable-image",
-      "blocks": {
-        "product_point_JjixBg": {
-          "type": "product_point",
-          "settings": {
-            "product": "",
-            "top_position": 50,
-            "left_position": 50
-          }
-        }
-      },
-      "block_order": [
-        "product_point_JjixBg"
-      ],
-      "name": "Shoppable Image",
-      "settings": {}
     }
   },
   "order": [
