@@ -2728,6 +2728,10 @@ p{
     right: -8px;
   }
 
+  .md\:right-\[-18px\]{
+    right: -18px;
+  }
+
   .md\:block{
     display: block;
   }
@@ -2896,6 +2900,10 @@ p{
 }
 
 @media (min-width: 1024px){
+  .lg\:right-\[-8px\]{
+    right: -8px;
+  }
+
   .lg\:flex{
     display: flex;
   }
