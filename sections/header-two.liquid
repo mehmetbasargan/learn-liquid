@@ -3,7 +3,7 @@
     {% comment %} logo {% endcomment %}
     <div class="border-gray-200 border-b">
       <div class="container  ">
-        <div class="w-full h-[80px] py-5 items-center justify-center lg:justify-between flex ">
+        <div class="w-full h-[80px] py-5 items-center justify-center lg:justify-between flex">
           <div class="hidden lg:flex">
             {% if section.settings.show_phone and section.settings.header_phone != blank %}
               <ul class="flex items-center gap-2">
@@ -31,13 +31,13 @@
               {%- for block in section.blocks -%}
                 {%- if block.type == 'social_icon' -%}
                   <li
-                    class="bg-custombg p-2 rounded-full hover:bg-secondary text-primary hover:text-white transition-colors"
+                    class="rounded-full p-2 hover:bg-secondary text-primary hover:text-white transition-colors"
                     {{ block.shopify_attributes }}
                   >
                     <a
                       href="{{ block.settings.link | default: '#' }}"
                       target="_blank"
-                      class="w-5 h-5 flex items-center justify-center"
+                      class="w-[28px] h-[28px] flex items-center justify-center"
                     >
                       {%- case block.settings.icon_choice -%}
                         {%- when 'icon-facebook' -%}
@@ -50,6 +50,12 @@
                           {% render 'icon-x' %}
                         {%- when 'icon-tiktok' -%}
                           {% render 'icon-tiktok' %}
+                        {%- when 'icon-snapchat' -%}
+                          {% render 'icon-snapchat' %}
+                        {%- when 'icon-linkedin' -%}
+                          {% render 'icon-linkedin' %}
+                        {%- when 'icon-pinterest' -%}
+                          {% render 'icon-pinterest' %}
                       {%- endcase -%}
                     </a>
                   </li>
@@ -284,13 +290,13 @@
                         {%- for block in section.blocks -%}
                           {%- if block.type == 'social_icon' -%}
                             <li
-                              class="bg-custombg p-2 rounded-full hover:bg-brand hover:text-primary transition-colors"
+                              class="rounded-full p-2 bg-custombg hover:bg-secondary text-primary hover:!text-white transition-colors"
                               {{ block.shopify_attributes }}
                             >
                               <a
                                 href="{{ block.settings.link | default: '#' }}"
                                 target="_blank"
-                                class="block w-5 h-5 flex items-center justify-center"
+                                class="w-[28px] h-[28px] flex items-center justify-center"
                               >
                                 {%- case block.settings.icon_choice -%}
                                   {%- when 'icon-facebook' -%}
@@ -303,6 +309,12 @@
                                     {% render 'icon-x' %}
                                   {%- when 'icon-tiktok' -%}
                                     {% render 'icon-tiktok' %}
+                                  {%- when 'icon-snapchat' -%}
+                                    {% render 'icon-snapchat' %}
+                                  {%- when 'icon-linkedin' -%}
+                                    {% render 'icon-linkedin' %}
+                                  {%- when 'icon-pinterest' -%}
+                                    {% render 'icon-pinterest' %}
                                 {%- endcase -%}
                               </a>
                             </li>
@@ -399,7 +411,10 @@
             { "value": "icon-instagram", "label": "Instagram" },
             { "value": "icon-youtube", "label": "YouTube" },
             { "value": "icon-x", "label": "X" },
-            { "value": "icon-tiktok", "label": "TikTok" }
+            { "value": "icon-tiktok", "label": "TikTok" },
+            { "value": "icon-snapchat", "label": "Snapchat" },
+            { "value": "icon-linkedin", "label": "LinkedIn" },
+            { "value": "icon-pinterest", "label": "Pinterest" }
           ],
           "default": "icon-instagram"
         },
