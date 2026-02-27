@@ -24,13 +24,13 @@
                 {%- for block in section.blocks -%}
                   {%- if block.type == 'social_icon' -%}
                     <li
-                      class="p-2 bg-secondary hover:bg-primary text-white hover:text-white transition-colors rounded-full"
+                      class="rounded-full p-2 bg-custombg hover:bg-secondary text-primary hover:!text-white transition-colors"
                       {{ block.shopify_attributes }}
                     >
                       <a
                         href="{{ block.settings.link | default: '#' }}"
                         target="_blank"
-                        class=""
+                        class="w-[28px] h-[28px] flex items-center justify-center"
                       >
                         {%- case block.settings.icon_choice -%}
                           {%- when 'icon-facebook' -%}
@@ -43,6 +43,12 @@
                             {% render 'icon-x' %}
                           {%- when 'icon-tiktok' -%}
                             {% render 'icon-tiktok' %}
+                          {%- when 'icon-snapchat' -%}
+                            {% render 'icon-snapchat' %}
+                          {%- when 'icon-linkedin' -%}
+                            {% render 'icon-linkedin' %}
+                          {%- when 'icon-pinterest' -%}
+                            {% render 'icon-pinterest' %}
                         {%- endcase -%}
                       </a>
                     </li>
@@ -180,13 +186,13 @@
                           {%- for block in section.blocks -%}
                             {%- if block.type == 'social_icon' -%}
                               <li
-                                class="bg-custombg p-2 rounded-full hover:bg-brand hover:text-primary transition-colors"
+                                class="rounded-full p-2 bg-custombg hover:bg-secondary text-primary hover:!text-white transition-colors"
                                 {{ block.shopify_attributes }}
                               >
                                 <a
                                   href="{{ block.settings.link | default: '#' }}"
                                   target="_blank"
-                                  class="block w-5 h-5 flex items-center justify-center"
+                                  class="w-[28px] h-[28px] flex items-center justify-center"
                                 >
                                   {%- case block.settings.icon_choice -%}
                                     {%- when 'icon-facebook' -%}
@@ -199,6 +205,12 @@
                                       {% render 'icon-x' %}
                                     {%- when 'icon-tiktok' -%}
                                       {% render 'icon-tiktok' %}
+                                    {%- when 'icon-snapchat' -%}
+                                      {% render 'icon-snapchat' %}
+                                    {%- when 'icon-linkedin' -%}
+                                      {% render 'icon-linkedin' %}
+                                    {%- when 'icon-pinterest' -%}
+                                      {% render 'icon-pinterest' %}
                                   {%- endcase -%}
                                 </a>
                               </li>
