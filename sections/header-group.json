@@ -85,6 +85,13 @@
     "header-two": {
       "type": "header-two",
       "blocks": {
+        "social_icon_38Nwhb": {
+          "type": "social_icon",
+          "settings": {
+            "icon_choice": "icon-snapchat",
+            "link": ""
+          }
+        },
         "megamenu_XKKJN6": {
           "type": "megamenu",
           "settings": {
@@ -124,6 +131,7 @@
         }
       },
       "block_order": [
+        "social_icon_38Nwhb",
         "megamenu_XKKJN6",
         "social_icon_RmXyw9",
         "social_icon_ctzzDe",
