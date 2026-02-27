@@ -2109,6 +2109,14 @@ p{
   line-height: 1rem;
 }
 
+.text-\[113px\]{
+  font-size: 113px;
+}
+
+.text-\[20px\]{
+  font-size: 20px;
+}
+
 .font-bold{
   font-weight: 700;
 }
@@ -2189,6 +2197,14 @@ p{
   letter-spacing: 0.1em;
 }
 
+.tracking-\[0\.3px\]{
+  letter-spacing: 0.3px;
+}
+
+.tracking-\[0\.px\]{
+  letter-spacing: 0.px;
+}
+
 .\!text-primary{
   color: var(--color-primary) !important;
 }
@@ -2226,6 +2242,10 @@ p{
   color: rgb(107 114 128 / var(--tw-text-opacity, 1));
 }
 
+.text-line{
+  color: var(--color-line);
+}
+
 .text-primary{
   color: var(--color-primary);
 }
@@ -2241,6 +2261,16 @@ p{
 
 .text-white{
   color: var(--color-white);
+}
+
+.text-red-700{
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity, 1));
+}
+
+.text-green-600{
+  --tw-text-opacity: 1;
+  color: rgb(22 163 74 / var(--tw-text-opacity, 1));
 }
 
 .underline{
@@ -2537,6 +2567,11 @@ p{
 
 .hover\:text-white:hover{
   color: var(--color-white);
+}
+
+.hover\:text-red-600:hover{
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity, 1));
 }
 
 .hover\:underline:hover{
