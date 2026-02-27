@@ -12,24 +12,21 @@
           {{ 'lifestyle-1' | placeholder_svg_tag: 'w-full h-full object-cover bg-gray-200 hero-image-bg' }}
         {% endif %}
 
-        <div class="absolute inset-0 bg-black/30 flex items-center justify-center text-center px-4">
+        <div class="absolute inset-0 flex items-center justify-center text-center px-4">
           <div class="max-w-3xl">
-            {% comment %} Başlık Sınıfı Eklendi {% endcomment %}
-            <h2 class="hero-title text-white text-4xl lg:text-6xl font-light uppercase mb-4">
+            <h1 class="hero-title text-white font-light uppercase mb-4">
               {{ block.settings.title }}
-            </h2>
+            </h1>
 
-            {% comment %} Alt Başlık Sınıfı Eklendi {% endcomment %}
-            <p class="hero-subtitle text-white text-lg lg:text-xl font-light mb-8">
+            <p class="hero-subtitle text-white font-light mb-8">
               {{ block.settings.sub_title }}
             </p>
 
             {% if block.settings.button_link != blank %}
-              {% comment %} Buton Sınıfı Eklendi {% endcomment %}
               <div class="hero-button">
                 <a
                   href="{{ block.settings.button_link }}"
-                  class="inline-flex items-center gap-2 bg-secondary text-white px-8 py-3 rounded-sm font-light hover:bg-primary transition-all"
+                  class="inline-flex items-center gap-2 bg-secondary text-white px-8 py-3 rounded-sm font-light hover:bg-primary transition-all duration-150"
                 >
                   {{ block.settings.button_label }}
                   {% render 'icon-arrow2' %}
@@ -43,31 +40,43 @@
   </div>
 
   <div
-    class="swiper-button-next !text-primary hover:!bg-secondary !items-center !justify-center !rounded-full !bg-white/50 !p-[10px] !right-[30px] transition-all duration-150 !hidden md:!flex"
-  ></div>
+    class="
+      swiper-button-next !text-primary hover:!text-white !bg-secondary hover:!bg-primary !items-center !justify-center !rounded-full
+      !right-[30px] transition-all duration-150 !w-[50px] !h-[50px]
+    "
+  >
+    <button class="js-prev-btn pointer-events-auto bg-secondary border border-line p-2 rounded-full hover:bg-primary text-white hover:!text-wrap transition-colors">
+      {% render 'icon-arrow-bar-right', class: 'w-5 h-5' %}
+    </button>
+  </div>
   <div
-    class="swiper-button-prev !text-primary hover:!bg-secondary !items-center !justify-center !rounded-full !bg-white/50 !p-[10px] !left-[30px] transition-all duration-150 !hidden md:!flex"
-  ></div>
+    class="
+      swiper-button-prev !text-primary hover:!text-white !bg-secondary hover:!bg-primary !items-center !justify-center !rounded-full
+      !left-[30px] transition-all duration-150 !w-[50px] !h-[50px]
+    "
+  >
+    <button class="js-prev-btn pointer-events-auto bg-secondary border border-line p-2 rounded-full hover:bg-primary text-white hover:!text-wrap transition-colors">
+      {% render 'icon-arrow-bar-left', class: 'w-5 h-5' %}
+    </button>
+  </div>
   <div class="swiper-pagination mb-6"></div>
 </div>
 
 <style>
-  /* Pagination Özelleştirme */
   .swiper-pagination-bullet {
-    background: #b2ab88;
+    background: var(--color-secondary);
     height: 12px !important;
     width: 12px !important;
     opacity: 0.5;
     transition: all 0.3s ease;
   }
   .swiper-pagination-bullet-active {
-    background: #b2ab88;
+    background: var(--color-secondary);
     opacity: 1;
-    width: 30px !important; /* Aktif olanı biraz uzatalım, modern durur */
+    width: 30px !important;
     border-radius: 6px;
   }
 
-  /* --- METİN ANİMASYONLARI (Başlangıç Durumu) --- */
   .hero-title,
   .hero-subtitle,
   .hero-button {
@@ -76,7 +85,6 @@
     transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  /* Slide Aktif Olduğunda (is-active class'ı JS ile eklenecek) */
   .is-active .hero-title {
     opacity: 1;
     transform: translateY(0);
@@ -93,8 +101,6 @@
     transition-delay: 800ms;
   }
 
-  /* --- GÖRSEL ANİMASYONU (Ken Burns) --- */
-  /* Slide aktif olduğunda görseli yavaşça büyütür */
   .is-active img {
     animation: kenburns 8s ease-out forwards;
   }
@@ -108,13 +114,28 @@
     }
   }
 
-  /* Slider Üzerine Karartma (Metinlerin Okunması İçin) */
   .hero-overlay::after {
     content: '';
     position: absolute;
     inset: 0;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, transparent 50%);
     z-index: 1;
+  }
+
+  .swiper-button-next {
+    display: none;
+  }
+
+  .swiper-button-prev {
+    display: none;
+  }
+
+  .myHeroSwiper:hover .swiper-button-next {
+    display: flex;
+  }
+
+  .myHeroSwiper:hover .swiper-button-prev {
+    display: flex;
   }
 </style>
 
@@ -123,7 +144,7 @@
     new Swiper('.myHeroSwiper', {
       loop: true,
       effect: 'fade',
-      speed: 1200, // Geçiş biraz daha yumuşak olsun
+      speed: 1200,
       fadeEffect: {
         crossFade: true,
       },
@@ -133,18 +154,15 @@
       },
       on: {
         init: function () {
-          // İlk açılışta animasyonu tetikle
           const activeSlide = this.slides[this.activeIndex];
           activeSlide.classList.add('is-active');
         },
         slideChangeTransitionStart: function () {
-          // Tüm slide'lardan aktiflik sınıfını kaldır
           this.slides.forEach((slide) => {
             slide.classList.remove('is-active');
           });
         },
         slideChangeTransitionEnd: function () {
-          // Sadece aktif slide'a sınıfı ekle (Animasyon tetiklenir)
           const activeSlide = this.slides[this.activeIndex];
           activeSlide.classList.add('is-active');
         },
