@@ -30,10 +30,10 @@
             "link": ""
           }
         },
-        "social_icon_Cidzrh": {
+        "social_icon_W9gNB4": {
           "type": "social_icon",
           "settings": {
-            "icon_choice": "icon-tiktok",
+            "icon_choice": "icon-x",
             "link": ""
           }
         },
@@ -50,29 +50,13 @@
             "icon_choice": "icon-youtube",
             "link": "#"
           }
-        },
-        "social_icon_C7iEwT": {
-          "type": "social_icon",
-          "settings": {
-            "icon_choice": "icon-instagram",
-            "link": ""
-          }
-        },
-        "social_icon_W9gNB4": {
-          "type": "social_icon",
-          "settings": {
-            "icon_choice": "icon-x",
-            "link": ""
-          }
         }
       },
       "block_order": [
         "social_icon_iNeqmw",
-        "social_icon_Cidzrh",
+        "social_icon_W9gNB4",
         "social_icon_pgVcp7",
-        "social_icon_pYUtiM",
-        "social_icon_C7iEwT",
-        "social_icon_W9gNB4"
+        "social_icon_pYUtiM"
       ],
       "settings": {
         "menu": "main-menu",
