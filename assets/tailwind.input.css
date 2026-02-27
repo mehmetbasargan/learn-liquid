@@ -50,16 +50,7 @@
 
 @layer components {
 	.is-active {
-		color: #b2ac88 !important;
-	}
-
-	.swiper-button-next,
-	.swiper-button-prev {
-		@apply !w-[40px] !h-[40px];
-	}
-
-	.swiper-pagination-bullet {
-		@apply !bg-[#b2ac88] !opacity-100 !h-[12px] !w-[12px];
+		@apply text-[var(--color-secondary)] !important;
 	}
 
 	.animate-marquee {

@@ -1,66 +1,66 @@
-<div class="relative w-full h-[158px] md:h-[158px]">
-  <header id="main-header" class="bg-custombg w-full py-5 md:py-0 fixed z-50">
-    <div class="hidden lg:flex bg-custombg border-b border-[#000000]/10 py-2 ">
+<div class="relative w-full h-[141px] md:h-[101px] lg:h-[159px]">
+  <header id="main-header" class="bg-custombg w-full py-5 md:py-0 fixed z-50 border-b border-line">
+    {% comment %} topbar {% endcomment %}
+    <div class="hidden lg:flex bg-custombg border-b border-line py-2 ">
       <div class="container">
         <div class="flex flex-row items-center justify-between">
-          <div class="">
-            <div class="hidden lg:flex">
-              {% if section.settings.show_phone and section.settings.header_phone != blank %}
-                <ul class="flex items-center gap-2">
-                  <li>{% render 'icon-phone' %}</li>
-                  <li class="font-medium">
-                    <a href="{{ section.settings.header_phone | replace: ' ', '' }}">
-                      {{ section.settings.header_phone -}}
+          {% comment %} phone {% endcomment %}
+          <div class="hidden lg:flex">
+            {% if section.settings.show_phone and section.settings.header_phone != blank %}
+              <ul class="flex items-center gap-2">
+                <li>{% render 'icon-phone' %}</li>
+                <li class="font-medium">
+                  <a href="{{ section.settings.header_phone | replace: ' ', '' }}">
+                    {{ section.settings.header_phone -}}
+                  </a>
+                </li>
+              </ul>
+            {% endif %}
+          </div>
+
+          {% comment %} Social Media Icons {% endcomment %}
+          <div class="hidden lg:flex">
+            <ul class="flex items-center gap-1">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'social_icon' -%}
+                  <li
+                    class="rounded-full p-2 bg-custombg hover:bg-secondary text-primary hover:!text-white transition-colors"
+                    {{ block.shopify_attributes }}
+                  >
+                    <a
+                      href="{{ block.settings.link | default: '#' }}"
+                      target="_blank"
+                      class="w-[25px] h-[25px] flex items-center justify-center"
+                    >
+                      {%- case block.settings.icon_choice -%}
+                        {%- when 'icon-facebook' -%}
+                          {% render 'icon-facebook' %}
+                        {%- when 'icon-instagram' -%}
+                          {% render 'icon-instagram' %}
+                        {%- when 'icon-youtube' -%}
+                          {% render 'icon-youtube' %}
+                        {%- when 'icon-x' -%}
+                          {% render 'icon-x' %}
+                        {%- when 'icon-tiktok' -%}
+                          {% render 'icon-tiktok' %}
+                        {%- when 'icon-snapchat' -%}
+                          {% render 'icon-snapchat' %}
+                        {%- when 'icon-linkedin' -%}
+                          {% render 'icon-linkedin' %}
+                        {%- when 'icon-pinterest' -%}
+                          {% render 'icon-pinterest' %}
+                      {%- endcase -%}
                     </a>
                   </li>
-                </ul>
-              {% endif %}
-            </div>
-          </div>
-          <div class="">
-            {% comment %} Social Media Icons {% endcomment %}
-            <div class="hidden lg:flex">
-              <ul class="flex items-center gap-1">
-                {%- for block in section.blocks -%}
-                  {%- if block.type == 'social_icon' -%}
-                    <li
-                      class="rounded-full p-2 bg-custombg hover:bg-secondary text-primary hover:!text-white transition-colors"
-                      {{ block.shopify_attributes }}
-                    >
-                      <a
-                        href="{{ block.settings.link | default: '#' }}"
-                        target="_blank"
-                        class="w-[25px] h-[25px] flex items-center justify-center"
-                      >
-                        {%- case block.settings.icon_choice -%}
-                          {%- when 'icon-facebook' -%}
-                            {% render 'icon-facebook' %}
-                          {%- when 'icon-instagram' -%}
-                            {% render 'icon-instagram' %}
-                          {%- when 'icon-youtube' -%}
-                            {% render 'icon-youtube' %}
-                          {%- when 'icon-x' -%}
-                            {% render 'icon-x' %}
-                          {%- when 'icon-tiktok' -%}
-                            {% render 'icon-tiktok' %}
-                          {%- when 'icon-snapchat' -%}
-                            {% render 'icon-snapchat' %}
-                          {%- when 'icon-linkedin' -%}
-                            {% render 'icon-linkedin' %}
-                          {%- when 'icon-pinterest' -%}
-                            {% render 'icon-pinterest' %}
-                        {%- endcase -%}
-                      </a>
-                    </li>
-                  {%- endif -%}
-                {%- endfor -%}
-              </ul>
-            </div>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
           </div>
         </div>
       </div>
     </div>
-    <div class="container mx-auto flex md:flex-row flex-col items-center justify-between h-[100px] ">
+    <div class="container mx-auto flex md:flex-row flex-col items-center justify-between h-[100px]">
+      {% comment %} logo {% endcomment %}
       <a href="{{ routes.root_url }}" class=" w-[170px] lg:w-[180px] shrink-0">
         {% if section.settings.logo %}
           {{ section.settings.logo | image_url: width: 180 | image_tag: alt: shop.name }}
@@ -68,7 +68,6 @@
           <span class="h2">{{ shop.name }}</span>
         {% endif %}
       </a>
-
       <div class="flex justify-between w-full lg:w-auto md:gap-6">
         {% comment %} menu {% endcomment %}
         <nav class="shrink-0">
@@ -88,11 +87,11 @@
                     </svg>
                   </button>
 
-                  <div class="absolute left-0 top-full hidden group-hover:block min-w-[200px] bg-white shadow-xl border border-gray-100 py-4 z-[100] transition-all">
+                  <div class="absolute left-0 top-full hidden group-hover:block min-w-[200px] bg-white shadow-xl border border-line py-4 z-[100] transition-all">
                     {% for childlink in link.links %}
                       <a
                         href="{{ childlink.url }}"
-                        class="block px-6 py-2 text-primary hover:bg-custombg hover:text-secondary transition-all "
+                        class="block px-6 py-2 text-primary text-[15px] hover:bg-custombg hover:text-secondary transition-all "
                       >
                         {{ childlink.title }}
                       </a>
@@ -100,7 +99,7 @@
                   </div>
                 </div>
               {% else %}
-                <a href="{{ link.url }}" class="hover:text-secondary transition-colors py-4">
+                <a href="{{ link.url }}" class="hover:text-secondary text-[15px] transition-colors py-4">
                   {{ link.title }}
                 </a>
               {% endif %}
@@ -108,12 +107,11 @@
           </ul>
         </nav>
 
+        {% comment %} mobile menu {% endcomment %}
         <div class="flex lg:hidden">
           <div class="flex items-center lg:gap-2 gap-8 justify-start w-full lg:w-auto">
             <div class="flex lg:hidden">
-              {% comment %} mobile menu {% endcomment %}
               <div class="flex lg:hidden">
-                {% comment %} mobile menu {% endcomment %}
                 <div
                   id="mobile-menu-overlay"
                   class="fixed inset-0 bg-black/80 z-[60] hidden transition-opacity duration-300"
@@ -135,7 +133,7 @@
                     {% for link in linklists['main-menu'].links %}
                       <div class="mobile-nav-item">
                         {% if link.links != blank %}
-                          <button class="flex justify-between items-center w-full text-[16px] tracking-widest font-josefin text-primary py-2 border-b border-gray-100 mobile-dropdown-btn">
+                          <button class="flex justify-between items-center w-full tracking-widest font-josefin text-primary py-2 border-b border-line mobile-dropdown-btn">
                             {{ link.title }}
                             <svg
                               class="w-4 h-4 transition-transform duration-300"
@@ -149,7 +147,10 @@
 
                           <div class="hidden overflow-hidden pl-4 flex flex-col space-y-4 mt-4 mb-2 border-l border-secondary/30">
                             {% for childlink in link.links %}
-                              <a href="{{ childlink.url }}" class="text-[16px]  tracking-wider text-secondary">
+                              <a
+                                href="{{ childlink.url }}"
+                                class="tracking-wider text-[15px] text-primary hover:text-secondary"
+                              >
                                 {{- childlink.title -}}
                               </a>
                             {% endfor %}
@@ -157,7 +158,7 @@
                         {% else %}
                           <a
                             href="{{ link.url }}"
-                            class="block text-[16px]  tracking-widest  text-primary py-2 border-b border-gray-100"
+                            class="block tracking-widest text-primary text-[15px] py-2 border-b border-line"
                           >
                             {{- link.title -}}
                           </a>
@@ -167,7 +168,7 @@
                   </nav>
 
                   <div class="container py-5 mt-10">
-                    <h5 class="text-center mb-5 border-b border-[#000000]/10 pb-3">{{ 'general.social_media' | t }}</h5>
+                    <h5 class="text-center mb-5 border-b border-line pb-3">{{ 'general.social_media' | t }}</h5>
                     <div class="flex flex-col lg:flex-row items-center justify-between md:justify-around gap-2">
                       <div class="">
                         {% if section.settings.show_phone and section.settings.header_phone != blank %}
@@ -225,7 +226,6 @@
             </div>
           </div>
         </div>
-
         <div class="flex flex-row items-center justify-between md:justify-end w-full gap-2">
           <div class="flex lg:hidden items-start justify-start">
             <button id="mobile-menu-open" class="">
@@ -239,6 +239,7 @@
             </button>
           </div>
 
+          {% comment %} account {% endcomment %}
           <div class="flex items-center gap-1">
             <div class="bg-black/10 p-2 rounded-full bg-custombg hover:bg-secondary hover:!text-white">
               <a href="{{ routes.account_url }}" class="lg:w-[10px] w-[10px] shrink-0">
@@ -254,8 +255,8 @@
             </div>
             <div class="bg-black/10 p-2 rounded-full hover:bg-secondary hover:!text-white relative">
               <a href="{{ routes.cart_url }}" class="lg:w-[30px] w-[20px] shrink-0">
-                <div class="absolute top-[-10px] right-0">
-                  <span class="cart-count-bubble bg-gray-200 w-[20px] h-[20px] flex items-center justify-center text-primary text-xs rounded-full">
+                <div class="absolute top-[0px] right-0">
+                  <span class="cart-count-bubble bg-secondary w-[20px] h-[20px] flex items-center justify-center text-white text-xs rounded-full">
                     {{- cart.item_count -}}
                   </span>
                 </div>
@@ -323,7 +324,10 @@
             { "value": "icon-instagram", "label": "Instagram" },
             { "value": "icon-youtube", "label": "YouTube" },
             { "value": "icon-x", "label": "X" },
-            { "value": "icon-tiktok", "label": "TikTok" }
+            { "value": "icon-tiktok", "label": "TikTok" },
+            { "value": "icon-snapchat", "label": "Snapchat" },
+            { "value": "icon-linkedin", "label": "LinkedIn" },
+            { "value": "icon-pinterest", "label": "Pinterest" }
           ],
           "default": "icon-instagram"
         },
