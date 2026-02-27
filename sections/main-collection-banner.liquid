@@ -16,7 +16,7 @@
         | image_tag: class: 'w-full h-full object-cover object-center object-top', loading: 'eager'
       }}
     {% else %}
-      <div class="w-full h-full bg-[#3B443C]"></div>
+      <div class="w-full h-full bg-primary"></div>
     {% endif %}
 
     <div
@@ -26,14 +26,14 @@
   </div>
 
   <div class="relative z-10 text-center px-4 max-w-4xl">
-    <nav class="mb-4 text-[10px] uppercase tracking-[0.3em] text-white/90">
-      <a href="{{ routes.root_url }}" class="hover:text-[#B2AC88] transition-colors">{{ 'general.home' | t }}</a>
+    <nav class="mb-4 text-[13px] uppercase tracking-[0.3em] text-custombg">
+      <a href="{{ routes.root_url }}" class="hover:text-secondary transition-colors">{{ 'general.home' | t }}</a>
       <span class="mx-2">/</span>
       <span class="">{{ collection.title }}</span>
     </nav>
-    <h1 class="text-white font-light tracking-[0.2em] uppercase drop-shadow-sm">
+    <h2 class="text-custombg font-light tracking-[0.1em] uppercase drop-shadow-sm">
       {{ collection.title }}
-    </h1>
+    </h2>
   </div>
 </section>
 
