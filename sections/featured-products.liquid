@@ -1,4 +1,5 @@
-<div class="container" id="section-{{ section.id }}">
+<div class="container">
+  {% comment %} Yazım hatası düzeltildi: container {% endcomment %}
   <section class="bg-white py-20 px-6">
     <div class="max-w-7xl mx-auto">
       <div class="flex justify-between items-end mb-12">
@@ -21,8 +22,9 @@
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12">
-        {% assign featured_collection = section.settings.collection %}
+        {%- assign featured_collection = section.settings.collection -%}
         {% for product in collections[featured_collection].products limit: 4 %}
+          {% comment %} MEHMET: İşte o meşhur tek satır! {% endcomment %}
           {% render 'product-card', product: product %}
         {% endfor %}
       </div>
@@ -30,56 +32,45 @@
   </section>
 </div>
 
-<script>
-  // Mehmet, bu bölümdeki formları tek tek yakalayıp detay sayfasındaki mantığı uyguluyoruz
-  document.querySelectorAll('#section-{{ section.id }} form[action="/cart/add"]').forEach((form) => {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const submitBtn = form.querySelector('[type="submit"]');
-      if (submitBtn) submitBtn.disabled = true;
-
-      let formData = new FormData(form);
-
-      fetch('/cart/add.js', {
-        method: 'POST',
-        body: formData,
-      })
-        .then((response) => response.json())
-        .then(() => {
-          // Detay sayfasındaki o fonksiyonu burada çağırıyoruz
-          // Eğer fonksiyon o an sayfada yoksa (başka sayfadaysan) hata vermemesi için kontrol ekledim
-          if (typeof openAndRefreshCart === 'function') {
-            openAndRefreshCart();
-          } else {
-            // Fonksiyon yoksa bile sepet sayfasına gitmesin, sayfayı yenilesin (en kötü ihtimal)
-            window.location.reload();
-          }
-        })
-        .catch((error) => {
-          console.error('Sepet Hatası:', error);
-        })
-        .finally(() => {
-          if (submitBtn) submitBtn.disabled = false;
-        });
-    });
-  });
-
-  // BURASI KRİTİK: Eğer ana sayfada openAndRefreshCart fonksiyonu tanımlı değilse
-  // detay sayfasındaki o fonksiyonu BURAYA DA yapıştırman lazım.
-  // Çünkü JS "dosya tabanlı" değil "sayfa tabanlı" çalışır.
-</script>
+{% comment %}
+  MEHMET: JS kısmını buraya koymuyorum çünkü artık product-card.liquid içinde
+  kendi form yapısı varsa, global sepet kodun (theme.liquid'e koyduğumuz) bunu yakalayacaktır.
+{% endcomment %}
 
 {% schema %}
 {
   "name": "Featured Products",
   "settings": [
-    { "type": "collection", "id": "collection", "label": "Collection" },
-    { "type": "text", "id": "section_title", "label": "Title" },
-    { "type": "text", "id": "section_subtitle", "label": "Subtitle" },
-    { "type": "text", "id": "button_text", "label": "Button Text" },
-    { "type": "url", "id": "button_url", "label": "Button URL" }
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection to Feature"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    }
   ],
-  "presets": [{ "name": "Featured Products" }]
+  "presets": [
+    {
+      "name": "Featured Products"
+    }
+  ]
 }
 {% endschema %}
