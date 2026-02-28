@@ -78,10 +78,17 @@
     {% sections 'header-group' %}
     {% render 'cart-drawer' %}
 
+    <!-- Customer data for wishlist functionality -->
+    <script>
+      window.customer = {% if customer %}{{ customer | json }}{% else %}false{% endif %};
+    </script>
+
     {{ content_for_layout }}
 
     {% sections 'footer-group' %}
 
+    <script src="{{ 'wishlist-proxy.js' | asset_url }}" defer></script>
+    <script src="{{ 'wishlist.js' | asset_url }}" defer></script>
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
   </body>

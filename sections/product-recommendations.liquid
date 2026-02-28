@@ -13,6 +13,8 @@
           <div class="product-card group">
             <a href="{{ recommendation.url }}" class="block overflow-hidden bg-custombg">
               <div class="relative w-full pb-[125%] overflow-hidden bg-custombg">
+                <!-- Wishlist Heart Button -->
+                {% render 'wishlist-heart', product: recommendation %}
                 <img
                   src="{{ recommendation.featured_image | image_url: width: 600 }}"
                   alt="{{ recommendation.title }}"

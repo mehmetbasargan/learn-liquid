@@ -30,6 +30,9 @@
                 </span>
               {% endif %}
 
+              <!-- Wishlist Heart Button -->
+              {% render 'wishlist-heart', product: product %}
+
               <a href="{{ product.url }}" class="block w-full h-full">
                 <img
                   src="{{ product.featured_image | image_url: width: 700 }}"

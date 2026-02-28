@@ -114,5 +114,13 @@
 		"card": "Gift Card",
 		"use_at_checkout": "Use at checkout",
 		"add_to_apple_wallet": "Add to Apple Wallet"
+	},
+	"wishlist": {
+		"title": "My Wishlist",
+		"empty": "Your wishlist is empty.",
+		"continue_shopping": "Continue Shopping",
+		"added": "Added to wishlist",
+		"removed": "Removed from wishlist",
+		"login_required": "Please login to add items to your wishlist."
 	}
 }
