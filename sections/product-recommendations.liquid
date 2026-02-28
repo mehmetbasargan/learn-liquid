@@ -12,14 +12,16 @@
         {% for recommendation in recommendations.products %}
           <div class="product-card group">
             <a href="{{ recommendation.url }}" class="block overflow-hidden rounded-lg bg-custombg">
-              <img
-                src="{{ recommendation.featured_image | image_url: width: 600 }}"
-                alt="{{ recommendation.title }}"
-                height=""
-                width=""
-                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                loading="lazy"
-              >
+              <div class="relative w-full pb-[125%] overflow-hidden rounded-lg bg-custombg">
+                <img
+                  src="{{ recommendation.featured_image | image_url: width: 600 }}"
+                  alt="{{ recommendation.title }}"
+                  height=""
+                  width=""
+                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                >
+              </div>
             </a>
             <div class="mt-4 text-center">
               <h3 class="text-sm font-body text-primary uppercase tracking-wider">

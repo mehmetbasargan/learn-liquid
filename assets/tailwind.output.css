@@ -2029,6 +2029,10 @@ p{
   padding-top: 2rem;
 }
 
+.pb-\[125\%\]{
+  padding-bottom: 125%;
+}
+
 .text-left{
   text-align: left;
 }
