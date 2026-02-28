@@ -62,5 +62,57 @@
 
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
+
+    <script>
+      document.addEventListener('submit', function (e) {
+        // Sayfadaki herhangi bir "Sepete Ekle" formu gönderildiğinde yakala
+        if (e.target.action && (e.target.action.includes('/cart/add') || e.target.action.includes('/cart/add.js'))) {
+          e.preventDefault(); // Sayfanın /cart sayfasına gitmesini durdur
+
+          const form = e.target;
+          const submitButton = form.querySelector('[type="submit"]');
+          const formData = new FormData(form);
+
+          if (submitButton) submitButton.disabled = true;
+
+          // AJAX ile sepete ekle
+          fetch(window.Shopify.routes.root + 'cart/add.js', {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest',
+            },
+          })
+            .then((response) => response.json())
+            .then((item) => {
+              // MEHMET: Ürün eklendi, şimdi Drawer'ı tetikliyoruz
+
+              // 1. Sepet verisini güncelle (içerik dolsun)
+              if (typeof updateCartDrawer === 'function') {
+                updateCartDrawer();
+              }
+
+              // 2. Çekmeceyi (Drawer) aç
+              if (typeof openCartDrawer === 'function') {
+                openCartDrawer();
+              } else {
+                // Fonksiyon adın farklıysa alternatif tetikleyiciler:
+                document.querySelector('cart-drawer')?.classList.add('active');
+                document.querySelector('#cart-drawer')?.classList.add('active');
+                document.body.classList.add('cart-drawer-open');
+              }
+
+              // Shopify'ın bazı standart temaları için event fırlat
+              document.dispatchEvent(new CustomEvent('cart:updated', { detail: { cart: item } }));
+            })
+            .catch((error) => {
+              console.error('Sepet Hatası:', error);
+            })
+            .finally(() => {
+              if (submitButton) submitButton.disabled = false;
+            });
+        }
+      });
+    </script>
   </body>
 </html>
