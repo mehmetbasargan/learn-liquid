@@ -12,7 +12,7 @@
         {% for recommendation in recommendations.products %}
           <div class="product-card group">
             <a href="{{ recommendation.url }}" class="block overflow-hidden bg-custombg">
-              <div class="relative w-full pb-[125%] overflow-hidden rounded-lg bg-custombg">
+              <div class="relative w-full pb-[125%] overflow-hidden bg-custombg">
                 <img
                   src="{{ recommendation.featured_image | image_url: width: 600 }}"
                   alt="{{ recommendation.title }}"
