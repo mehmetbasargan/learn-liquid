@@ -63,16 +63,16 @@
   const dynamicTitle = document.querySelector('#dynamic-search-title');
   const emptyMessage = document.querySelector('#search-empty-message');
 
+  // Para birimi formatlayıcı (Mağaza ayarlarına göre otomatik TL/Dolar vs. yapar)
   const formatMoney = (cents) => {
-    return (cents / 100).toLocaleString('tr-TR', {
+    return (cents / 100).toLocaleString('{{ shop.locale }}', {
       style: 'currency',
-      currency: 'TRY',
-      minimumFractionDigits: 2,
+      currency: '{{ cart.currency.iso_code }}',
     });
   };
 
-  /** * MEHMET: Dil dosyasından ana başlığı alıyoruz.
-   * Eğer "search_results" diye bir yazı çıkarsa sistem otomatik "Arama Sonuçları"na döner.
+  /** * MEHMET: Dil dosyasını kontrol ediyoruz.
+   * Eğer çeviri yoksa manuel olarak "Arama Sonuçları" yazıyoruz.
    */
   const rawSearchLabel = "{{ 'general.search.search_results' | t }}";
   const searchLabel = rawSearchLabel.includes('search_results') ? 'Arama Sonuçları' : rawSearchLabel;
@@ -88,7 +88,7 @@
       return;
     }
 
-    // MEHMET: Buradaki limit:12 kısmını limit=12 yaparak düzelttim
+    // Shopify Predictive Search API
     fetch(
       `${window.Shopify.routes.root}search/suggest.json?q=${encodeURIComponent(
         searchTerm
@@ -96,7 +96,6 @@
     )
       .then((response) => response.json())
       .then((data) => {
-        // MEHMET: Veri yolunu daha da garantiye aldık
         let products = [];
         if (data.resources && data.resources.results && data.resources.results.products) {
           products = data.resources.results.products;
@@ -108,7 +107,7 @@
 
         const resultCount = products.length;
 
-        // Başlık Alanını Göster
+        // Başlık Alanını Göster ve Güncelle
         searchHeaderWrapper.classList.remove('hidden');
         dynamicTitle.innerText = `${searchLabel}: "${searchTerm}" (${resultCount})`;
 
@@ -124,34 +123,57 @@
       .catch((err) => console.error('Arama Hatası:', err));
   });
 
+  // MEHMET: Buradaki HTML yapısını senin product-card.liquid dosyanla birebir aynı yaptım!
   function renderResults(products) {
     resultsContainer.innerHTML = products
       .map((product) => {
         const price = formatMoney(product.price);
         const isOnSale = product.compare_at_price > product.price;
+        const comparePrice = isOnSale ? formatMoney(product.compare_at_price) : '';
         const mainImage = product.featured_image ? product.featured_image.url : product.image || '';
+        const hoverImage = product.images && product.images.length > 1 ? product.images[1].url : null;
 
         return `
-        <div class="group flex flex-col h-full bg-white relative animate-fadeIn">
+        <div class="group flex flex-col h-full bg-white overflow-hidden relative animate-fadeIn">
           <div class="relative aspect-[3/4] overflow-hidden bg-custombg">
             ${
               isOnSale
-                ? `<span class="absolute top-3 left-3 z-10 bg-secondary text-white text-[9px] px-2 py-1 uppercase font-josefin font-bold">İndirim</span>`
+                ? `<span class="absolute top-3 left-3 z-10 bg-secondary text-white font-bold text-[13px] px-2 py-1 tracking-widest uppercase">İndirim</span>`
                 : ''
             }
+            
             <a href="${product.url}" class="block h-full w-full">
               <img src="${mainImage}" alt="${
           product.title
-        }" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+        }" class="w-full h-full object-cover transition-opacity duration-700 ${
+          hoverImage ? 'group-hover:opacity-0' : ''
+        }" loading="lazy">
+              ${
+                hoverImage
+                  ? `<img src="${hoverImage}" class="w-full h-full object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">`
+                  : ''
+              }
             </a>
+
+            <div class="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 hidden md:block">
+              <a href="${
+                product.url
+              }" class="w-full bg-primary text-white py-3 text-[13px] uppercase tracking-[0.2em] block text-center hover:bg-secondary transition-colors">
+                İNCELE
+              </a>
+            </div>
           </div>
-          <div class="pt-4 flex flex-col items-center px-2">
+
+          <div class="pt-4 pb-2 flex flex-col items-center">
             <a href="${
               product.url
-            }" class="text-primary text-xs font-medium uppercase font-josefin text-center hover:text-secondary mb-2 tracking-wider">
+            }" class="text-primary font-light text-[14px] hover:text-secondary transition-colors uppercase">
               ${product.title}
             </a>
-            <div class="font-inter text-sm font-semibold text-primary italic">${price}</div>
+            <div class="mt-2 flex items-center gap-2">
+              ${isOnSale ? `<span class="text-gray-400 line-through text-[13px]">${comparePrice}</span>` : ''}
+              <span class="text-primary text-[14px] font-medium">${price}</span>
+            </div>
           </div>
         </div>
       `;
@@ -160,6 +182,21 @@
   }
 </script>
 
+<style>
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
 <style>
   .animate-fadeIn {
     animation: fadeIn 0.4s ease-out forwards;
