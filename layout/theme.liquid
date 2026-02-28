@@ -62,5 +62,69 @@
 
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
+    <script>
+      document.addEventListener('submit', function (e) {
+        // Sepete ekle formunu yakala
+        const isCartForm = e.target.action && e.target.action.includes('/cart/add');
+
+        if (isCartForm) {
+          e.preventDefault(); // Sayfa yönlendirmesini durdur
+
+          const form = e.target;
+          const submitButton = form.querySelector('[type="submit"]');
+          const formData = new FormData(form);
+
+          if (submitButton) {
+            submitButton.classList.add('loading');
+            submitButton.disabled = true;
+          }
+
+          fetch(window.Shopify.routes.root + 'cart/add.js', {
+            method: 'POST',
+            body: formData,
+            headers: { 'X-Requested-With': 'XMLHttpRequest' },
+          })
+            .then((response) => {
+              if (!response.ok) throw new Error('Sepete eklenemedi');
+              return response.json();
+            })
+            .then((item) => {
+              // MEHMET: Burası kritik! Hata vermemesi için kontrolleri ekledim.
+
+              // 1. Sepet içeriğini güncelle
+              if (window.updateCartDrawer && typeof window.updateCartDrawer === 'function') {
+                window.updateCartDrawer();
+              } else if (typeof updateCartDrawer === 'function') {
+                updateCartDrawer();
+              }
+
+              // 2. Çekmeceyi aç
+              if (window.openCartDrawer && typeof window.openCartDrawer === 'function') {
+                window.openCartDrawer();
+              } else if (typeof openCartDrawer === 'function') {
+                openCartDrawer();
+              } else {
+                // Fonksiyonlar bulunamazsa en azından çekmeceyi ID üzerinden açmayı dene
+                const drawer = document.querySelector('#cart-drawer') || document.querySelector('cart-drawer');
+                if (drawer) drawer.classList.add('active');
+                document.body.classList.add('cart-drawer-open');
+              }
+
+              // 3. Global event fırlat (Başka app'ler veya bölümler duysun diye)
+              document.dispatchEvent(new CustomEvent('cart:updated', { detail: { cart: item } }));
+            })
+            .catch((error) => {
+              console.error('Mehmet, sepet hatası:', error);
+              alert('Ürün sepete eklenirken bir sorun oluştu.');
+            })
+            .finally(() => {
+              if (submitButton) {
+                submitButton.classList.remove('loading');
+                submitButton.disabled = false;
+              }
+            });
+        }
+      });
+    </script>
   </body>
 </html>
