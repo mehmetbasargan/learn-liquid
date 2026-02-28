@@ -36,9 +36,16 @@
 
     <div class="product-info-column lg:w-2/5 space-y-8">
       <div>
-        <h3 class="font-light tracking-tight text-primary uppercase">{{ product.title }}</h3>
+        <h3
+          class="font-light tracking-tight uppercase"
+          style="color: {{ settings.product_primary_color }}; font-family: {{ settings.product_heading_font.family }}, {{ settings.product_heading_font.fallback_families }};"
+        >
+          {{ product.title }}
+        </h3>
         <div class="mt-4 flex items-center gap-4">
-          <span class="text-[20px] font-medium text-primary">{{ product.price | money }}</span>
+          <span class="text-[20px] font-medium" style="color: {{ settings.product_primary_color }};">
+            {{- product.price | money -}}
+          </span>
           {% if product.compare_at_price > product.price %}
             <span class="text-gray-400 line-through">{{ product.compare_at_price | money }}</span>
           {% endif %}
@@ -187,21 +194,24 @@
   .swiper-button-prev {
     height: 50px !important;
     width: 50px !important;
-    background: #ffffff60;
+    /* Beyaz rengi %40 şeffaflıkla karıştırıyoruz */
+    background-color: color-mix(in srgb, var(--color-white), transparent 60%);
+    backdrop-filter: blur(4px); /* Opsiyonel: Buzlu cam efekti verir, çok şık durur */
     border-radius: 50%;
     padding: 15px;
-    color: #3b443c;
+    color: var(--color-primary);
     z-index: 10;
+    transition: background-color 0.3s ease;
   }
 
   .swiper-button-next:hover,
   .swiper-button-prev:hover {
     height: 50px !important;
     width: 50px !important;
-    background: #b2ac88;
+    background: var(--color-secondary);
     border-radius: 50%;
     padding: 15px;
-    color: #3b443c;
+    color: var(--color-white);
     z-index: 10;
   }
 
@@ -328,7 +338,7 @@ function updateVariantID() {
                     <img src="${item.image}" class="w-20 h-24 object-cover">
                     <div class="flex-1">
                       <div class="flex justify-between">
-                        <h4 class="text-[10px] uppercase tracking-widest text-[#3B443C]">${item.product_title}</h4>
+                        <h4 class="text-[10px] uppercase tracking-widest text-primary">${item.product_title}</h4>
                         <button onclick="removeCartItem(${
                           index + 1
                         })" class="text-[9px] text-gray-400 hover:text-black uppercase underline">${ "{{ 'cart.remove' | t }}" }</button>
@@ -384,5 +394,35 @@ function updateVariantID() {
 </script>
 
 {% schema %}
-{ "name": "Product Page", "settings": [] }
+{
+  "name": "Product Page",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "product_primary_color",
+      "label": "Primary Color",
+      "default": "#3b443c"
+    },
+    {
+      "type": "color",
+      "id": "product_secondary_color",
+      "label": "Secondary Color",
+      "default": "#b2ac88"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "product_heading_font",
+      "label": "Heading Font",
+      "default": "josefin_sans_n4"
+    }
+  ]
+}
 {% endschema %}

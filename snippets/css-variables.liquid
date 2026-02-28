@@ -1,10 +1,10 @@
 {% style %}
   :root {
-    /* Renkleri Şimdilik Sabitliyoruz (Hard-coded) */
-    --color-primary: #3b443c;
-    --color-secondary: #b2ac88;
-    --color-background: #ffffff;
-    --color-foreground: #3b443c;
+    /* Dinamik Renkler - Theme Settings'den alıyoruz */
+    --color-primary: {{ settings.primary_color }};
+    --color-secondary: {{ settings.secondary_color }};
+    --color-background: {{ settings.custom_bg_color }};
+    --color-foreground: {{ settings.primary_color }};
 
     /* Fontlar - Eğer Google Fonts eklediysen çalışır */
     --font-primary--family: 'Inter', sans-serif;

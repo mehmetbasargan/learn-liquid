@@ -16,7 +16,7 @@
       </div>
 
       {% comment %} main images {% endcomment %}
-      <div class="grow h-full overflow-hidden bg-[#F9F9F9]">
+      <div class="grow h-full overflow-hidden bg-custombg">
         <div class="swiper product-main h-full">
           <div class="swiper-wrapper h-full">
             {% for media in product.media %}
@@ -29,8 +29,8 @@
               </div>
             {% endfor %}
           </div>
-          <div class="swiper-button-next text-[#3B443C] !after:text-lg"></div>
-          <div class="swiper-button-prev text-[#3B443C] !after:text-lg"></div>
+          <div class="swiper-button-next text-primary !after:text-lg"></div>
+          <div class="swiper-button-prev text-primary !after:text-lg"></div>
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@
             <button
               type="submit"
               name="add"
-              class="w-full bg-[#3B443C] text-white py-4 uppercase tracking-[0.3em] hover:bg-[#2A312B] transition-colors"
+              class="w-full bg-primary text-white py-4 uppercase tracking-[0.3em] hover:bg-secondary transition-colors"
             >
               {{ 'products.product.add_to_cart' | t }}
             </button>
@@ -112,7 +112,7 @@
   .swiper-button-next,
   .swiper-button-prev {
     align-items: center;
-    color: #3b443c;
+    color: var(--color-primary);
     cursor: pointer;
     display: flex;
     height: var(--swiper-navigation-size);
@@ -126,7 +126,7 @@
   .swiper-button-prev {
     height: 50px !important;
     width: 50px !important;
-    background: #ffffff60;
+    background: color-mix(in srgb, var(--color-white), transparent 60%);
     border-radius: 50%;
     padding: 15px;
   }
@@ -270,7 +270,7 @@
           .map(
             (item, index) => `
           <div class="flex gap-4 border-b border-gray-50 pb-4 relative">
-            <img src="${item.image}" class="w-20 h-24 object-cover bg-[#F9F9F9]">
+            <img src="${item.image}" class="w-20 h-24 object-cover bg-custombg">
             <div class="flex flex-col justify-center grow">
               <h4 class="text-[11px] uppercase tracking-wider font-medium">${item.product_title}</h4>
               <p class="text-[10px] text-gray-400 mt-1 italic">${item.variant_title || ''}</p>
