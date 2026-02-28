@@ -8,6 +8,56 @@
 		"theme_support_url": "https://support.shopify.com/"
 	},
 	{
+		"name": "Colors",
+		"settings": [
+			{
+				"type": "header",
+				"content": "Brand Colors"
+			},
+			{
+				"type": "color",
+				"id": "primary_color",
+				"label": "Primary Color",
+				"default": "#3b443c"
+			},
+			{
+				"type": "color",
+				"id": "secondary_color",
+				"label": "Secondary Color",
+				"default": "#b2ac88"
+			},
+			{
+				"type": "color",
+				"id": "custom_bg_color",
+				"label": "Custom Background",
+				"default": "#f9f9f9"
+			},
+			{
+				"type": "color",
+				"id": "line_color",
+				"label": "Border/Line Color",
+				"default": "#e5e7eb"
+			}
+		]
+	},
+	{
+		"name": "Typography",
+		"settings": [
+			{
+				"type": "font_picker",
+				"id": "heading_font",
+				"label": "Heading Font",
+				"default": "josefin_sans_n4"
+			},
+			{
+				"type": "font_picker",
+				"id": "body_font",
+				"label": "Body Font",
+				"default": "inter_n4"
+			}
+		]
+	},
+	{
 		"name": "Logo & Favicon",
 		"settings": [
 			{

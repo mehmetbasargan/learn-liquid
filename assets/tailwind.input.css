@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 @layer base {
-	:root {
+	/* :root {
 		--color-primary: #3b443c;
 		--color-secondary: #b2ac88;
 		--color-custombg: #f9f9f9;
@@ -16,7 +16,7 @@
 
 		--font-heading: 'Josefin Sans', sans-serif;
 		--font-body: 'Inter', sans-serif;
-	}
+	} */
 
 	body {
 		@apply font-inter bg-custombg text-primary antialiased m-0;

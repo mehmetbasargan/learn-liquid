@@ -45,6 +45,28 @@
     {{ content_for_header }}
     {{ 'tailwind.output.css' | asset_url | stylesheet_tag }}
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+
+    {% style %}
+      {%- assign heading_font = settings.heading_font -%}
+      {%- assign body_font = settings.body_font -%}
+
+      {{ heading_font | font_face: font_display: 'swap' }}
+      {{ body_font | font_face: font_display: 'swap' }}
+
+      :root {
+        /* Colors from Shopify Settings */
+        --color-primary: {{ settings.primary_color }};
+        --color-secondary: {{ settings.secondary_color }};
+        --color-custombg: {{ settings.custom_bg_color }};
+        --color-line: {{ settings.line_color }};
+        --color-white: #ffffff;
+        --color-black: #000000;
+
+        /* Fonts from Shopify Settings */
+        --font-heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+        --font-body: {{ body_font.family }}, {{ body_font.fallback_families }};
+      }
+    {% endstyle %}
   </head>
 
   <body>
