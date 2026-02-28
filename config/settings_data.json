@@ -11,6 +11,7 @@
   "current": {
     "primary_color": "#2e17da",
     "secondary_color": "#004ce9",
+    "custom_bg_color": "#808080",
     "heading_font": "josefin_sans_n4",
     "body_font": "inter_n4",
     "favicon": "shopify://shop_images/favicon.png",
