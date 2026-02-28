@@ -13,12 +13,12 @@
       name="q"
       value="{{ search.terms | escape }}"
       placeholder="{{ 'search.placeholder' | t }}"
-      class="border border-gray-300 rounded px-4 py-2 h-16 w-full focus:outline-none focus:ring-1 focus:ring-secondary"
+      class="border border-line rounded px-4 py-2 h-16 w-full focus:outline-none focus:ring-1 focus:ring-secondary"
       autocomplete="off"
     >
     <button
       type="submit"
-      class="h-[64px] w-[64px] border border-gray-300 rounded flex items-center justify-center hover:bg-secondary text-primary hover:text-white"
+      class="h-[64px] w-[64px] border border-line rounded flex items-center justify-center hover:bg-secondary text-primary hover:text-white"
     >
       {% render 'icon-search' %}
     </button>
