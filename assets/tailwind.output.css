@@ -1813,6 +1813,11 @@ p{
   background-color: var(--color-white);
 }
 
+.bg-slate-700{
+  --tw-bg-opacity: 1;
+  background-color: rgb(51 65 85 / var(--tw-bg-opacity, 1));
+}
+
 .object-contain{
   -o-object-fit: contain;
      object-fit: contain;

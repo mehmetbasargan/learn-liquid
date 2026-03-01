@@ -1,6 +1,7 @@
 <header
   id="main-header"
   class="fixed top-0 left-0 z-50 w-full transition-all duration-500 ease-in-out"
+  style="background-color: rgba(249, 249, 249, 0.3);"
 >
   {% comment %} social media {% endcomment %}
   <div class="py-2 border-b border-line mb-2">
@@ -257,25 +258,13 @@
   const header = document.getElementById('main-header');
   const menu = document.getElementById('main-menu');
 
-  // Test scroll functionality
-  console.log('Header scroll script loaded');
-  console.log('Header element:', header);
-
-  // Set initial transparent background
-  header.style.backgroundColor = 'rgba(249, 249, 249, 0.3)';
-  console.log('Initial background set to transparent');
-
   window.addEventListener('scroll', () => {
-    console.log('Scroll position:', window.scrollY);
-
     if (window.scrollY > 30) {
       header.style.backgroundColor = '#ffffff';
       header.classList.add('border-b', 'border-line', 'shadow-md');
-      console.log('Background changed to white');
     } else {
       header.style.backgroundColor = 'rgba(249, 249, 249, 0.3)';
       header.classList.remove('border-b', 'border-line', 'shadow-md');
-      console.log('Background changed to transparent');
     }
   });
 </script>
