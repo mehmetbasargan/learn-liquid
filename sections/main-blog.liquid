@@ -60,11 +60,13 @@
         {% endfor %}
       </div>
 
-      {% if paginate.pages > 1 %}
-        <div class="mt-12 flex justify-center border-t pt-8">
-          {{ paginate | default_pagination }}
-        </div>
-      {% endif %}
+      {% paginate blog.articles by 1 %}
+        {% if paginate.pages > 1 %}
+          <div class="pagination flex justify-center gap-4 mt-12 py-8 border-t">
+            {{ paginate | default_pagination }}
+          </div>
+        {% endif %}
+      {% endpaginate %}
 
     {% else %}
       <div class="text-center py-20 bg-gray-50 rounded-lg">
