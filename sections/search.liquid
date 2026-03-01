@@ -197,7 +197,21 @@
           </div>
         `;
       })
+      
       .join('');
+      // --- WISHLIST TETİKLEYİCİSİ ---
+    // Eğer Growave kullanıyorsan:
+    if (window.gwApp && typeof window.gwApp.init === 'function') {
+      window.gwApp.init();
+    }
+    // Eğer Shopify Search & Discovery veya standart bir uygulama kullanıyorsan:
+    // Çoğu uygulama 'DOMContentInstantiated' veya özel bir event bekler.
+    document.dispatchEvent(new CustomEvent('shopify:section:load'));
+    
+    // Eğer 'Smart Wishlist' gibi bir uygulama varsa:
+    if (typeof WishlistInit === 'function') {
+        WishlistInit();
+    }
   }
 </script>
 
