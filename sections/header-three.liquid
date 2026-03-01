@@ -44,9 +44,12 @@
       </div>
       {% comment %} icons {% endcomment %}
       <div class="">
-        <div class="flex flex-row justify-start gap-12 lg:!gap-6 mt-1 lg:!mt-0">
+        <div class="flex flex-row justify-start gap-2 lg:!gap-2 mt-1 lg:!mt-0">
           <a href="{{ routes.search_url }}" class="lg:w-[30px] w-[20px] text-primary hover:text-secondary">
             {% render 'icon-search' %}
+          </a>
+          <a href="/pages/wishlist" class="lg:w-[30px] w-[20px] text-primary hover:text-secondary">
+            {% render 'icon-wishlist' %}
           </a>
           <a href="{{ routes.account_url }}" class="lg:w-[30px] w-[20px] text-primary hover:text-secondary">
             {% if shop.customer_accounts_enabled %}

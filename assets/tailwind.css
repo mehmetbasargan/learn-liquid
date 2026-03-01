@@ -563,7 +563,7 @@ video {
   --color-line: #e5e7eb;
   --color-white: #ffffff;
   --color-black: #000000;
-  --color-bgtransparent: rgba(249, 249, 249, 0.6);
+  --color-bgtransparent: rgba(249, 249, 249, 0.3);
   --font-heading: 'Josefin Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
 }
@@ -2912,8 +2912,8 @@ p{
     justify-content: space-between;
   }
 
-  .lg\:\!gap-6{
-    gap: 1.5rem !important;
+  .lg\:\!gap-2{
+    gap: 0.5rem !important;
   }
 
   .lg\:gap-10{
