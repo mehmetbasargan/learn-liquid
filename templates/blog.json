@@ -15,8 +15,6 @@
       "settings": {
         "blog_title": "Latest Stories",
         "blog_subtitle": "Explore our latest stories and updates.",
-        "pagination_prev": "Previous",
-        "pagination_next": "Next",
         "header_opacity": 100
       }
     },
@@ -36,8 +34,6 @@
       "settings": {
         "blog_title": "",
         "blog_subtitle": "Explore our latest stories and updates.",
-        "pagination_prev": "Previous",
-        "pagination_next": "Next",
         "header_opacity": 100
       }
     }

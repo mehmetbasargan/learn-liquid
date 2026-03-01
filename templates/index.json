@@ -219,6 +219,17 @@
       "settings": {
         "title": "Follow the Era"
       }
+    },
+    "featured_blog_carousel_rfnxdi": {
+      "type": "featured-blog-carousel",
+      "name": "Featured Blog Carousel",
+      "settings": {
+        "title": "The Journal",
+        "subtitle": "Discover the world of Luvia Era",
+        "blog": "news",
+        "post_limit": 6,
+        "header_opacity": 100
+      }
     }
   },
   "order": [
@@ -228,6 +239,7 @@
     "collection_list_thQPNq",
     "featured_products_GFTLFG",
     "shoppable_image_mTy7Xm",
-    "full_width_gallery_7tAPz6"
+    "full_width_gallery_7tAPz6",
+    "featured_blog_carousel_rfnxdi"
   ]
 }
