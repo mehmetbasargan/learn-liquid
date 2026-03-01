@@ -227,8 +227,8 @@
         "title": "The Journal",
         "subtitle": "Discover the world of Luvia Era",
         "blog": "news",
-        "post_limit": 3,
-        "header_opacity": 100
+        "post_limit": 6,
+        "header_opacity": 40
       }
     }
   },
