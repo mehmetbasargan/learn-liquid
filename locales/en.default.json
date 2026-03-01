@@ -122,5 +122,23 @@
 		"added": "Added to wishlist",
 		"removed": "Removed from wishlist",
 		"login_required": "Please login to add items to your wishlist."
+	},
+	"blog": {
+		"title": "Blog",
+		"empty": "No articles found.",
+		"back_to_blog": "← Back to blog",
+		"read_more": "Read More",
+		"tagged_with": "Tagged: {{ tags }}",
+		"no_articles": "No articles found",
+		"article_by": "By {{ author }}",
+		"published_on": "Published on {{ date }}",
+		"related_products": "Related Products"
+	},
+	"article": {
+		"back_to_blog": "← Back to {{ blog_title }}",
+		"share_on_facebook": "Share on Facebook",
+		"share_on_twitter": "Share on Twitter",
+		"share_on_pinterest": "Share on Pinterest",
+		"no_related_products": "No related products found"
 	}
 }

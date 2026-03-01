@@ -8,13 +8,17 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {
-    "main": {
-      "type": "blog",
-      "settings": {}
-    }
-  },
-  "order": [
-    "main"
-  ]
+	"sections": {
+		"main": {
+			"type": "main-blog",
+			"settings": {
+				"show_rss": true,
+				"show_tags": true,
+				"show_author": true,
+				"show_date": true,
+				"show_excerpt": true
+			}
+		}
+	},
+	"order": ["main"]
 }
