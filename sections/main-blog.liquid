@@ -67,16 +67,16 @@
           {% if paginate.previous %}
             <a
               href="{{ paginate.previous.url }}"
-              class="flex items-center font-medium text-sm text-primary hover:text-secondary transition-colors uppercase"
+              class="flex items-center font-medium text-sm text-primary hover:text-secondary transition-colors uppercase tracking-widest"
             >
-              <span class="mr-2">←</span> Previous
+              <span class="mr-2">←</span> {{ section.settings.pagination_prev }}
             </a>
           {% endif %}
 
           <div class="flex items-center space-x-4">
             {% for part in paginate.parts %}
               {% if part.is_link %}
-                <a href="{{ part.url }}" class="text-sm font-medium text-gray-400 hover:text-primary">
+                <a href="{{ part.url }}" class="text-sm font-medium text-gray-400 hover:text-primary transition-colors">
                   {{ part.title }}
                 </a>
               {% else %}
@@ -96,9 +96,10 @@
           {% if paginate.next %}
             <a
               href="{{ paginate.next.url }}"
-              class="flex items-center font-medium text-sm text-primary hover:text-secondary transition-colors uppercase"
+              class="flex items-center font-medium text-sm text-primary hover:text-secondary transition-colors uppercase tracking-widest"
             >
-              Next <span class="ml-2">→</span>
+              {{ section.settings.pagination_next }}
+              <span class="ml-2">→</span>
             </a>
           {% endif %}
         </nav>
@@ -120,9 +121,14 @@
   "name": "Main Blog Page",
   "settings": [
     {
+      "type": "header",
+      "content": "Blog Header Settings"
+    },
+    {
       "type": "text",
       "id": "blog_title",
       "label": "Blog Page Title",
+      "info": "Leave empty to use the default blog name.",
       "default": "Latest Stories"
     },
     {
@@ -130,6 +136,26 @@
       "id": "blog_subtitle",
       "label": "Blog Subtitle",
       "default": "Explore our latest stories and updates."
+    },
+    {
+      "type": "header",
+      "content": "Pagination Settings"
+    },
+    {
+      "type": "text",
+      "id": "pagination_prev",
+      "label": "Previous Button Label",
+      "default": "Previous"
+    },
+    {
+      "type": "text",
+      "id": "pagination_next",
+      "label": "Next Button Label",
+      "default": "Next"
+    },
+    {
+      "type": "header",
+      "content": "Style Settings"
     },
     {
       "type": "range",
