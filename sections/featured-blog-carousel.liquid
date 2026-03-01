@@ -14,12 +14,12 @@
     </div>
   </div>
 
-  <div class="swiper featuredSwiper px-4">
+  <div class="container swiper featuredSwiper px-4">
     <div class="swiper-wrapper">
       {% assign blog = blogs[section.settings.blog] %}
       {% for article in blog.articles limit: section.settings.post_limit %}
         <div class="swiper-slide">
-          <div class="group cursor-pointer max-w-[320px] mx-auto">
+          <div class="group cursor-pointer">
             {% if article.image %}
               <div class="overflow-hidden aspect-square mb-6 rounded-sm">
                 <img
@@ -34,19 +34,19 @@
             {% endif %}
 
             <div class="space-y-2">
-              <span class="text-[10px] font-bold text-secondary uppercase tracking-[0.2em]">
+              <span class="text-[13px] font-medium text-secondary uppercase tracking-[0.2em]">
                 {{- article.published_at | date: '%b %d, %Y' -}}
               </span>
 
-              <h3 class="text-lg font-light uppercase leading-tight group-hover:text-secondary transition-colors line-clamp-2 min-h-[3rem]">
+              <h3 class="font-light text-[19px] uppercase leading-tight group-hover:text-secondary transition-colors line-clamp-2 min-h-[1rem]">
                 {{ article.title }}
               </h3>
 
               <a
                 href="{{ article.url }}"
-                class="inline-block mt-2 text-[11px] border-b border-black pb-1 uppercase font-semibold tracking-widest hover:text-secondary hover:border-secondary transition-all"
+                class="inline-block text-[11px] border-b border-black pb-1 uppercase font-semibold tracking-widest hover:text-secondary hover:border-secondary transition-all"
               >
-                Read Article
+                {{ 'blog.read_article' | t }}
               </a>
             </div>
           </div>
@@ -56,11 +56,13 @@
   </div>
 </section>
 
-<style>
-  .featuredSwiper {
-    padding-right: 50px;
-  } /* Sonraki kartın ucunu göstermek için */
-</style>
+{% comment %}
+  <style>
+    .featuredSwiper {
+      padding-right: 50px;
+    }
+  </style>
+{% endcomment %}
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -68,6 +70,9 @@
       slidesPerView: 1.2,
       spaceBetween: 20,
       loop: true,
+      /*  autoplay: {
+        delay: 5000,
+      }, */
       navigation: {
         nextEl: '.swiper-button-next-custom',
         prevEl: '.swiper-button-prev-custom',

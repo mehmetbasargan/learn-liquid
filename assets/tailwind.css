@@ -1242,6 +1242,14 @@ p{
   min-height: 3rem;
 }
 
+.min-h-\[2rem\]{
+  min-height: 2rem;
+}
+
+.min-h-\[1rem\]{
+  min-height: 1rem;
+}
+
 .\!w-\[50px\]{
   width: 50px !important;
 }
@@ -2272,6 +2280,10 @@ p{
 .text-5xl{
   font-size: 3rem;
   line-height: 1;
+}
+
+.text-\[19px\]{
+  font-size: 19px;
 }
 
 .font-bold{
