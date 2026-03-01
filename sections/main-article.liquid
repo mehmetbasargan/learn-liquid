@@ -1,16 +1,16 @@
-<article class="container px-4 py-16">
+<article class="max-w-[900px] mx-auto px-4 py-16">
   <header class="text-center mb-12">
     <span class="text-sm uppercase tracking-widest text-primary">{{ blog.title }}</span>
-    <h1 class="text-5xl font-light mt-4 mb-6 leading-tight">{{ article.title }}</h1>
+    <h4 class="font-light uppercase mt-4 mb-6 leading-tight">{{ article.title }}</h4>
     <div class="flex justify-center items-center space-x-4 text-primary text-sm">
       <span>{{ article.author }}</span>
-      <span>•</span>
+      <span class="text-primary">•</span>
       <span>{{ article.published_at | date: '%d %b %Y' }}</span>
     </div>
   </header>
 
   {% if article.image %}
-    <div class="aspect-video rounded-xl overflow-hidden mb-12">
+    <div class="aspect-video overflow-hidden mb-12">
       <img src="{{ article.image | image_url: width: 1200 }}" height="" width="" class="w-full h-full object-cover">
     </div>
   {% endif %}
@@ -20,7 +20,7 @@
   </div>
 
   <div class="mt-16 pt-8 border-t flex justify-between items-center">
-    <a href="{{ blog.url }}" class="text-sm font-bold hover:text-secondary">← BACK TO BLOG</a>
+    <a href="{{ blog.url }}" class="text-sm font-medium hover:text-secondary">← {{ 'article.back_to_blog' | t }}</a>
     {%- render 'icon-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image -%}
   </div>
 </article>

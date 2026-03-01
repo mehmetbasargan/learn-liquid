@@ -1367,6 +1367,22 @@ p{
   max-width: none;
 }
 
+.max-w-6xl{
+  max-width: 72rem;
+}
+
+.max-w-\[500px\]{
+  max-width: 500px;
+}
+
+.max-w-\[800px\]{
+  max-width: 800px;
+}
+
+.max-w-\[900px\]{
+  max-width: 900px;
+}
+
 .flex-1{
   flex: 1 1 0%;
 }
