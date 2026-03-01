@@ -8,17 +8,24 @@
  * ------------------------------------------------------------
  */
 {
-	"sections": {
-		"main": {
-			"type": "main-blog",
-			"settings": {
-				"show_rss": true,
-				"show_tags": true,
-				"show_author": true,
-				"show_date": true,
-				"show_excerpt": true
-			}
-		}
-	},
-	"order": ["main"]
+  "sections": {
+    "main": {
+      "type": "blog",
+      "settings": {}
+    },
+    "main_page_header_xDTDFd": {
+      "type": "main-page-header",
+      "name": "Page Header",
+      "settings": {
+        "image": "shopify://shop_images/alpcem-portrait-4714821_1280_a77cea59-59d6-4ed4-ad6c-764771cfacef.jpg",
+        "custom_title": "Blog",
+        "hero_height": 40,
+        "overlay_opacity": 30
+      }
+    }
+  },
+  "order": [
+    "main",
+    "main_page_header_xDTDFd"
+  ]
 }
