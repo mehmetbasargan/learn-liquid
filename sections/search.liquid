@@ -119,59 +119,93 @@
   });
 
   // HTML structure matches product-card.liquid file exactly
-  function renderResults(products) {
-    resultsContainer.innerHTML = products
-      .map((product) => {
-        const price = formatMoney(product.price);
-        const isOnSale = product.compare_at_price > product.price;
-        const comparePrice = isOnSale ? formatMoney(product.compare_at_price) : '';
-        const mainImage = product.featured_image ? product.featured_image.url : product.image || '';
-        const hoverImage = product.images && product.images.length > 1 ? product.images[1].url : null;
+  function renderResults(results) {
+    resultsContainer.innerHTML = results
+      .map((item) => {
+        // 1. Önce bu bir Blog yazısı mı kontrol edelim
+        // Shopify API blog yazıları için genelde 'article' tipini döndürür veya URL'de /blogs/ geçer
+        const isArticle = item.url.includes('/blogs/') || item.object_type === 'article';
+
+        // 2. Görsel Ayarları
+        const mainImage = item.featured_image ? item.featured_image.url : item.image || '';
+        const hoverImage = !isArticle && item.images && item.images.length > 1 ? item.images[1].url : null;
+
+        // 3. Ürün Bilgileri (Sadece Ürünse hesapla, yoksa hata verir)
+        let priceHtml = '';
+        let actionButton = '';
+
+        if (!isArticle) {
+          // ÜRÜN İÇİN HESAPLAMALAR
+          const price = formatMoney(item.price);
+          const isOnSale = item.compare_at_price > item.price;
+          const comparePrice = isOnSale ? formatMoney(item.compare_at_price) : '';
+
+          priceHtml = `
+          <div class="mt-2 flex items-center gap-2">
+            ${isOnSale ? `<span class="text-gray-400 line-through text-[13px]">${comparePrice}</span>` : ''}
+            <span class="text-primary text-[14px] font-medium">${price}</span>
+          </div>
+        `;
+
+          actionButton = `
+          <div class="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 hidden md:block">
+            <a href="${item.url}" class="w-full bg-primary text-white py-3 text-[13px] uppercase tracking-[0.2em] block text-center hover:bg-secondary transition-colors">
+              {{ 'general.view_product' | t }}
+            </a>
+          </div>
+        `;
+        } else {
+          // BLOG İÇİN BUTON (View Product yerine Read More)
+          actionButton = `
+          <div class="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 hidden md:block">
+            <a href="${item.url}" class="w-full bg-black text-white py-3 text-[13px] uppercase tracking-[0.2em] block text-center hover:bg-secondary transition-colors">
+              Read Article
+            </a>
+          </div>
+        `;
+
+          priceHtml = `
+          <div class="mt-2">
+            <span class="text-secondary text-[12px] font-medium uppercase tracking-wider">Journal / Article</span>
+          </div>
+        `;
+        }
 
         return `
-        <div class="group flex flex-col h-full bg-white overflow-hidden relative animate-fadeIn">
-          <div class="relative aspect-[3/4] overflow-hidden bg-custombg">
-            ${
-              isOnSale
-                ? `<span class="absolute top-3 left-3 z-10 bg-secondary text-white font-bold text-[13px] px-2 py-1 tracking-widest uppercase">İndirim</span>`
-                : ''
-            }
-            
-            <a href="${product.url}" class="block h-full w-full">
-              <img src="${mainImage}" alt="${
-          product.title
+      <div class="group flex flex-col h-full bg-white overflow-hidden relative animate-fadeIn border border-transparent hover:border-gray-50 transition-all">
+        <div class="relative aspect-[3/4] overflow-hidden bg-custombg">
+          ${
+            isArticle
+              ? `<span class="absolute top-3 left-3 z-10 bg-black text-white font-bold text-[10px] px-2 py-1 tracking-widest uppercase italic shadow-sm">Journal</span>`
+              : ''
+          }
+          
+          <a href="${item.url}" class="block h-full w-full">
+            <img src="${mainImage}" alt="${
+          item.title
         }" class="w-full h-full object-cover transition-opacity duration-700 ${
           hoverImage ? 'group-hover:opacity-0' : ''
         }" loading="lazy">
-              ${
-                hoverImage
-                  ? `<img src="${hoverImage}" class="w-full h-full object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">`
-                  : ''
-              }
-            </a>
+            ${
+              hoverImage
+                ? `<img src="${hoverImage}" class="w-full h-full object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">`
+                : ''
+            }
+          </a>
 
-            <div class="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 hidden md:block">
-              <a href="${
-                product.url
-              }" class="w-full bg-primary text-white py-3 text-[13px] uppercase tracking-[0.2em] block text-center hover:bg-secondary transition-colors">
-                {{ 'general.view_product' | t }}
-              </a>
-            </div>
-          </div>
-
-          <div class="pt-4 pb-2 flex flex-col items-center">
-            <a href="${
-              product.url
-            }" class="text-primary font-light text-[14px] hover:text-secondary transition-colors uppercase">
-              ${product.title}
-            </a>
-            <div class="mt-2 flex items-center gap-2">
-              ${isOnSale ? `<span class="text-gray-400 line-through text-[13px]">${comparePrice}</span>` : ''}
-              <span class="text-primary text-[14px] font-medium">${price}</span>
-            </div>
-          </div>
+          ${actionButton}
         </div>
-      `;
+
+        <div class="pt-4 pb-2 flex flex-col items-center px-3">
+          <a href="${
+            item.url
+          }" class="text-primary font-light text-[14px] hover:text-secondary transition-colors uppercase text-center line-clamp-2 min-h-[40px]">
+            ${item.title}
+          </a>
+          ${priceHtml}
+        </div>
+      </div>
+    `;
       })
       .join('');
   }

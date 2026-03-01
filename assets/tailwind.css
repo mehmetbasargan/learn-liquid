@@ -1250,6 +1250,10 @@ p{
   min-height: 1rem;
 }
 
+.min-h-\[40px\]{
+  min-height: 40px;
+}
+
 .\!w-\[50px\]{
   width: 50px !important;
 }
@@ -2674,6 +2678,11 @@ p{
 
 .hover\:border-secondary:hover{
   border-color: var(--color-secondary);
+}
+
+.hover\:border-gray-50:hover{
+  --tw-border-opacity: 1;
+  border-color: rgb(249 250 251 / var(--tw-border-opacity, 1));
 }
 
 .hover\:\!bg-primary:hover{
