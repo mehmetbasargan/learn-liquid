@@ -556,17 +556,7 @@ video {
   display: none;
 }
 
-:root {
-  --color-primary: #3b443c;
-  --color-secondary: #b2ac88;
-  --color-custombg: #f9f9f9;
-  --color-line: #e5e7eb;
-  --color-white: #ffffff;
-  --color-black: #000000;
-  --color-bgtransparent: rgba(249, 249, 249, 0.3);
-  --font-heading: 'Josefin Sans', sans-serif;
-  --font-body: 'Inter', sans-serif;
-}
+/* CSS variables will be set by theme.liquid from Shopify settings */
 
 body{
   margin: 0px;
@@ -578,16 +568,6 @@ body{
 
 .bg-transparent {
   background-color: transparent !important;
-}
-
-.bg-bgtransparent {
-  background-color: var(--color-bgtransparent) !important;
-  background: var(--color-bgtransparent) !important;
-}
-
-header#main-header.bg-bgtransparent {
-  background-color: var(--color-bgtransparent) !important;
-  background: var(--color-bgtransparent) !important;
 }
 
 h1,
@@ -1779,10 +1759,6 @@ p{
   background-color: rgb(251 251 251 / var(--tw-bg-opacity, 1));
 }
 
-.bg-bgtransparent{
-  background-color: var(--color-bgtransparent);
-}
-
 .bg-black{
   background-color: var(--color-black);
 }
@@ -2912,12 +2888,12 @@ p{
     justify-content: space-between;
   }
 
-  .lg\:\!gap-2{
-    gap: 0.5rem !important;
-  }
-
   .lg\:gap-10{
     gap: 2.5rem;
+  }
+
+  .lg\:gap-12{
+    gap: 3rem;
   }
 
   .lg\:gap-2{
