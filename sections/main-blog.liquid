@@ -76,7 +76,10 @@
           <div class="flex items-center space-x-4">
             {% for part in paginate.parts %}
               {% if part.is_link %}
-                <a href="{{ part.url }}" class="text-sm font-medium text-gray-400 hover:text-primary transition-colors">
+                <a
+                  href="{{ part.url }}"
+                  class="text-sm font-medium text-secondary hover:text-primary transition-colors"
+                >
                   {{ part.title }}
                 </a>
               {% else %}
@@ -85,7 +88,7 @@
                     {{ part.title }}
                   </span>
                 {% else %}
-                  <span class="text-gray-300">
+                  <span class="text-gray-300 border-b-2 border-primary">
                     {{ part.title }}
                   </span>
                 {% endif %}
