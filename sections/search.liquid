@@ -57,13 +57,13 @@
 </div>
 
 <script>
-// --- Translation Dictionary (Liquid to JS) ---
+  // --- Translation Dictionary ---
   const translations = {
-    // Eğer dil dosyasında varsa onu al, yoksa direkt tırnak içindeki 'Journal' yazısını kullan
     journal: {{ 'general.search.journal' | t | json }} || "Journal",
     article: {{ 'general.search.article' | t | json }} || "Article",
     readMore: {{ 'blog.read_more' | t | json }} || "Read Article",
-    viewProduct: {{ 'general.view_product' | t | json }} || "View Product"
+    viewProduct: {{ 'general.view_product' | t | json }} || "View Product",
+    sale: {{ 'products.product.on_sale' | t | json }} || "SALE"
   };
 
   const searchInput = document.querySelector('#search-input');
@@ -72,7 +72,6 @@
   const dynamicTitle = document.querySelector('#dynamic-search-title');
   const emptyMessage = document.querySelector('#search-empty-message');
 
-  // Currency formatter
   const formatMoney = (cents) => {
     if (!cents) return '';
     return (cents / 100).toLocaleString('{{ shop.locale }}', {
@@ -86,7 +85,6 @@
 
   searchInput.addEventListener('input', function (e) {
     const searchTerm = e.target.value.trim();
-
     if (searchTerm.length <= 2) {
       if (!window.location.search.includes('q=')) {
         searchHeaderWrapper.classList.add('hidden');
@@ -95,18 +93,12 @@
       return;
     }
 
-    // Shopify Predictive Search API - Product and Article included
-    fetch(
-      `${window.Shopify.routes.root}search/suggest.json?q=${encodeURIComponent(
-        searchTerm
-      )}&resources[type]=product,article&resources[limit]=12`
-    )
+    fetch(`${window.Shopify.routes.root}search/suggest.json?q=${encodeURIComponent(searchTerm)}&resources[type]=product,article&resources[limit]=12`)
       .then((response) => response.json())
       .then((data) => {
         const products = data.resources?.results?.products || [];
         const articles = data.resources?.results?.articles || [];
         const allResults = [...products, ...articles];
-
         const resultCount = allResults.length;
 
         searchHeaderWrapper.classList.remove('hidden');
@@ -127,21 +119,24 @@
   function renderResults(results) {
     resultsContainer.innerHTML = results
       .map((item) => {
-        // Check if it's a Blog Post
         const isArticle = item.url.includes('/blogs/') || item.type === 'article';
-
-        // Image Handling
         const mainImage = item.featured_image ? item.featured_image.url : item.image || '';
         const hoverImage = !isArticle && item.images && item.images.length > 1 ? item.images[1].url : null;
 
         let priceHtml = '';
         let actionButton = '';
+        let badgeHtml = '';
 
         if (!isArticle) {
-          // PRODUCT LAYOUT
+          // PRODUCT LOGIC
           const price = formatMoney(item.price);
           const isOnSale = item.compare_at_price > item.price;
           const comparePrice = isOnSale ? formatMoney(item.compare_at_price) : '';
+
+          // İndirim Etiketi Ekledik
+          if (isOnSale) {
+            badgeHtml = `<span class="absolute top-3 left-3 z-10 bg-secondary text-white font-bold text-[11px] px-2 py-1 tracking-widest uppercase shadow-sm">${translations.sale}</span>`;
+          }
 
           priceHtml = `
             <div class="mt-2 flex items-center gap-2">
@@ -158,7 +153,9 @@
             </div>
           `;
         } else {
-          // BLOG LAYOUT
+          // ARTICLE LOGIC
+          badgeHtml = `<span class="absolute top-3 left-3 z-10 bg-black text-white font-bold text-[10px] px-2 py-1 tracking-widest uppercase italic shadow-sm">${translations.journal}</span>`;
+          
           priceHtml = `
             <div class="mt-2">
               <span class="text-secondary text-[12px] font-medium uppercase tracking-wider">${translations.article}</span>
@@ -177,32 +174,15 @@
         return `
           <div class="group flex flex-col h-full bg-white overflow-hidden relative animate-fadeIn border border-transparent hover:border-gray-50 transition-all">
             <div class="relative aspect-[3/4] overflow-hidden bg-custombg">
-              ${
-                isArticle
-                  ? `<span class="absolute top-3 left-3 z-10 bg-black text-white font-bold text-[10px] px-2 py-1 tracking-widest uppercase italic shadow-sm">${translations.journal}</span>`
-                  : ''
-              }
-              
+              ${badgeHtml}
               <a href="${item.url}" class="block h-full w-full">
-                <img src="${mainImage}" alt="${
-          item.title
-        }" class="w-full h-full object-cover transition-opacity duration-700 ${
-          hoverImage ? 'group-hover:opacity-0' : ''
-        }" loading="lazy">
-                ${
-                  hoverImage
-                    ? `<img src="${hoverImage}" class="w-full h-full object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">`
-                    : ''
-                }
+                <img src="${mainImage}" alt="${item.title}" class="w-full h-full object-cover transition-opacity duration-700 ${hoverImage ? 'group-hover:opacity-0' : ''}" loading="lazy">
+                ${hoverImage ? `<img src="${hoverImage}" class="w-full h-full object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">` : ''}
               </a>
-
               ${actionButton}
             </div>
-
             <div class="pt-4 pb-2 flex flex-col items-center px-3">
-              <a href="${
-                item.url
-              }" class="text-primary font-light text-[14px] hover:text-secondary transition-colors uppercase text-center line-clamp-2 min-h-[40px]">
+              <a href="${item.url}" class="text-primary font-light text-[14px] hover:text-secondary transition-colors uppercase text-center line-clamp-2 min-h-[40px]">
                 ${item.title}
               </a>
               ${priceHtml}
