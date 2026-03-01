@@ -1,7 +1,6 @@
 <header
   id="main-header"
-  class="fixed top-0 left-0 z-50 w-full transition-all duration-500 ease-in-out"
-  style="background-color: rgba(249, 249, 249, 0.3);"
+  class="header-wrapper fixed top-0 left-0 z-50 w-full transition-all duration-500 ease-in-out"
 >
   {% comment %} social media {% endcomment %}
   <div class="py-2 border-b border-line mb-2">
@@ -254,6 +253,21 @@
   </div>
 </header>
 
+<style>
+    {% style %}
+    :root {
+      /* Seçilen rengi ve şeffaflığı birleştirip header'a özel bir değişken yapıyoruz */
+      --header-bg-transparent: color-mix(in srgb, {{ section.settings.header_bg_color }}, transparent {{ 100 | minus: section.settings.header_opacity }}%);
+    }
+
+    #shopify-section-{{ section.id }} .header-wrapper {
+      background-color: var(--header-bg-transparent);
+      backdrop-filter: blur(8px); /* Opsiyonel: Buzlu cam efekti verir, çok profesyonel durur */
+      transition: background-color 0.3s ease;
+    }
+  {% endstyle %}
+</style>
+
 <script>
   const header = document.getElementById('main-header');
   const menu = document.getElementById('main-menu');
@@ -294,6 +308,23 @@
       "id": "show_phone",
       "label": "Show Phone",
       "default": true
+    },
+    {
+      "type": "color",
+      "id": "header_bg_color",
+      "label": "Header Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "header_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "%",
+      "label": "Header Opacity Level",
+      "info": "Adjust the transparency of the header background. Higher values are more opaque.",
+      "default": 80
     }
   ],
   "blocks": [
