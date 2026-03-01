@@ -1,4 +1,4 @@
-{% paginate blog.articles by 1 %}
+{% paginate blog.articles by 10 %}
   <div class="main-blog-section py-12 px-4 max-w-7xl mx-auto">
     <header class="text-center mb-16">
       <h3 class="font-light uppercase tracking-widest">{{ blog.title }}</h3>
@@ -83,7 +83,7 @@
                 </a>
               {% else %}
                 {% if part.title == paginate.current_page %}
-                  <span class="w-5 h-5 flex items-center justify-center text-primary text-md font-bold">
+                  <span class="w-5 h-5 flex items-center justify-center text-primary text-md font-bold border-b-2 border-primary">
                     {{ part.title }}
                   </span>
                 {% else %}
@@ -109,11 +109,11 @@
 
     {% else %}
       <div class="text-center py-20 bg-custombg rounded-lg">
-        <p class="text-xl text-primary italic">
+        <p class="text-xl text-primary">
           {{ 'blog.no_posts_found' | t: blog_title: blog.title }}
         </p>
         <a href="/admin/articles/new" class="mt-4 inline-block bg-primary text-white px-6 py-2 rounded">
-          {{- 'blog.create_post' | t -}}
+          {{ 'blog.create_post' | t }}
         </a>
       </div>
     {% endif %}
