@@ -14,7 +14,7 @@
       "name": "Page Header",
       "settings": {
         "image": "{{ article.image }}",
-        "custom_title": "Detail",
+        "custom_title": "{{ article.title }}",
         "hero_height": 55,
         "overlay_opacity": 30
       }
