@@ -1,21 +1,21 @@
 {% paginate blog.articles by 12 %}
   <div class="main-blog-section py-12 px-4 max-w-7xl mx-auto">
     <header class="text-center mb-16">
-      <h1 class="text-4xl font-light uppercase tracking-widest">{{ blog.title }}</h1>
-      <p class="text-gray-500 mt-2">{{ 'blog.explore_stories' | t }}</p>
+      <h3 class="font-light uppercase tracking-widest">{{ blog.title }}</h3>
+      <p class="text-primary mt-2">{{ 'blog.explore_stories' | t }}</p>
     </header>
 
     <div class="flex justify-center gap-4 mb-10 overflow-x-auto pb-4">
       <a
         href="{{ blog.url }}"
-        class="px-4 py-2 rounded-md border border-black hover:bg-black hover:text-white transition {% if current_tags == blank %}bg-black text-white{% endif %}"
+        class="px-4 py-2 rounded-md border border-primary hover:bg-secondary hover:text-white transition {% if current_tags == blank %}bg-primary text-white{% endif %}"
       >
         {{- 'blog.all_posts' | t -}}
       </a>
       {% for tag in blog.all_tags %}
         <a
           href="{{ blog.url }}/tagged/{{ tag | handle }}"
-          class="px-4 py-2 rounded-full border border-black hover:bg-black hover:text-white transition {% if current_tags contains tag %}bg-black text-white{% endif %}"
+          class="px-4 py-2 rounded-md border border-primary hover:bg-primary hover:text-white transition {% if current_tags contains tag %}bg-primary text-white{% endif %}"
         >
           {{ tag }}
         </a>
@@ -40,18 +40,18 @@
             {% endif %}
 
             <div class="content space-y-3">
-              <span class="text-xs font-bold text-secondary uppercase">
+              <span class="text-sm font-bold text-secondary tracking-wider">
                 {{- article.published_at | date: '%B %d, %Y' -}}
               </span>
-              <h2 class="text-2xl font-medium leading-tight group-hover:text-primary transition-colors">
+              <h5 class="font-light uppercase leading-tight group-hover:text-primary transition-colors">
                 <a href="{{ article.url }}">{{ article.title }}</a>
-              </h2>
-              <p class="text-gray-600 line-clamp-3 text-sm">
+              </h5>
+              <p class="text-primary line-clamp-3">
                 {{ article.excerpt_or_content | strip_html | truncate: 150 }}
               </p>
               <a
                 href="{{ article.url }}"
-                class="inline-block pt-2 font-bold text-sm border-b-2 border-black hover:border-secondary transition-all uppercase"
+                class="inline-block pt-2 font-medium text-sm hover:underline transition-all uppercase"
               >
                 Read More
               </a>
