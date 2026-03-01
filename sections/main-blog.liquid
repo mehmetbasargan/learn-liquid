@@ -1,4 +1,4 @@
-{% paginate blog.articles by 12 %}
+{% paginate blog.articles by 1 %}
   <div class="main-blog-section py-12 px-4 max-w-7xl mx-auto">
     <header class="text-center mb-16">
       <h3 class="font-light uppercase tracking-widest">{{ blog.title }}</h3>
@@ -60,20 +60,61 @@
         {% endfor %}
       </div>
 
-      {% paginate blog.articles by 1 %}
-        {% if paginate.pages > 1 %}
-          <div class="pagination flex justify-center gap-4 mt-12 py-8 border-t">
-            {{ paginate | default_pagination }}
+      {% comment %} Pagination {% endcomment %}
+      {% if paginate.pages > 1 %}
+        <nav class="mt-16 flex justify-center items-center space-x-4 border-t pt-10" role="navigation">
+          {% if paginate.previous %}
+            <a
+              href="{{ paginate.previous.url }}"
+              class="group flex items-center text-sm font-medium text-gray-500 hover:text-black transition-colors uppercase tracking-widest"
+            >
+              <span class="mr-2">←</span> {{ 'blog.pagination.previous' | t }}
+            </a>
+          {% endif %}
+
+          <div class="flex items-center space-x-2">
+            {% for part in paginate.parts %}
+              {% if part.is_link %}
+                <a
+                  href="{{ part.url }}"
+                  class="w-10 h-10 flex items-center justify-center rounded-full text-sm font-medium text-gray-400 hover:border hover:border-black hover:text-black transition-all"
+                >
+                  {{ part.title }}
+                </a>
+              {% else %}
+                {% if part.title == paginate.current_page %}
+                  <span class="w-10 h-10 flex items-center justify-center rounded-full bg-black text-white text-sm font-bold shadow-lg">
+                    {{ part.title }}
+                  </span>
+                {% else %}
+                  <span class="w-10 h-10 flex items-center justify-center text-gray-300">
+                    {{ part.title }}
+                  </span>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
           </div>
-        {% endif %}
-      {% endpaginate %}
+
+          {% if paginate.next %}
+            <a
+              href="{{ paginate.next.url }}"
+              class="group flex items-center text-sm font-medium text-gray-500 hover:text-black transition-colors uppercase tracking-widest"
+            >
+              {{ 'blog.pagination.next' | t }}
+              <span class="ml-2">→</span>
+            </a>
+          {% endif %}
+        </nav>
+      {% endif %}
 
     {% else %}
       <div class="text-center py-20 bg-gray-50 rounded-lg">
         <p class="text-xl text-gray-500 italic">
-          No blog posts found in "{{ blog.title }}". Please add some posts in your admin panel.
+          {{ 'blog.no_posts_found' | t: blog_title: blog.title }}
         </p>
-        <a href="/admin/articles/new" class="mt-4 inline-block bg-black text-white px-6 py-2 rounded">Create a Post</a>
+        <a href="/admin/articles/new" class="mt-4 inline-block bg-black text-white px-6 py-2 rounded">
+          {{- 'blog.create_post' | t -}}
+        </a>
       </div>
     {% endif %}
   </div>

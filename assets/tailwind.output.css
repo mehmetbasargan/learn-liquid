@@ -1027,6 +1027,10 @@ p{
   margin-top: 3rem;
 }
 
+.mr-2{
+  margin-right: 0.5rem;
+}
+
 .line-clamp-2{
   overflow: hidden;
   display: -webkit-box;
@@ -1218,6 +1222,10 @@ p{
   height: 100%;
 }
 
+.h-10{
+  height: 2.5rem;
+}
+
 .\!w-\[50px\]{
   width: 50px !important;
 }
@@ -1321,6 +1329,10 @@ p{
 .w-max{
   width: -moz-max-content;
   width: max-content;
+}
+
+.w-10{
+  width: 2.5rem;
 }
 
 .min-w-\[200px\]{
@@ -1657,6 +1669,12 @@ p{
   --tw-space-y-reverse: 0;
   margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
+}
+
+.space-x-2 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .overflow-hidden{
@@ -2589,6 +2607,10 @@ p{
 
 .hover\:\!text-wrap:hover{
   text-wrap: wrap !important;
+}
+
+.hover\:border:hover{
+  border-width: 1px;
 }
 
 .hover\:border-black:hover{

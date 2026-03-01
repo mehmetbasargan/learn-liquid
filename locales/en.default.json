@@ -106,7 +106,13 @@
 		"comment_form_email": "Email",
 		"comment_form_name": "Name",
 		"comment_form_submit": "Post Comment",
-		"comment_form_title": "Join of Conversation"
+		"comment_form_title": "Join of Conversation",
+		"pagination": {
+			"previous": "Previous",
+			"next": "Next"
+		},
+		"no_posts_found": "No blog posts found in \"{{ blog_title }}\". Please add some posts in your admin panel.",
+		"create_post": "Create a Post"
 	},
 	"header": {
 		"mega_menu": {
