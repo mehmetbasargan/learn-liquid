@@ -116,7 +116,7 @@
       .catch((err) => console.error('Search Error:', err));
   });
 
-  function renderResults(results) {
+ function renderResults(results) {
     resultsContainer.innerHTML = results
       .map((item) => {
         const isArticle = item.url.includes('/blogs/') || item.type === 'article';
@@ -128,20 +128,24 @@
         let badgeHtml = '';
 
         if (!isArticle) {
-          // PRODUCT LOGIC
-          const price = formatMoney(item.price);
-          const isOnSale = item.compare_at_price > item.price;
-          const comparePrice = isOnSale ? formatMoney(item.compare_at_price) : '';
+          // --- ÜRÜN MANTIĞI VE İNDİRİM KONTROLÜ ---
+          const currentPrice = Number(item.price);
+          const comparePriceRaw = Number(item.compare_at_price);
+          
+          // İndirim var mı? (Karşılaştırma fiyatı mevcut fiyattan büyükse)
+          const isOnSale = comparePriceRaw > currentPrice;
 
-          // İndirim Etiketi Ekledik
           if (isOnSale) {
-            badgeHtml = `<span class="absolute top-3 left-3 z-10 bg-secondary text-white font-bold text-[11px] px-2 py-1 tracking-widest uppercase shadow-sm">${translations.sale}</span>`;
+            badgeHtml = `<span class="absolute top-3 left-3 z-20 bg-secondary text-white font-bold text-[11px] px-2 py-1 tracking-widest uppercase shadow-md">${translations.sale}</span>`;
           }
+
+          const priceFormatted = formatMoney(item.price);
+          const comparePriceFormatted = isOnSale ? formatMoney(item.compare_at_price) : '';
 
           priceHtml = `
             <div class="mt-2 flex items-center gap-2">
-              ${isOnSale ? `<span class="text-gray-400 line-through text-[13px]">${comparePrice}</span>` : ''}
-              <span class="text-primary text-[14px] font-medium">${price}</span>
+              ${isOnSale ? `<span class="text-gray-400 line-through text-[13px]">${comparePriceFormatted}</span>` : ''}
+              <span class="text-primary text-[14px] font-medium">${priceFormatted}</span>
             </div>
           `;
 
@@ -153,8 +157,8 @@
             </div>
           `;
         } else {
-          // ARTICLE LOGIC
-          badgeHtml = `<span class="absolute top-3 left-3 z-10 bg-black text-white font-bold text-[10px] px-2 py-1 tracking-widest uppercase italic shadow-sm">${translations.journal}</span>`;
+          // --- BLOG MANTIĞI ---
+          badgeHtml = `<span class="absolute top-3 left-3 z-20 bg-black text-white font-bold text-[10px] px-2 py-1 tracking-widest uppercase italic shadow-sm">${translations.journal}</span>`;
           
           priceHtml = `
             <div class="mt-2">
