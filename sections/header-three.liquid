@@ -1,7 +1,6 @@
 <header
   id="main-header"
-  class="fixed top-0 left-0 z-50 w-full transition-all duration-500 ease-in-out backdrop-blur-sm"
-  style="background-color: rgba(249, 249, 249, 0.3);"
+  class="fixed top-0 left-0 z-50 w-full transition-all duration-500 ease-in-out"
 >
   {% comment %} social media {% endcomment %}
   <div class="py-2 border-b border-line mb-2">
@@ -46,7 +45,7 @@
       {% comment %} icons {% endcomment %}
       <div class="">
         <div
-          class="flex flex-row justify-start gap-1 lg:gap-12 mt-1 lg:!mt-0"
+          class="flex flex-row justify-start gap-1 lg:gap-12 mt-1 lg:!mt-0 "
         >
           <a href="{{ routes.search_url }}" class="lg:w-[30px] w-[20px] text-primary hover:text-secondary">
             {% render 'icon-search' %}
@@ -262,13 +261,9 @@
     if (window.scrollY > 30) {
       header.style.backgroundColor = '#ffffff';
       header.classList.add('border-b', 'border-line', 'shadow-md');
-      menu.classList.remove('bg-custombg/80');
-      menu.classList.add('bg-custombg');
     } else {
       header.style.backgroundColor = 'rgba(249, 249, 249, 0.3)';
       header.classList.remove('border-b', 'border-line', 'shadow-md');
-      menu.classList.remove('bg-custombg');
-      menu.style.backgroundColor = 'rgba(249, 249, 249, 0.3)';
     }
   });
 </script>
