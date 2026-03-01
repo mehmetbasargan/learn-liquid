@@ -72,6 +72,7 @@
   const dynamicTitle = document.querySelector('#dynamic-search-title');
   const emptyMessage = document.querySelector('#search-empty-message');
 
+  // Para birimi formatlayıcı
   const formatMoney = (cents) => {
     if (!cents) return '';
     return (cents / 100).toLocaleString('{{ shop.locale }}', {
@@ -93,6 +94,7 @@
       return;
     }
 
+    // Predictive Search API çağrısı
     fetch(`${window.Shopify.routes.root}search/suggest.json?q=${encodeURIComponent(searchTerm)}&resources[type]=product,article&resources[limit]=12`)
       .then((response) => response.json())
       .then((data) => {
@@ -116,7 +118,7 @@
       .catch((err) => console.error('Search Error:', err));
   });
 
- function renderResults(results) {
+  function renderResults(results) {
     resultsContainer.innerHTML = results
       .map((item) => {
         const isArticle = item.url.includes('/blogs/') || item.type === 'article';
@@ -127,32 +129,39 @@
         let actionButton = '';
         let badgeHtml = '';
 
-      if (!isArticle) {
+        if (!isArticle) {
           // --- ÜRÜN MANTIĞI ---
-          // API bazen fiyatı kuruşsuz (1500) bazen kuruşlu (150000) gönderir. 
-          // Karşılaştırma için ikisini de sayıya çeviriyoruz.
           const currentPrice = Number(item.price);
+          // API'den gelen farklı indirim fiyatı isimlerini kontrol ediyoruz
           const comparePriceRaw = Number(item.compare_at_price || item.compare_at_price_max || 0);
           
-          // İndirim kontrolü (Compare price, fiyattan büyükse)
+          // İndirim kontrolü
           const isOnSale = comparePriceRaw > currentPrice && comparePriceRaw > 0;
 
           if (isOnSale) {
-            saleBadgeHtml = `
-              <span class="absolute top-3 left-3 z-30 bg-secondary text-white font-bold text-[11px] px-2 py-1 tracking-widest uppercase shadow-sm pointer-events-none animate-fadeIn">
-                ${translations.sale}
-              </span>`;
+            badgeHtml = `<span class="absolute top-3 left-3 z-30 bg-secondary text-white font-bold text-[11px] px-2 py-1 tracking-widest uppercase shadow-md animate-fadeIn">${translations.sale}</span>`;
           }
+
+          const priceFormatted = formatMoney(item.price);
+          const comparePriceFormatted = isOnSale ? formatMoney(comparePriceRaw) : '';
 
           priceHtml = `
             <div class="mt-2 flex items-center gap-2">
-              ${isOnSale ? `<span class="text-gray-400 line-through text-[13px]">${formatMoney(comparePriceRaw)}</span>` : ''}
-              <span class="text-primary text-[14px] font-medium">${formatMoney(item.price)}</span>
+              ${isOnSale ? `<span class="text-gray-400 line-through text-[13px]">${comparePriceFormatted}</span>` : ''}
+              <span class="text-primary text-[14px] font-medium">${priceFormatted}</span>
+            </div>
+          `;
+
+          actionButton = `
+            <div class="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 hidden md:block">
+              <a href="${item.url}" class="w-full bg-primary text-white py-3 text-[13px] uppercase tracking-[0.2em] block text-center hover:bg-secondary transition-colors">
+                ${translations.viewProduct}
+              </a>
             </div>
           `;
         } else {
           // --- BLOG MANTIĞI ---
-          badgeHtml = `<span class="absolute top-3 left-3 z-20 bg-black text-white font-bold text-[10px] px-2 py-1 tracking-widest uppercase italic shadow-sm">${translations.journal}</span>`;
+          badgeHtml = `<span class="absolute top-3 left-3 z-30 bg-black text-white font-bold text-[10px] px-2 py-1 tracking-widest uppercase italic shadow-sm">${translations.journal}</span>`;
           
           priceHtml = `
             <div class="mt-2">
