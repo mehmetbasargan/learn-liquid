@@ -2,15 +2,16 @@
   <div class="main-blog-section py-12 px-4 max-w-7xl mx-auto">
     <header class="text-center mb-16">
       <h1 class="text-4xl font-light uppercase tracking-widest">{{ blog.title }}</h1>
-      <p class="text-gray-500 mt-2">Explore our latest stories and updates</p>
+      <p class="text-gray-500 mt-2">{{ 'blog.explore_stories' | t }}</p>
     </header>
 
     <div class="flex justify-center gap-4 mb-10 overflow-x-auto pb-4">
       <a
         href="{{ blog.url }}"
         class="px-4 py-2 rounded-full border border-black hover:bg-black hover:text-white transition {% if current_tags == blank %}bg-black text-white{% endif %}"
-        >Hepsi</a
       >
+        {{- 'blog.all_posts' | t -}}
+      </a>
       {% for tag in blog.all_tags %}
         <a
           href="{{ blog.url }}/tagged/{{ tag | handle }}"
