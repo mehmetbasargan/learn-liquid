@@ -257,13 +257,25 @@
   const header = document.getElementById('main-header');
   const menu = document.getElementById('main-menu');
 
+  // Test scroll functionality
+  console.log('Header scroll script loaded');
+  console.log('Header element:', header);
+
+  // Set initial transparent background
+  header.style.backgroundColor = 'rgba(249, 249, 249, 0.3)';
+  console.log('Initial background set to transparent');
+
   window.addEventListener('scroll', () => {
+    console.log('Scroll position:', window.scrollY);
+
     if (window.scrollY > 30) {
       header.style.backgroundColor = '#ffffff';
       header.classList.add('border-b', 'border-line', 'shadow-md');
+      console.log('Background changed to white');
     } else {
       header.style.backgroundColor = 'rgba(249, 249, 249, 0.3)';
       header.classList.remove('border-b', 'border-line', 'shadow-md');
+      console.log('Background changed to transparent');
     }
   });
 </script>
