@@ -12,7 +12,9 @@
     "main": {
       "type": "main-blog",
       "disabled": true,
-      "settings": {}
+      "settings": {
+        "blog_title": "Latest Stories"
+      }
     },
     "main_page_header_8nCMnW": {
       "type": "main-page-header",
@@ -23,10 +25,18 @@
         "hero_height": 60,
         "overlay_opacity": 30
       }
+    },
+    "main_blog_KTRd6H": {
+      "type": "main-blog",
+      "name": "Main Blog Page",
+      "settings": {
+        "blog_title": "Latest Stories"
+      }
     }
   },
   "order": [
     "main",
-    "main_page_header_8nCMnW"
+    "main_page_header_8nCMnW",
+    "main_blog_KTRd6H"
   ]
 }
