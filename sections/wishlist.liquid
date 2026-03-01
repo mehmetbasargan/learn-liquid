@@ -1,56 +1,60 @@
 <div class="container mx-auto px-4 py-12">
   <h1 class="text-3xl font-heading text-primary mb-8 text-center">{{ 'wishlist.title' | t }}</h1>
-  
+
   <div id="wishlist-container" class="grid grid-cols-2 md:grid-cols-4 gap-6">
     <!-- Wishlist items will be loaded here via JavaScript -->
   </div>
-  
+
   <div id="wishlist-empty" class="hidden text-center py-20">
     <p class="text-gray-400 text-lg">{{ 'wishlist.empty' | t }}</p>
-    <a href="{{ routes.root_url }}" class="inline-block mt-4 px-6 py-3 bg-primary text-white text-sm uppercase tracking-[0.2em] hover:bg-secondary transition-colors">
+    <a
+      href="{{ routes.root_url }}"
+      class="inline-block mt-4 px-6 py-3 bg-primary text-white text-sm uppercase tracking-[0.2em] hover:bg-secondary transition-colors"
+    >
       {{ 'wishlist.continue_shopping' | t }}
     </a>
   </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  try {
-    // Get wishlist from localStorage
-    const wishlistItems = JSON.parse(localStorage.getItem('luvia_wishlist') || '[]');
-    
-    const container = document.getElementById('wishlist-container');
-    const emptyMessage = document.getElementById('wishlist-empty');
-    
-    if (wishlistItems.length === 0) {
-      container.classList.add('hidden');
-      emptyMessage.classList.remove('hidden');
-      return;
-    }
+  document.addEventListener('DOMContentLoaded', () => {
+    try {
+      // Get wishlist from localStorage
+      const wishlistItems = JSON.parse(localStorage.getItem('luvia_wishlist') || '[]');
 
-    // Load products for each handle in wishlist
-    const productPromises = wishlistItems.map((handle) => {
-      return fetch(`/products/${handle}.js`)
-        .then(response => response.json())
-        .catch(error => {
-          console.error(`Error loading product ${handle}:`, error);
-          return null;
-        });
-    });
+      const container = document.getElementById('wishlist-container');
+      const emptyMessage = document.getElementById('wishlist-empty');
 
-    Promise.all(productPromises).then(products => {
-      // Filter out null products (failed to load)
-      const validProducts = products.filter(product => product !== null);
-
-      if (validProducts.length === 0) {
+      if (wishlistItems.length === 0) {
         container.classList.add('hidden');
         emptyMessage.classList.remove('hidden');
         return;
       }
 
-      container.innerHTML = validProducts
-        .map(
-          (product) => `
+      // Load products for each handle in wishlist
+      const productPromises = wishlistItems.map((handle) => {
+        return fetch(`/products/${handle}.js`)
+          .then((response) => response.json())
+          .catch((error) => {
+            console.error(`Error loading product ${handle}:`, error);
+            return null;
+          });
+      });
+
+      Promise.all(productPromises)
+        .then((products) => {
+          // Filter out null products (failed to load)
+          const validProducts = products.filter((product) => product !== null);
+
+          if (validProducts.length === 0) {
+            container.classList.add('hidden');
+            emptyMessage.classList.remove('hidden');
+            return;
+          }
+
+          container.innerHTML = validProducts
+            .map(
+              (product) => `
       <div class="product-card group relative">
         <a href="${product.url}" class="block overflow-hidden bg-custombg">
           <div class="relative w-full pb-[125%] overflow-hidden bg-custombg">
@@ -58,18 +62,19 @@ document.addEventListener('DOMContentLoaded', () => {
               product.compare_at_price > product.price
                 ? `<span class="absolute top-3 left-3 z-10 bg-secondary text-white font-bold text-[13px] px-2 py-1 tracking-widest uppercase">
                 {{ 'products.product.on_sale' | t }}
-              </span>` : ''
+              </span>`
+                : ''
             }
 
             <!-- Wishlist Heart Button -->
             <button
               type="button"
-              class="wishlist-heart absolute top-3 right-3 z-20 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:bg-white transition-all duration-300 text-red-500"
+              class="wishlist-heart absolute top-3 right-3 z-20 w-8 h-8 flex items-center justify-center bg-white backdrop-blur-sm rounded-full hover:bg-white transition-all duration-300 text-red-500"
               onclick="event.stopPropagation(); toggleWishlist('${product.handle}', this)"
               data-product-handle="${product.handle}"
             >
               <svg
-                class="w-4 h-4 transition-all duration-300"
+                class="w-5 h-5 transition-all duration-300"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
@@ -96,30 +101,31 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="mt-1 flex justify-center items-center gap-2">
             ${
               product.compare_at_price > product.price
-                ? `<span class="text-gray-400 line-through text-xs">${product.compare_at_price}</span>` : ''
+                ? `<span class="text-gray-400 line-through text-xs">${product.compare_at_price}</span>`
+                : ''
             }
             <p class="text-secondary font-body">${product.price}</p>
           </div>
         </div>
       </div>
     `
-        )
-        .join('');
+            )
+            .join('');
 
-      // Re-initialize wishlist functionality for new buttons
-      if (window.wishlistManager) {
-        window.wishlistManager.updateAllHeartIcons();
-      }
-
-    }).catch(error => {
+          // Re-initialize wishlist functionality for new buttons
+          if (window.wishlistManager) {
+            window.wishlistManager.updateAllHeartIcons();
+          }
+        })
+        .catch((error) => {
+          console.error('Error loading wishlist:', error);
+          showToast('Error loading wishlist');
+        });
+    } catch (error) {
       console.error('Error loading wishlist:', error);
       showToast('Error loading wishlist');
-    });
-  } catch (error) {
-    console.error('Error loading wishlist:', error);
-    showToast('Error loading wishlist');
-  }
-});
+    }
+  });
 </script>
 
 {% schema %}

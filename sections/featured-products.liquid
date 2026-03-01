@@ -54,12 +54,6 @@
               </a>
 
               <div class="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-30">
-                {%- assign product_form_id = 'section-product-form-'
-                  | append: section.id
-                  | append: '-'
-                  | append: product.id
-                -%}
-
                 <button
                   type="button"
                   onclick="handleAddToCartFeatured(event, '{{ product.selected_or_first_available_variant.id }}')"
