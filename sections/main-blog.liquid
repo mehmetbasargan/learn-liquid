@@ -1,8 +1,12 @@
 {% paginate blog.articles by 1 %}
   <div class="main-blog-section py-12 px-4 max-w-7xl mx-auto">
     <header class="text-center mb-16">
-      <h3 class="font-light uppercase tracking-widest">{{ blog.title }}</h3>
-      <p class="text-primary mt-2">Explore our latest stories and updates</p>
+      <h3 class="font-light uppercase tracking-widest">
+        {{ section.settings.blog_title | default: blog.title }}
+      </h3>
+      <p class="text-primary mt-2">
+        {{ section.settings.blog_subtitle }}
+      </p>
     </header>
 
     <div class="flex justify-center gap-4 mb-10 overflow-x-auto pb-4">
@@ -120,6 +124,23 @@
       "id": "blog_title",
       "label": "Blog Page Title",
       "default": "Latest Stories"
+    },
+    {
+      "type": "textarea",
+      "id": "blog_subtitle",
+      "label": "Blog Subtitle",
+      "default": "Explore our latest stories and updates."
+    },
+    {
+      "type": "range",
+      "id": "header_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "%",
+      "label": "Header Opacity Rate",
+      "default": 100,
+      "info": "Adjust the transparency level of the header section."
     }
   ],
   "presets": [
